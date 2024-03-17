@@ -1,0 +1,82 @@
+body {
+    background: #fff; /* Cambiato lo sfondo a bianco */
+    margin: 0; /* Aggiunto il margine 0 per eliminare spaziature */
+    overflow: hidden; /* Nasconde il contenuto oltre i limiti del body */
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fixed-image {
+    position: absolute;
+    top: 0%;
+    right: 50%;
+    left: 50%;
+
+}
+
+.moving-images {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.image {
+    position: relative;
+    text-align: center;
+    margin-top: 20px; /* Aggiunto margine inferiore per separare le immagini */
+}
+
+.image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.price {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    animation: priceAnimation 1s ease-in-out infinite alternate; /* Animazione dello sfondo */
+}
+
+@keyframes priceAnimation {
+    0% {
+        background-color: red;
+    }
+    100% {
+        background-color: #ff7f50;
+    }
+}
+
+.prices-and-cart {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.carrello {
+    animation: moveRight 10s linear infinite;
+}
+
+@keyframes moveRight {
+    0% {
+        transform: translateX(-100px); /* Inizia appena fuori dalla finestra a sinistra */
+    }
+    100% {
+        transform: translateX(calc(100% + 100px)); /* Termina appena fuori dalla finestra a destra */
+    }
+}
