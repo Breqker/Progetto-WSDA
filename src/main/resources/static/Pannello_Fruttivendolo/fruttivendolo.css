@@ -57,7 +57,7 @@ body, html {
 
 .apple {
     position: absolute;
-    width: 40px; /* Dimensione delle mele */
+    width: 50px; /* Dimensione delle mele */
     height: auto;
     animation: fall 5s linear infinite; /* Animazione per far cadere le mele */
 }
