@@ -70,7 +70,7 @@ html, body {
 
 .manubri-png img {
     position: absolute;
-    top: 5vh;
+    top: 4vh;
     left: 50vw;
     transform: translate(-50%, -50%);
     width: 12vw;
@@ -81,7 +81,7 @@ html, body {
 
 .dischi-png img {
     position: absolute;
-    bottom: 15vh;
+    bottom: 12vh;
     left: 46vw;
     transform: translate(-50%, -50%);
     width: 20vw;
