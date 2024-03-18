@@ -1,0 +1,130 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#background-blur {
+    width: 100%;
+    height: 100%;
+    background-image: url('image/palestra_background.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+}
+
+/* Ridimensionamento e posizionamento basati su unità relative per le immagini */
+.proteine-png img, .shaker-png img, .vitaminac-png img, .mars_protein-png img, .top_girl-png img, .felpa_boy-png img {
+    position: absolute;
+    z-index: 10;
+    width: 15vw; /* Dimensioni relative per adattarsi al ridimensionamento dello schermo */
+    height: auto;
+}
+
+.proteine-png img {
+    top: 3vh;
+    right: 0;
+    animation: circular-motion 1s infinite linear;
+}
+
+.shaker-png img {
+    top: 35vh;
+    right: 0;
+    animation: shakeQuarterCircle 0.5s ease-in-out infinite;
+}
+
+.vitaminac-png img {
+    top: 3vh;
+    right: 12vw;
+    animation: circular-motion 3s infinite linear;
+}
+
+.mars_protein-png img {
+    top: 30vh;
+    right: 10vw;
+    animation: zoomInOut 3s ease-in-out infinite;
+}
+
+.top_girl-png img {
+    bottom: 10vh;
+    right: 2vw;
+    width: 15vw;
+    z-index: 5;
+    animation: zoomInOutGirlBoy 3s ease-in-out infinite;
+}
+
+.felpa_boy-png img {
+    bottom: 10vh;
+    right: 13vw;
+    width: 15vw;
+    z-index: 5;
+    animation: zoomInOutGirlBoy 3s ease-in-out infinite;
+}
+
+/* Stile per il testo "Nuovi Arrivi" */
+.nuovi-arrivi {
+    position: absolute;
+    bottom: 2vh;
+    right: 5vw;
+    text-align: center;
+    z-index: 10;
+    background-image: linear-gradient(to right, #ff8c00, #ff4500);
+    color: white;
+    padding: 1vw 1.5vw;
+    border-radius: 5px;
+    font-size: 1.25vw;
+    text-shadow: 0.1vw 0.1vw 0.1vw rgba(0, 0, 0, 0.5);
+}
+
+/* Animazioni */
+@keyframes circular-motion {
+    0% {
+        transform: rotate(0deg) translateX(0vw) translateY(0vh);
+    }
+    25% {
+        transform: rotate(5deg) translateX(0.5vw) translateY(-0.5vh);
+    }
+    50% {
+        transform: rotate(0deg) translateX(1vw) translateY(0vh);
+    }
+    75% {
+        transform: rotate(-5deg) translateX(0.5vw) translateY(0.5vh);
+    }
+    100% {
+        transform: rotate(0deg) translateX(0vw) translateY(0vh);
+    }
+}
+
+@keyframes shakeQuarterCircle {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3vh);
+    }
+}
+
+@keyframes zoomInOut {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+}
+
+@keyframes zoomInOutGirlBoy {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
