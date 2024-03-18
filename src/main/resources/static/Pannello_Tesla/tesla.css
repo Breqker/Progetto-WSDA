@@ -1,3 +1,4 @@
+/*Colori background car info*/
 :root {
     --blue-transparent: rgba(0, 120, 255, 0.1);
     --black-transparent: rgba(0, 0, 0, 0.1);
@@ -34,10 +35,19 @@
     padding: 0;
 }
 
+.car-info p + h2 {
+    margin-top: 20px;
+}
+
+
+/*Animazione auto*/
+
+
 .specs div {
     margin-bottom: 5px;
 }
 
+/*Container per logo tesla*/
 .logo-container {
     width: 100%;
     overflow: hidden;
@@ -45,6 +55,7 @@
     height: 100px;
 }
 
+/*Logo tesla*/
 .tesla-logo {
     position: absolute;
     width: 100px;
@@ -64,11 +75,11 @@
     width: 200px;
 }
 
+/*Zoom In e Out scritta tesla*/
 @keyframes zoomInOutCustom {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.5); }
 }
-/*Scritta Testa*/
 
 .typewriter-container {
     position: absolute;
@@ -151,4 +162,52 @@
         background-size: contain;
         background-repeat: no-repeat;
     }
+}
+
+/* Animation property */
+button {
+    animation: wiggle 2s linear infinite;
+}
+
+/* Button */
+@keyframes wiggle {
+    0%, 7% {
+        transform: rotateZ(0);
+    }
+    15% {
+        transform: rotateZ(-15deg);
+    }
+    20% {
+        transform: rotateZ(10deg);
+    }
+    25% {
+        transform: rotateZ(-10deg);
+    }
+    30% {
+        transform: rotateZ(6deg);
+    }
+    35% {
+        transform: rotateZ(-4deg);
+    }
+    40%, 100% {
+        transform: rotateZ(0);
+    }
+}
+
+button {
+    position: absolute;
+    left: calc(50% - 3em);
+    top: calc(0 - 2em);
+
+    height: 4em;
+    width: 7em;
+
+    background: #444;
+    border: none;
+    border-top: 3px solid orange;
+    border-radius: 0 0 0.2em 0.2em;
+    color: #fff;
+    font-family: "Apple Braille", serif;
+    font-size: 1.3em;
+    transform-origin: 50% 5em;
 }
