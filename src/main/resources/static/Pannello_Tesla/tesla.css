@@ -1,34 +1,130 @@
+/*Colori background car info*/
+:root {
+    --blue-transparent: rgba(0, 120, 255, 0.1);
+    --black-transparent: rgba(0, 0, 0, 0.1);
+    --red-transparent: rgba(255, 0, 0, 0.1);
+}
+
 .slideshow {
-    width: 100%; /* Adatta questa larghezza secondo le tue necessità */
-    height: 500px; /* Adatta questa altezza secondo le tue necessità */
-    background-image: url('image/tesla_blu.png'); /* Immagine iniziale */
-    background-size: cover; /* Assicurati che l'immagine copra completamente il div */
-    background-position: center; /* Centra l'immagine di sfondo */
-    animation-name: changeImage;
-    animation-duration: 15s;
-    animation-iteration-count: infinite;
-    animation-timing-function: steps(1); /* Assicura che il cambiamento di immagine sia immediato */
+    width: 100%;
+    height: 600px;
+    background-image: url('image/tesla_blu.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    animation: changeImage 15s infinite steps(1);
 }
 
-
-.price-container {
+.car-info {
     position: absolute;
-    top: 0;
-    left: 0;
-    padding: 20px;
-}
-
-.price {
-    color: #cd0000;
-    font-size: 24px;
-    font-weight: bold;
+    top: 20px;
+    left: 20px;
+    color: #000000;
+    font-family: "Apple Braille", serif;
     opacity: 0;
-    animation: priceChange 15s infinite steps(1);
+    width: 300px;
+    animation: infoChange 15s infinite steps(1);
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-#price1 { animation-delay: 0s; }
-#price2 { animation-delay: -10s; }
-#price3 { animation-delay: -5s; }
+.car-info h2,
+.car-info p {
+    margin: 0;
+    padding: 0;
+}
+
+.car-info p + h2 {
+    margin-top: 20px;
+}
+
+
+/*Animazione auto*/
+
+
+.specs div {
+    margin-bottom: 5px;
+}
+
+/*Container per logo tesla*/
+.logo-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 100px;
+}
+
+/*Logo tesla*/
+.tesla-logo {
+    position: absolute;
+    width: 100px;
+    left: -100px;
+    animation: slideLogo 10s linear infinite;
+}
+
+/*Scritta Testa*/
+.logo_word {
+    position: absolute;
+    top: -20px;
+    right: 80px;
+    animation: zoomInOutCustom 5s infinite;
+}
+
+.logo_word img {
+    width: 200px;
+}
+
+/*Zoom In e Out scritta tesla*/
+@keyframes zoomInOutCustom {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+}
+
+.typewriter-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: auto;
+}
+
+.typewriter {
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 440px;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+
+.typewriter h1 {
+    overflow: hidden;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation:
+            typing 3.5s steps(40, end),
+            blink-caret .75s step-end infinite;
+    font-size: 40px;
+}
+
+#info1 {
+    background-color: var(--blue-transparent);
+    animation-delay: 0s;
+}
+
+#info2 {
+    background-color: var(--black-transparent);
+    animation-delay: -10s;
+}
+
+#info3 {
+    background-color: var(--red-transparent);
+    animation-delay: -5s;
+}
 
 @keyframes changeImage {
     0%, 33% { background-image: url('image/tesla_blu.png'); }
@@ -36,7 +132,82 @@
     67%, 100% { background-image: url('image/tesla_rossa.png'); }
 }
 
-@keyframes priceChange {
+@keyframes infoChange {
     0%, 33% { opacity: 1; }
     34%, 100% { opacity: 0; }
+}
+
+@keyframes slideLogo {
+    from { left: -100px; }
+    to { left: 100%; }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: orange; }
+}
+
+@keyframes zoomInOut {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@media (max-width: 768px) {
+    .slideshow {
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+
+/* Animation property */
+button {
+    animation: wiggle 2s linear infinite;
+}
+
+/* Button */
+@keyframes wiggle {
+    0%, 7% {
+        transform: rotateZ(0);
+    }
+    15% {
+        transform: rotateZ(-15deg);
+    }
+    20% {
+        transform: rotateZ(10deg);
+    }
+    25% {
+        transform: rotateZ(-10deg);
+    }
+    30% {
+        transform: rotateZ(6deg);
+    }
+    35% {
+        transform: rotateZ(-4deg);
+    }
+    40%, 100% {
+        transform: rotateZ(0);
+    }
+}
+
+button {
+    position: absolute;
+    left: calc(50% - 3em);
+    top: calc(0 - 2em);
+
+    height: 4em;
+    width: 7em;
+
+    background: #444;
+    border: none;
+    border-top: 3px solid orange;
+    border-radius: 0 0 0.2em 0.2em;
+    color: #fff;
+    font-family: "Apple Braille", serif;
+    font-size: 1.3em;
+    transform-origin: 50% 5em;
 }
