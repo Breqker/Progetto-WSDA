@@ -48,9 +48,9 @@ html, body {
 
 @keyframes slideInMenu {
     from {
-        left: -25vw;
+        top: -25vw;
     }
     to {
-        left: 35vw;
+        top: 25vw;
     }
 }
