@@ -46,7 +46,7 @@
 /*Container per logo tesla*/
 .logo-container {
     width: 100%;
-    bottom: 6vh;
+    bottom: 5.5vh;
     overflow: hidden;
     position: relative;
     height: 10vh;
@@ -194,7 +194,7 @@ button {
     bottom: 4vh;
     position: absolute;
     left: calc(50% - 3em);
-    top: calc(0 - 2.5em); /* Modificato il valore top in base all'altezza del bottone */
+    top: calc(0 - 2.5em);
 
     right: 50%;
     height: 10vh;
