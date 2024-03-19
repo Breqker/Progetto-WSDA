@@ -1,131 +1,36 @@
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #222;
-    height: 100vh;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
 }
 
-.container {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    height: 50vh;
-    width: 50%;
-}
-
-.pacman {
-    position: relative;
-    background: transparent;
-    z-index: 2;
-    animation: movement 5s linear infinite;
-}
-
-.pacman::before,
-.pacman::after {
-    position: absolute;
-    top: -35px;
-    display: block;
-    border-radius: 50%;
-    content: "";
-    height: 0;
-    width: 0;
-}
-
-.pacman::before {
-    animation: chunk-top .5s ease infinite;
-    border: 35px solid #FFCC00;
-    border-left-color: transparent;
-    border-bottom-color: transparent;
-}
-
-.pacman::after {
-    animation: chunk-bottom .5s ease infinite;
-    border: 35px solid #FFCC00;
-    border-right-color: transparent;
-    border-top-color: transparent;
-}
-
-.sushi_roll {
-    position: relative;
-    z-index: 1;
-    width: 50px; /* stessa larghezza del Pac-Man */
-    height: 50px; /* stessa altezza del Pac-Man */
-    overflow: hidden; /* Nasconde il sushi roll quando il Pac-Man lo attraversa */
-    margin-left: 100px;
-    animation: disappear 1s forwards;
-}
-
-.sushi_roll img {
+#container {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Per adattare l'immagine senza distorsioni */
+    position: relative;
 }
 
-.pacman:hover + .sushi_roll {
-    visibility: visible;
-}
-
-.path {
-    display: flex;
-    justify-content: space-around;
-    animation: eating-path .5s linear infinite;
+#background{
     width: 100%;
+    height: 100%;
+    background-image: url('image/Ristorante.png');
+    background-size: cover;
+    background-position: center;
 }
 
-.path::before {
-    background: #fff;
-    border-radius: 50%;
-    content: "";
-    height: 1rem;
-    width: 1rem;
+#cuoco img {
+    position: absolute;
+    bottom: 0;
+    right: 1vw;
+    animation: moveUp 3s ease forwards;
 }
 
-@keyframes chunk-top {
-    0%, 100% {
-        transform: rotate(-45deg);
+@keyframes moveUp {
+    from {
+        bottom: -10%;
     }
-    50% {
-        transform: rotate(-80deg);
-    }
-}
-
-@keyframes chunk-bottom {
-    0%, 100% {
-        transform: rotate(-40deg);
-    }
-    50% {
-        transform: rotate(0deg);
-    }
-}
-
-@keyframes eating-path {
-    0% {
-        transform: translateX(50%);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-
-@keyframes movement{
-    0%{
-        transform: translateX(0);
-    }
-    100%{
-        transform: translateX(500px);
-    }
-}
-
-@keyframes disappear {
-    0% {
-        visibility: visible; /* Sushi roll visibile all'inizio */
-    }
-    99.9% {
-        visibility: visible; /* Sushi roll visibile prima che il Pac-Man lo attraversi */
-    }
-    100% {
-        visibility: hidden; /* Sushi roll nascosto dopo che il Pac-Man lo ha attraversato */
+    to {
+        bottom: 5%;
     }
 }
