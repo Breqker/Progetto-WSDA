@@ -1,43 +1,54 @@
 body {
-    background: #fff; /* Cambiato lo sfondo a bianco */
-    margin: 0; /* Aggiunto il margine 0 per eliminare spaziature */
-    overflow: hidden; /* Nasconde il contenuto oltre i limiti del body */
+    background-image: url('immagini/tech-background-design-template-2683d20d8817e9c0e1e2ec11bbf19269_screen.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
 .container {
     position: relative;
-    width: 100%;
-    height: 100vh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.fixed-image {
-    position: absolute;
-    top: 0%;
-    right: 50%;
-    left: 50%;
 
+.logo_amazon {
+    display: flex;
+    justify-content: center;
+    height: 20%; /* Larghezza del 20% della pagina */
+}
+
+.logo_amazon img {
+    margin-right: 20px;
+    max-width: 100%;
+    height: 20%;
 }
 
 .moving-images {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    height:300px; /* Altezza del 80% del contenitore */
+    max-width: 100%;
+    overflow-y: auto; /* Permette lo scrolling verticale se necessario */
+    margin-bottom: 20px; /* Aggiunge spazio alla parte inferiore */
 }
 
 .image {
     position: relative;
     text-align: center;
-    margin-top: 20px; /* Aggiunto margine inferiore per separare le immagini */
+    margin-top: 50px; /* Aumenta il margine superiore */
 }
 
 .image img {
-    max-width: 100%;
+    max-width: 50%; /* Rendi le immagini più piccole */
     height: auto;
+    transition: transform 0.5s ease; /* Aggiungi transizione per l'effetto di zoom */
 }
 
 .price {
@@ -47,36 +58,44 @@ body {
     transform: translateX(-50%);
     background-color: red;
     color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    animation: priceAnimation 1s ease-in-out infinite alternate; /* Animazione dello sfondo */
+    padding: 15px 20px; /* Aumenta le dimensioni del prezzo */
+    border-radius: 50%; /* Rendi il prezzo circolare */
+    animation: zoomInOut 2s ease-in-out infinite alternate; /* Animazione di zoom in e zoom out */
 }
 
-@keyframes priceAnimation {
-    0% {
-        background-color: red;
-    }
-    100% {
-        background-color: #ff7f50;
-    }
-}
-
-.prices-and-cart {
+.description {
     position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
 }
+
 
 .carrello {
+    position: fixed;
+    top: 500px; /* Posizionato a 20px dal basso */
+    width: calc(100vw / 1.78); /* Larghezza massima per rispettare il rapporto 16:9 */
+    max-width: calc(100% - 80%); /* Limita la larghezza al 20% rimanente della pagina */
     animation: moveRight 10s linear infinite;
+    z-index: 1; /* Assicura che il carrello sia sopra le altre componenti */
+}
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
 }
 
 @keyframes moveRight {
     0% {
-        transform: translateX(-100px); /* Inizia appena fuori dalla finestra a sinistra */
+        left: -100%; /* Inizia al di fuori del viewport a sinistra */
     }
     100% {
-        transform: translateX(calc(100% + 100px)); /* Termina appena fuori dalla finestra a destra */
+        left: calc(100% - 100px); /* Termina poco prima del bordo destro del viewport */
     }
 }

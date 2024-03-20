@@ -1,22 +1,23 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
 }
 
 #container {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     position: relative;
 }
 
-#background{
-    width: 100%;
-    height: 100%;
+#background {
+    width: 100vw;
+    height: 100vh;
     background-image: url('image/Ristorante.png');
     background-size: cover;
     background-position: center;
+    z-index: 10;
 }
 
 #cuoco img {
@@ -28,9 +29,28 @@ html, body {
 
 @keyframes moveUp {
     from {
-        bottom: -20%;
+        bottom: -20vh;
     }
     to {
-        bottom: -5%;
+        bottom: -5vh;
+    }
+}
+
+#menu img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    height: auto;
+    animation: slideInMenu 5s ease forwards;
+}
+
+@keyframes slideInMenu {
+    from {
+        top: -25vw;
+    }
+    to {
+        top: 25vw;
     }
 }

@@ -1,132 +1,155 @@
-body, html {
+body {
+    background-image: url('immagini/frutta.jpg');
+    background-position: center;
     margin: 0;
     padding: 0;
-    height: 100%;
-    overflow: hidden; /* Nasconde lo scrolling */
-}
-
-.container {
-    position: relative;
-    height: 100%;
-    display: flex;
-}
-
-.left-side, .center, .right-side {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.vendor-container {
-    background-color: yellow; /* Colore di sfondo rettangolare */
-    padding: 10px 20px;
-}
-
-.vendor {
-    font-size: 40px;
-    font-weight: bold;
     font-family: Arial, sans-serif;
 }
 
-.price {
-    margin-top: 5px;
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative; /* Aggiunto per il posizionamento relativo */
 }
 
-.fruit-left, .fruit-right {
+.fruttivendolo {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative; /* Aggiunto per il posizionamento relativo */
+    background-color: rgba(255, 0, 0, 0.7); /* Sfondo semitrasparente */
+    border-radius: 20px; /* Bordo stondato */
+    padding: 20px; /* Aggiunto spazio intorno al contenuto */
+}
+
+.fruttivendolo h1 {
+    font-family: cursive; /* Font corsivo */
+    color: #f0ff1f; /* Colore del testo personalizzabile */
+    font-size: 38px;
+}
+
+.offerte {
+    text-align: center;
+    margin-bottom: 10px;
+    position: relative; /* Aggiunto per il posizionamento relativo */
+    background-color: rgba(255, 255, 255, 0.7); /* Sfondo semitrasparente */
+    border-radius: 20px; /* Bordo stondato */
+    padding: 20px; /* Aggiunto spazio intorno al contenuto */
+}
+
+.offerte h2 {
+    font-size: 24px;
+    color: red;
+}
+
+.zoom-animation {
+    font-size: 18px;
+    animation: zoomAnimation 2s ease-in-out infinite alternate; /* Animazione di zoom in e zoom out */
+}
+
+@keyframes zoomAnimation {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+.immagini {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px;
+    justify-content: space-around;
+    position: relative; /* Aggiunto per il posizionamento relativo */
+    z-index: 1; /* Assicura che le immagini siano sopra la scritta */
 }
 
-.center {
+.immagine {
     position: relative;
+    text-align: center;
+    width: 200px;
+    animation: moveIn 5s ease forwards infinite; /* Animazione di ingresso */
+    background-color: rgba(255, 255, 255, 0.7); /* Sfondo semitrasparente */
+    border-radius: 20px; /* Bordo stondato */
+    padding: 20px; /* Aggiunto spazio intorno al contenuto */
+}
+
+.immagine img {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.apple-rain {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.apple {
-    position: absolute;
-    width: 50px; /* Dimensione delle mele */
     height: auto;
-    animation: fall 5s linear infinite; /* Animazione per far cadere le mele */
 }
 
-@keyframes fall {
+.prezzo {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+    background-color: #ff3333; /* Colore del prezzo personalizzabile */
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    animation: zoomPrice 1s ease-in-out infinite alternate; /* Animazione di zoom in e zoom out */
+}
+
+@keyframes zoomPrice {
     0% {
-        top: -50px;
-        transform: translateX(-50%) rotate(0deg); /* Inizia dall'alto */
-    }
-    50% {
-        transform: translateX(-50%) rotate(360deg); /* Ruota durante il movimento */
+        transform: scale(1);
     }
     100% {
-        top: 100%; /* Arriva in fondo */
-        transform: translateX(-50%) rotate(720deg); /* Continua a ruotare mentre cade */
+        transform: scale(1.8);
     }
 }
 
-.apple-rain.left {
-    left: 0;
-    animation: move-left 5s linear infinite; /* Animazione per far muovere le mele a sinistra */
-}
-
-.apple-rain.right {
-    right: 0;
-    animation: move-right 5s linear infinite; /* Animazione per far muovere le mele a destra */
-}
-
-@keyframes move-left {
+@keyframes moveIn {
     0% {
-        transform: translateY(-50px) rotate(0deg); /* Parte dall'alto */
+        transform: translateX(-100%);
+        opacity: 0;
     }
     100% {
-        transform: translateY(100%) rotate(720deg); /* Arriva in basso */
+        transform: translateX(0);
+        opacity: 1;
     }
 }
 
-@keyframes move-right {
+.immagine-left {
+    position: relative;
+    text-align: center;
+    width: 200px;
+    animation: moveFromLeft 5s ease infinite alternate; /* Animazione di ingresso da sinistra */
+    background-color: rgba(255, 255, 255, 0.7); /* Sfondo semitrasparente */
+    border-radius: 20px; /* Bordo stondato */
+    padding: 20px; /* Aggiunto spazio intorno al contenuto */
+}
+
+.immagine-right {
+    position: relative;
+    text-align: center;
+    width: 200px;
+    animation: moveFromRight 5s ease infinite alternate; /* Animazione di ingresso da destra */
+    background-color: rgba(255, 255, 255, 0.7); /* Sfondo semitrasparente */
+    border-radius: 20px; /* Bordo stondato */
+    padding: 20px; /* Aggiunto spazio intorno al contenuto */
+}
+
+@keyframes moveFromLeft {
     0% {
-        transform: translateY(-50px) rotate(0deg); /* Parte dall'alto */
+        transform: translateX(-100%);
+        opacity: 0;
     }
     100% {
-        transform: translateY(100%) rotate(720deg); /* Arriva in basso */
+        transform: translateX(0);
+        opacity: 1;
     }
 }
 
-/* Aggiungi altre animazioni per gli altri elementi come desiderato */
-
-.fruit-left img,
-.fruit-right img {
-    width: 150px; /* Dimensione iniziale delle immagini della frutta */
-    height: auto;
-    transition: transform 0.5s ease; /* Effetto di transizione per il cambio di dimensione */
-}
-
-.fruit-left:hover img,
-.fruit-right:hover img {
-    transform: scale(1.2); /* Zoom in quando il mouse si trova sopra l'immagine */
-}
-
-@keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px) rotate(-5deg); }
-    50% { transform: translateX(5px) rotate(5deg); }
-    75% { transform: translateX(-5px) rotate(-5deg); }
-    100% { transform: translateX(0); }
-}
-
-.fruit-left:hover img,
-.fruit-right:hover img {
-    animation: shake 0.5s ease-in-out infinite; /* Agitazione quando il mouse si trova sopra l'immagine */
+@keyframes moveFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
