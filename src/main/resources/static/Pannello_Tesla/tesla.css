@@ -87,7 +87,7 @@
 
 .typewriter {
     position: relative;
-    bottom: 6vh;
+    bottom: 4vh;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 24vw;
@@ -160,11 +160,6 @@
     }
 }
 
-/* Animation property */
-button {
-    animation: wiggle 2s linear infinite;
-}
-
 /* Button */
 @keyframes wiggle {
     0%, 7% {
@@ -188,25 +183,5 @@ button {
     40%, 100% {
         transform: rotateZ(0);
     }
-}
-
-button {
-    bottom: 4vh;
-    position: absolute;
-    left: calc(50% - 3em);
-    top: calc(0 - 2.5em);
-
-    right: 50%;
-    height: 10vh;
-    width: 10vw;
-
-    background: #444;
-    border: none;
-    border-top: 0.2em solid orange; /* Modificato il valore del bordo superiore */
-    border-radius: 0 0 0.2em 0.2em;
-    color: #fff;
-    font-family: "Apple Braille", serif;
-    font-size: 3vh;
-    transform-origin: 50% 5em;
 }
 
