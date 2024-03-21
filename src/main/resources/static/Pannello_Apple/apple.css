@@ -1,0 +1,303 @@
+body {
+    background-color: black;
+}
+
+.image-container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Animazione Logo Apple*/
+.apple_logo {
+    position: relative;
+    width: 15vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    animation: slide-in-blurred-left-logo 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+/*Animazione Think different.*/
+.aforisma {
+    position: relative;
+    width: 100vh;
+    top: -12vh;
+    bottom: 0;
+    left: 8vw;
+    color: white;
+    font-size: 4vh;
+    animation: slide-in-blurred-left-aforisma 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.iphone-15 {
+    width: 20vh;
+    position: absolute;
+    left: 11%;
+    top: 20vh;
+    animation: slide-in-blurred-left-dispositivi 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.applewatch {
+    width: 50vh;
+    position: absolute;
+    left: 4%;
+    top: 60vh;
+    animation: slide-in-blurred-left-dispositivi 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.ipad {
+    width: 45vh;
+    position: absolute;
+    left: 70%;
+    top: 20vh;
+    animation: slide-in-blurred-right-dispositivi 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.macbook {
+    width: 45vh;
+    position: absolute;
+    left: 70%;
+    top: 50vh;
+    animation: slide-in-blurred-right-dispositivi 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.iphone-15_specifiche {
+    position: absolute;
+    color: white;
+    font-size: 2vh;
+    left: 21%;
+    top: 20vh;
+    animation: focus-in 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.applewatch_specifiche {
+    position: absolute;
+    color: white;
+    font-size: 2vh;
+    left: 28%;
+    top: 62vh;
+    animation: focus-in 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.macbook_specifiche {
+    position: absolute;
+    color: white;
+    font-size: 2vh;
+    left: 52%;
+    top: 62vh;
+    animation: focus-in 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.ipad_specifiche{
+    position: absolute;
+    color: white;
+    font-size: 2vh;
+    left: 52%;
+    top: 20vh;
+    animation: focus-in 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.prezzo_iphone {
+    position: absolute;
+    color: white;
+    font-size: 2vh;
+    left: 21%;
+    top: 38vh;
+    animation: focus-in 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.prezzo_iphone::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: -5%;
+    width: 110%;
+    height: 60%;
+    background-color: red;
+    z-index: -1;
+    border-radius: 15px;
+}
+
+.prezzo_ipad {
+    position: absolute;
+    color: white;
+    font-size: 2vh;
+    left: 52%;
+    top: 36vh;
+    animation: focus-in 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.prezzo_ipad::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: -5%;
+    width: 110%;
+    height: 60%;
+    background-color: red;
+    z-index: -1;
+    border-radius: 15px;
+}
+
+.prezzo_applewatch {
+    position: absolute;
+    color: white;
+    font-size: 2vh;
+    left: 28%;
+    top: 76vh;
+    animation: focus-in 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.prezzo_applewatch::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: -5%;
+    width: 110%;
+    height: 60%;
+    background-color: red;
+    z-index: -1;
+    border-radius: 15px;
+}
+
+.prezzo_macbook {
+    position: absolute;
+    color: white;
+    font-size: 2vh;
+    left: 52%;
+    top: 80vh;
+    animation: focus-in 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.prezzo_macbook::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: -5%;
+    width: 110%;
+    height: 60%;
+    background-color: red;
+    z-index: -1;
+    border-radius: 15px;
+}
+
+.scadenza_offerte {
+    position: relative;
+    width: 100vh;
+    top: -19vh;
+    bottom: 0;
+    left: 70vw;
+    color: white;
+    font-size: 3vh;
+    animation: slide-in-blurred-right-scadenza 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+/*Animazione Logo Apple*/
+@keyframes slide-in-blurred-left-logo {
+    0%, 5% {
+        transform: translateX(-1000px) scaleY(2.5) scaleX(0.2);
+        filter: blur(40px);
+        opacity: 0;
+    }
+    10%, 95% {
+        transform: translateX(0) scaleY(1) scaleX(1);
+        filter: blur(0);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/*Animazione Aforisma*/
+@keyframes slide-in-blurred-left-aforisma {
+    0%, 10% { /* Ritarda l'inizio dell'animazione della scritta */
+        transform: translateX(-1000px) scaleY(2.5) scaleX(0.2);
+        filter: blur(40px);
+        opacity: 0;
+    }
+    12%, 95% { /* Agiustiamo per mantenere il ritardo desiderato e la visibilità */
+        transform: translateX(0) scaleY(1) scaleX(1);
+        filter: blur(0);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/*Animazione Dispositivi*/
+@keyframes slide-in-blurred-left-dispositivi {
+    0%, 12% { /* Ritarda l'inizio dell'animazione della scritta */
+        transform: translateX(-1000px) scaleY(2.5) scaleX(0.2);
+        filter: blur(40px);
+        opacity: 0;
+    }
+    25%, 95% { /* Agiustiamo per mantenere il ritardo desiderato e la visibilità */
+        transform: translateX(0) scaleY(1) scaleX(1);
+        filter: blur(0);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/*Dispositivi*/
+@keyframes slide-in-blurred-right-dispositivi {
+    0%, 12% { /* Ritarda l'inizio dell'animazione */
+        transform: translateX(1000px) scaleY(2.5) scaleX(0.2); /* Parte da destra */
+        filter: blur(40px);
+        opacity: 0;
+    }
+    25%, 95% { /* Mantiene il ritardo desiderato e la visibilità */
+        transform: translateX(0) scaleY(1) scaleX(1); /* Finisce al centro */
+        filter: blur(0);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0; /* Scomparsa alla fine */
+    }
+}
+
+/*Specifiche*/
+@keyframes focus-in {
+    0%, 23% {
+        transform: scale(0.95);
+        filter: blur(2px);
+        opacity: 0;
+    }
+    40%, 95% {
+        transform: scale(1.02);
+        filter: blur(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-in-blurred-right-scadenza {
+    0%, 30% {
+        transform: translateX(1000px) scaleY(2.5) scaleX(0.2);
+        filter: blur(40px);
+        opacity: 0;
+    }
+    50%, 95% {
+        transform: translateX(0) scaleY(1) scaleX(1);
+        filter: blur(0);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
