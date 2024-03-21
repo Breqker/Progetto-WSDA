@@ -72,7 +72,7 @@ body {
     position: absolute;
     color: white;
     font-size: 2vh;
-    left: 21%;
+    left: 22%;
     top: 20vh;
     animation: focus-in 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
 }
@@ -108,7 +108,7 @@ body {
     position: absolute;
     color: white;
     font-size: 2vh;
-    left: 21%;
+    left: 22%;
     top: 38vh;
     animation: focus-in 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
 }
@@ -123,6 +123,7 @@ body {
     background-color: red;
     z-index: -1;
     border-radius: 15px;
+    border: 2px solid white;
 }
 
 .prezzo_ipad {
@@ -144,6 +145,7 @@ body {
     background-color: red;
     z-index: -1;
     border-radius: 15px;
+    border: 2px solid white;
 }
 
 .prezzo_applewatch {
@@ -165,6 +167,7 @@ body {
     background-color: red;
     z-index: -1;
     border-radius: 15px;
+    border: 2px solid white;
 }
 
 .prezzo_macbook {
@@ -186,6 +189,7 @@ body {
     background-color: red;
     z-index: -1;
     border-radius: 15px;
+    border: 2px solid white;
 }
 
 .scadenza_offerte {
@@ -291,7 +295,7 @@ body {
         filter: blur(40px);
         opacity: 0;
     }
-    50%, 95% {
+    35%, 95% {
         transform: translateX(0) scaleY(1) scaleX(1);
         filter: blur(0);
         opacity: 1;
