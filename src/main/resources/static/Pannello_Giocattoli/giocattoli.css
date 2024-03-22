@@ -75,7 +75,7 @@ html, body {
     text-shadow: 1px 1px 0px rgba(255,255,255,0.9), 2px 2px 1px rgba(255,255,255,0.7);
     font-family: G, Geometric sans-serif;
     font-weight: bold;
-    color: white;
+    color: violet;
     position: absolute;
     top: 10%;
     left: 25%;
@@ -132,4 +132,12 @@ html, body {
     100% {
         transform: scale(1.5);
     }
+}
+
+#logo{
+    position: absolute;
+    top:62%;
+    left:25%;
+    width: 30vw;
+    height: auto;
 }
