@@ -46,7 +46,7 @@
 /*Container per logo tesla*/
 .logo-container {
     width: 100%;
-    bottom: 5.5vh;
+    bottom: 4vh;
     overflow: hidden;
     position: relative;
     height: 10vh;
@@ -62,7 +62,7 @@
 /*Scritta Testa*/
 .logo_word {
     position: absolute;
-    top: 0.5vh;
+    top: -5vh;
     right: 4vw;
     animation: zoomInOutCustom 5s infinite;
 }
@@ -74,7 +74,7 @@
 /*Zoom In e Out scritta tesla*/
 @keyframes zoomInOutCustom {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.5); }
+    50% { transform: scale(1.1); }
 }
 
 .typewriter-container {
