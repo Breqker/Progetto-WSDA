@@ -1,0 +1,196 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.background_profumo {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Previene eventuali overflow oltre i limiti dell'elemento */
+}
+
+.background_profumo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px) brightness(30%); /* Aggiungi questa linea per applicare la sfocatura */
+}
+
+.text-container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.rabanne {
+    position: absolute;
+    width: 100vh;
+    top: -109vh;
+    left: 41vw;
+    color: white;
+    font-size: 4vh;
+    font-family: "Times New Roman", Times, serif;
+    text-shadow: 2px 2px 0 #000, 4px 4px 0 #000, 6px 6px 0 #000, 8px 8px 0 #000;
+    transform: rotateY(20deg);
+    animation: focus-in-robanne 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.note_manderino {
+    position: absolute;
+    width: 100vh;
+    top: -40vh;
+    left: 21vw;
+    color: white;
+    font-size: 2vh;
+    text-align-last: center;
+    font-family: "Apple Braille", serif;
+    text-shadow: 2px 2px 0 #000, 4px 4px 0 #000, 6px 6px 0 #000, 8px 8px 0 #000;
+    transform: rotateY(20deg);
+    animation: focus-in-descrizione 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.note_cannella {
+    position: absolute;
+    width: 100vh;
+    top: -40vh;
+    left: 39vw;
+    color: white;
+    font-size: 2vh;
+    text-align-last: center;
+    font-family: "Apple Braille", serif;
+    text-shadow: 2px 2px 0 #000, 4px 4px 0 #000, 6px 6px 0 #000, 8px 8px 0 #000;
+    transform: rotateY(20deg);
+    animation: focus-in-descrizione 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.note_cuoio {
+    position: absolute;
+    width: 100vh;
+    top: -40vh;
+    left: 57vw;
+    color: white;
+    font-size: 2vh;
+    text-align-last: center;
+    font-family: "Apple Braille", serif;
+    text-shadow: 2px 2px 0 #000, 4px 4px 0 #000, 6px 6px 0 #000, 8px 8px 0 #000;
+    transform: rotateY(20deg);
+    animation: focus-in-descrizione 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+
+.image-container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.eaudetoilette {
+    width: 60vh;
+    position: absolute;
+    left: 5%;
+    top: 20vh;
+    animation: focus-in-profumo 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.manderino {
+    width: 22vh;
+    position: absolute;
+    left: 42%;
+    top: 22vh;
+    border: 2px solid #ffffff;
+    animation: focus-in-note 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+.cannella {
+    width: 22vh;
+    position: absolute;
+    left: 60%;
+    top: 22vh;
+    border: 2px solid #ffffff;
+    animation: focus-in-note 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+
+}
+
+.cuoio {
+    width: 22vh;
+    position: absolute;
+    left: 78%;
+    top: 22vh;
+    border: 2px solid #ffffff;
+    animation: focus-in-note 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
+}
+
+@keyframes focus-in-robanne {
+    0%, 1% {
+        transform: scale(0.95);
+        filter: blur(2px);
+        opacity: 0;
+    }
+    10%, 95% {
+        transform: scale(1.02);
+        filter: blur(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes focus-in-profumo {
+    0%, 10% {
+        transform: scale(0.95);
+        filter: blur(2px);
+        opacity: 0;
+    }
+    25%, 95% {
+        transform: scale(1.02);
+        filter: blur(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes focus-in-note {
+    0%, 15% {
+        transform: scale(0.95);
+        filter: blur(2px);
+        opacity: 0;
+    }
+    30%, 95% {
+        transform: scale(1.02);
+        filter: blur(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes focus-in-descrizione {
+    0%, 20% {
+        transform: scale(0.95);
+        filter: blur(2px);
+        opacity: 0;
+    }
+    35%, 95% {
+        transform: scale(1.02);
+        filter: blur(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+
+
+
