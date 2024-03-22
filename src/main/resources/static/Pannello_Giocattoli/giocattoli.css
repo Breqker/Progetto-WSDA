@@ -1,0 +1,143 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+#background {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-image: url("image/sfondo.png");
+    background-position: center;
+    z-index: 10;
+}
+
+#toy1 img, #toy2 img, #toy3 img {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    height: auto;
+}
+
+#toy1 img {
+    left: 25%;
+    animation: moveRight 5s ease forwards;
+}
+
+#toy2 img {
+    left: 50%;
+    animation: moveUp 5s ease forwards;
+}
+
+#toy3 img {
+    left: 75%;
+    animation: moveLeft 5s ease forwards;
+}
+
+@keyframes moveLeft {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 75%;
+    }
+}
+
+@keyframes moveRight {
+    from {
+        left: 0;
+    }
+    to {
+        left: 25%;
+    }
+}
+
+@keyframes moveUp {
+    from {
+        top: 100%;
+    }
+    to {
+        top: 50%;
+    }
+}
+
+#slogan {
+    font-size: 2vw;
+    text-shadow: 1px 1px 0px rgba(255,255,255,0.9), 2px 2px 1px rgba(255,255,255,0.7);
+    font-family: G, Geometric sans-serif;
+    font-weight: bold;
+    color: violet;
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+    height: auto;
+    text-align: center;
+    animation: zoomInOut 3s ease-out infinite alternate;
+}
+
+#price1 {
+    position: absolute;
+    bottom: 20%;
+    left: 25%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50%;
+    animation-delay: 5s;
+    animation: zoomInOut 2s ease-in-out infinite alternate;
+}
+
+#price2 {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50%;
+    animation-delay: 5s;
+    animation: zoomInOut 2s ease-in-out infinite alternate;
+}
+
+#price3 {
+    position: absolute;
+    bottom: 20%;
+    left: 75%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 50%;
+    animation-delay: 5s;
+    animation: zoomInOut 2s ease-in-out infinite alternate;
+}
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+#logo{
+    position: absolute;
+    top:62%;
+    left:25%;
+    width: 30vw;
+    height: auto;
+}
