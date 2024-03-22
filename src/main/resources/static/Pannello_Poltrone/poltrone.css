@@ -1,0 +1,91 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+#background {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('image/sfondo.png');
+    background-size: cover;
+    background-position: center;
+    z-index: 10;
+}
+
+#poltrona1 img {
+    position: absolute;
+    top: 75%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    height: auto;
+    animation: moveDown 5s ease forwards;
+}
+
+#poltrona2 img {
+    position: absolute;
+    top: 75%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    height: auto;
+    animation: moveDown 5s ease forwards;
+}
+
+#poltrona3 img{
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    height: auto;
+    animation: moveDown 5s ease forwards;
+}
+
+@keyframes moveDown{
+    from{
+        top:-25%;
+    }
+    to{
+        top:75%;
+    }
+}
+
+#slogan{
+    font-size: 2vw;
+    font-family: G, Geometric sans-serif;
+    font-weight: bold;
+    color: white;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-180deg);;
+    width: 50vw;
+    height: auto;
+    text-align: center;
+    animation: slideAndRotate 5s ease forwards;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+@keyframes slideAndRotate {
+    from {
+        top: -50%;
+        transform: translate(-50%, -50%) rotate(-180deg);
+        opacity: 0;
+    }
+    to {
+        top: 25%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 1;
+    }
+}
