@@ -1,13 +1,16 @@
 body {
+    background-image: url('immagini/18929803-cane-zampa-stampe-pista-su-nero-sfondo-vettoriale.jpg');
+    background-size: cover;
+    background-position: center;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #cc9900; /* Sfondo giallo ocra */
+
 }
 
 .container {
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,25 +28,22 @@ body {
     padding: 10px;
 }
 
-.horizontal-section {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
 .image-container {
-    width: 300px;
+    width:400px;
     height: 300px;
+    margin-top:40px;
     align-content: center;
     overflow: hidden;
 }
 
 .image-container img {
-    width: 100%;
-    height: 100%;
+    width: 100%; /* Modificato */
+    height: 100%; /* Modificato */
     object-fit: cover;
     align-content: center;
 }
+
+
 
 .shake-animation {
     animation: shake 0.5s infinite alternate;
@@ -81,5 +81,27 @@ body {
     100% {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+.price {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    padding: 15px 20px; /* Aumenta le dimensioni del prezzo */
+    border-radius: 50%; /* Rendi il prezzo circolare */
+    animation: zoomInOut 2s ease-in-out infinite alternate; /* Animazione di zoom in e zoom out */
+}
+
+
+@keyframes zoomInOut {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.5);
     }
 }

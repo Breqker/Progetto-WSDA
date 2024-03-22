@@ -33,7 +33,7 @@ body {
     text-align: center;
     margin-bottom: 10px;
     position: relative; /* Aggiunto per il posizionamento relativo */
-    background-color: rgba(255, 255, 255, 0.7); /* Sfondo semitrasparente */
+    background-color: rgb(241, 255, 31); /* Sfondo semitrasparente */
     border-radius: 20px; /* Bordo stondato */
     padding: 20px; /* Aggiunto spazio intorno al contenuto */
 }
@@ -53,7 +53,7 @@ body {
         transform: scale(1);
     }
     100% {
-        transform: scale(1.1);
+        transform: scale(1.5);
     }
 }
 
@@ -89,7 +89,7 @@ body {
     color: white;
     border-radius: 10px;
     font-size: 16px;
-    animation: zoomPrice 1s ease-in-out infinite alternate; /* Animazione di zoom in e zoom out */
+    animation: zoomPrice 2s ease-in-out infinite alternate; /* Animazione di zoom in e zoom out */
 }
 
 @keyframes zoomPrice {

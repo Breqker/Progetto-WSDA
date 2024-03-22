@@ -24,8 +24,8 @@ body {
 }
 
 .logo_amazon img {
-    margin-right: 20px;
-    max-width: 100%;
+    align-content: center;
+    max-width: 30%;
     height: 20%;
 }
 
@@ -42,10 +42,12 @@ body {
 .image {
     position: relative;
     text-align: center;
+    margin-left: 50px;
     margin-top: 50px; /* Aumenta il margine superiore */
 }
 
 .image img {
+
     max-width: 50%; /* Rendi le immagini più piccole */
     height: auto;
     transition: transform 0.5s ease; /* Aggiungi transizione per l'effetto di zoom */
@@ -56,12 +58,36 @@ body {
     bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: red;
+    background-color: purple; /* Colore iniziale: viola */
     color: white;
     padding: 15px 20px; /* Aumenta le dimensioni del prezzo */
     border-radius: 50%; /* Rendi il prezzo circolare */
-    animation: zoomInOut 2s ease-in-out infinite alternate; /* Animazione di zoom in e zoom out */
+    animation: zoomAndColorChange 5s ease-in-out infinite alternate; /* Animazione di zoom e cambio colore */
 }
+
+@keyframes zoomAndColorChange {
+    0% {
+        background-color: purple; /* Colore iniziale: viola */
+        transform: translateX(-50%) scale(1); /* Scala normale */
+    }
+    25% {
+        background-color: blue; /* Colore intermedio: blu */
+        transform: translateX(-50%) scale(1.4); /* Zoom in */
+    }
+    50% {
+        background-color: purple; /* Colore finale: viola */
+        transform: translateX(-50%) scale(1); /* Scala normale */
+    }
+    75% {
+        background-color: blue; /* Colore intermedio: blu */
+        transform: translateX(-50%) scale(1.4); /* Zoom in */
+    }
+    100% {
+        background-color: purple; /* Colore finale: viola */
+        transform: translateX(-50%) scale(1); /* Scala normale */
+    }
+}
+
 
 .description {
     position: absolute;
@@ -78,18 +104,10 @@ body {
     top: 500px; /* Posizionato a 20px dal basso */
     width: calc(100vw / 1.78); /* Larghezza massima per rispettare il rapporto 16:9 */
     max-width: calc(100% - 80%); /* Limita la larghezza al 20% rimanente della pagina */
-    animation: moveRight 10s linear infinite;
+    animation: moveRight 9s linear infinite;
     z-index: 1; /* Assicura che il carrello sia sopra le altre componenti */
 }
 
-@keyframes zoomInOut {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.2);
-    }
-}
 
 @keyframes moveRight {
     0% {
