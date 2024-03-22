@@ -4,6 +4,7 @@ body {
     background-position: center;
     margin: 0;
     padding: 0;
+    overflow: hidden;
     font-family: Arial, sans-serif;
 
 }
@@ -37,20 +38,28 @@ body {
 }
 
 .image-container img {
-    width: 100%; /* Modificato */
-    height: 100%; /* Modificato */
+    width: 100%;
+    height: auto;
     object-fit: cover;
     align-content: center;
+    transition: width 0.5s ease;
 }
 
-
-
 .shake-animation {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shake-animation img {
     animation: shake 0.5s infinite alternate;
+    height: 50%;
+    width: 50%;
 }
 
 .move-up-animation {
-    animation: moveUp 2s ease-in-out forwards, repeatMoveUp 3s infinite; /* Animazione ripetuta ogni 3 secondi */
+    animation: moveUp 5s ease-in-out forwards, repeatMoveUp 5s infinite;
 }
 
 @keyframes shake {
@@ -91,9 +100,9 @@ body {
     transform: translateX(-50%);
     background-color: red;
     color: white;
-    padding: 15px 20px; /* Aumenta le dimensioni del prezzo */
-    border-radius: 50%; /* Rendi il prezzo circolare */
-    animation: zoomInOut 2s ease-in-out infinite alternate; /* Animazione di zoom in e zoom out */
+    padding: 15px 20px;
+    border-radius: 50%;
+    animation: zoomInOut 2s ease-in-out infinite alternate;
 }
 
 

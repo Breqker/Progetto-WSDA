@@ -21,7 +21,7 @@ body {
 .logo_amazon {
     display: flex;
     justify-content: center;
-    height: 20%; /* Larghezza del 20% della pagina */
+    height: 20%;
 }
 
 .logo_amazon img {
@@ -34,7 +34,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height:60%; /* Altezza del 80% del contenitore */
+    height:60%;
     max-width: 100%;
     align-content: center;
 }
@@ -43,14 +43,14 @@ body {
     position: relative;
     text-align: center;
     margin-left: 50px;
-    margin-top: 50px; /* Aumenta il margine superiore */
+    margin-top: 50px;
 }
 
 .image img {
 
-    max-width: 60%; /* Rendi le immagini più piccole */
+    max-width: 60%;
     height: auto;
-    transition: transform 0.5s ease; /* Aggiungi transizione per l'effetto di zoom */
+    transition: transform 0.5s ease;
 
 }
 
@@ -59,33 +59,33 @@ body {
     bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: purple; /* Colore iniziale: viola */
+    background-color: purple;
     color: white;
-    padding: 15px 20px; /* Aumenta le dimensioni del prezzo */
-    border-radius: 50%; /* Rendi il prezzo circolare */
-    animation: zoomAndColorChange 5s ease-in-out infinite alternate; /* Animazione di zoom e cambio colore */
+    padding: 15px 20px;
+    border-radius: 50%;
+    animation: zoomAndColorChange 5s ease-in-out infinite alternate;
 }
 
 @keyframes zoomAndColorChange {
     0% {
-        background-color: purple; /* Colore iniziale: viola */
-        transform: translateX(-50%) scale(1); /* Scala normale */
+        background-color: purple;
+        transform: translateX(-50%) scale(1);
     }
     25% {
-        background-color: blue; /* Colore intermedio: blu */
-        transform: translateX(-50%) scale(1.4); /* Zoom in */
+        background-color: blue;
+        transform: translateX(-50%) scale(1.4);
     }
     50% {
-        background-color: purple; /* Colore finale: viola */
-        transform: translateX(-50%) scale(1); /* Scala normale */
+        background-color: purple;
+        transform: translateX(-50%) scale(1);
     }
     75% {
-        background-color: blue; /* Colore intermedio: blu */
-        transform: translateX(-50%) scale(1.4); /* Zoom in */
+        background-color: blue;
+        transform: translateX(-50%) scale(1.4);
     }
     100% {
-        background-color: purple; /* Colore finale: viola */
-        transform: translateX(-50%) scale(1); /* Scala normale */
+        background-color: purple;
+        transform: translateX(-50%) scale(1);
     }
 }
 
@@ -97,32 +97,31 @@ body {
     color: white;
     padding: 10px;
     border-radius: 10px;
-    transition: all 0.3s ease; /* Aggiungi una transizione per un effetto più fluido */
+    transition: all 0.3s ease;
 }
 
 @media screen and (max-width: 768px) {
-    /* Modifica le dimensioni quando la larghezza della finestra è inferiore a 768px */
     .description {
-        padding: 5px; /* Riduci il padding */
-        font-size: 12px; /* Riduci la dimensione del testo */
-        border-radius: 5px; /* Riduci il raggio del bordo */
+        padding: 5px;
+        font-size: 12px;
+        border-radius: 5px;
     }
 }
 
 @media screen and (max-width: 480px) {
-    /* Ulteriori modifiche quando la larghezza della finestra è inferiore a 480px */
+
     .description {
-        padding: 2px; /* Riduci ulteriormente il padding */
-        font-size: 10px; /* Riduci ulteriormente la dimensione del testo */
-        border-radius: 3px; /* Riduci ulteriormente il raggio del bordo */
+        padding: 2px;
+        font-size: 10px;
+        border-radius: 3px;
     }
 }
 
 
 .carrello-container {
     height: 20%;
-    width: auto; /* Imposta la larghezza in base al contenuto */
-    max-width: 100%; /* Assicura che non superi la larghezza del container */
+    width: auto;
+    max-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,15 +131,15 @@ body {
 
 .carrello img {
     max-height: 30%;
-    width: 30%; /* Imposta la larghezza in base all'altezza per mantenere le proporzioni */
+    width: 30%;
     animation: moveRight 7s linear infinite;
 }
 
 @keyframes moveRight {
     0% {
-        transform: translateX(-101vw); /* Inizia al di fuori del viewport a sinistra */
+        transform: translateX(-101vw);
     }
     100% {
-        transform: translateX(100vw); /* Termina poco prima del bordo destro del viewport */
+        transform: translateX(100vw);
     }
 }
