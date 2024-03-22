@@ -1,9 +1,11 @@
 body {
-    background-image: url('immagini/frutta.jpg');
-    background-position: center;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-image: url('immagini/frutta.jpg');
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
 }
 
 .container {
@@ -11,67 +13,60 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    position: relative; /* Aggiunto per il posizionamento relativo */
+    position: relative;
 }
 
 .fruttivendolo {
     text-align: center;
     margin-bottom: 50px;
-    position: relative; /* Aggiunto per il posizionamento relativo */
-    background-color: rgba(255, 0, 0, 0.7); /* Sfondo semitrasparente */
-    border-radius: 20px; /* Bordo stondato */
-    padding: 20px; /* Aggiunto spazio intorno al contenuto */
+    background-color: rgba(255, 0, 0, 0.7);
+    border-radius: 20px;
+    padding: 20px;
 }
 
 .fruttivendolo h1 {
-    font-family: cursive; /* Font corsivo */
-    color: #f0ff1f; /* Colore del testo personalizzabile */
-    font-size: 38px;
+    font-family: cursive;
+    color: #f0ff1f;
+    font-size: 5vw;
+    margin: 0;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
 .offerte {
     text-align: center;
     margin-bottom: 10px;
-    position: relative; /* Aggiunto per il posizionamento relativo */
-    background-color: rgb(241, 255, 31); /* Sfondo semitrasparente */
-    border-radius: 20px; /* Bordo stondato */
-    padding: 20px; /* Aggiunto spazio intorno al contenuto */
+    background-color: rgba(241, 255, 31, 0.7);
+    border-radius: 20px;
+    padding: 20px;
 }
 
 .offerte h2 {
-    font-size: 24px;
+    font-size: 3vw;
     color: red;
+    margin: 0;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
 .zoom-animation {
-    font-size: 18px;
-    animation: zoomAnimation 2s ease-in-out infinite alternate; /* Animazione di zoom in e zoom out */
-}
-
-@keyframes zoomAnimation {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.5);
-    }
+    font-size: 2vw;
+    animation: zoomAnimation 2s ease-in-out infinite alternate;
 }
 
 .immagini {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-    position: relative; /* Aggiunto per il posizionamento relativo */
-    z-index: 1; /* Assicura che le immagini siano sopra la scritta */
 }
 
 .immagine {
-    position: relative;
     text-align: center;
     width: 200px;
-    animation: moveIn 5s ease forwards infinite; /* Animazione di ingresso */
-    background-color: rgba(255, 255, 255, 0.7); /* Sfondo semitrasparente */
-    border-radius: 20px; /* Bordo stondato */
-    padding: 20px; /* Aggiunto spazio intorno al contenuto */
+    margin-bottom: 20px;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 20px;
+    animation: moveIn 5s ease forwards infinite;
 }
 
 .immagine img {
@@ -85,11 +80,11 @@ body {
     left: 50%;
     transform: translateX(-50%);
     padding: 5px 10px;
-    background-color: #ff3333; /* Colore del prezzo personalizzabile */
+    background-color: #ff3333;
     color: white;
     border-radius: 10px;
-    font-size: 16px;
-    animation: zoomPrice 2s ease-in-out infinite alternate; /* Animazione di zoom in e zoom out */
+    font-size: 1.5vw;
+    animation: zoomPrice 2s ease-in-out infinite alternate;
 }
 
 @keyframes zoomPrice {
@@ -101,35 +96,46 @@ body {
     }
 }
 
+@keyframes zoomAnimation {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.5);
+    }
+}
+
 @keyframes moveIn {
     0% {
-        transform: translateX(-100%);
+        transform: translateY(-50%);
         opacity: 0;
     }
     100% {
-        transform: translateX(0);
+        transform: translateY(0);
         opacity: 1;
     }
 }
 
-.immagine-left {
-    position: relative;
+.immagine-left,
+.immagine-right {
     text-align: center;
     width: 200px;
-    animation: moveFromLeft 5s ease infinite alternate; /* Animazione di ingresso da sinistra */
-    background-color: rgba(255, 255, 255, 0.7); /* Sfondo semitrasparente */
-    border-radius: 20px; /* Bordo stondato */
-    padding: 20px; /* Aggiunto spazio intorno al contenuto */
+    margin-bottom: 20px;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 20px;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.immagine-left {
+    animation-name: moveFromLeft;
 }
 
 .immagine-right {
-    position: relative;
-    text-align: center;
-    width: 200px;
-    animation: moveFromRight 5s ease infinite alternate; /* Animazione di ingresso da destra */
-    background-color: rgba(255, 255, 255, 0.7); /* Sfondo semitrasparente */
-    border-radius: 20px; /* Bordo stondato */
-    padding: 20px; /* Aggiunto spazio intorno al contenuto */
+    animation-name: moveFromRight;
 }
 
 @keyframes moveFromLeft {
@@ -151,5 +157,23 @@ body {
     100% {
         transform: translateX(0);
         opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .fruttivendolo h1 {
+        font-size: 10vw;
+    }
+
+    .offerte h2 {
+        font-size: 6vw;
+    }
+
+    .zoom-animation {
+        font-size: 4vw;
+    }
+
+    .immagine {
+        width: 45%;
     }
 }
