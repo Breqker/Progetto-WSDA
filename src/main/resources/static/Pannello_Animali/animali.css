@@ -1,5 +1,5 @@
 body {
-    background-image: url('immagini/18929803-cane-zampa-stampe-pista-su-nero-sfondo-vettoriale.jpg');
+    background-image: url('immagini/prati.jpg');
     background-size: cover;
     background-position: center;
     margin: 0;
@@ -19,6 +19,7 @@ body {
 
 .vertical-section {
     flex: 1;
+    margin-top: 2%;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -132,7 +132,7 @@ body {
 .carrello img {
     max-height: 30%;
     width: 30%;
-    animation: moveRight 7s linear infinite;
+    animation: moveRight 10s linear infinite;
 }
 
 @keyframes moveRight {
