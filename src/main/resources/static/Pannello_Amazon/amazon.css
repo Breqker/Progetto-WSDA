@@ -138,7 +138,7 @@ body {
 
 @keyframes moveRight {
     0% {
-        transform: translateX(-100vw); /* Inizia al di fuori del viewport a sinistra */
+        transform: translateX(-101vw); /* Inizia al di fuori del viewport a sinistra */
     }
     100% {
         transform: translateX(100vw); /* Termina poco prima del bordo destro del viewport */
