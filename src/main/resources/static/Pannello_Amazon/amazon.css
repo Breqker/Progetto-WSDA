@@ -4,6 +4,7 @@ body {
     background-position: center;
     margin: 0;
     padding: 0;
+    overflow: hidden;
     font-family: Arial, sans-serif;
 }
 
@@ -33,10 +34,9 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height:300px; /* Altezza del 80% del contenitore */
+    height:60%; /* Altezza del 80% del contenitore */
     max-width: 100%;
-    overflow-y: auto; /* Permette lo scrolling verticale se necessario */
-    margin-bottom: 20px; /* Aggiunge spazio alla parte inferiore */
+    align-content: center;
 }
 
 .image {
@@ -48,9 +48,10 @@ body {
 
 .image img {
 
-    max-width: 50%; /* Rendi le immagini più piccole */
+    max-width: 60%; /* Rendi le immagini più piccole */
     height: auto;
     transition: transform 0.5s ease; /* Aggiungi transizione per l'effetto di zoom */
+
 }
 
 .price {
@@ -96,24 +97,50 @@ body {
     color: white;
     padding: 10px;
     border-radius: 10px;
+    transition: all 0.3s ease; /* Aggiungi una transizione per un effetto più fluido */
+}
+
+@media screen and (max-width: 768px) {
+    /* Modifica le dimensioni quando la larghezza della finestra è inferiore a 768px */
+    .description {
+        padding: 5px; /* Riduci il padding */
+        font-size: 12px; /* Riduci la dimensione del testo */
+        border-radius: 5px; /* Riduci il raggio del bordo */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Ulteriori modifiche quando la larghezza della finestra è inferiore a 480px */
+    .description {
+        padding: 2px; /* Riduci ulteriormente il padding */
+        font-size: 10px; /* Riduci ulteriormente la dimensione del testo */
+        border-radius: 3px; /* Riduci ulteriormente il raggio del bordo */
+    }
 }
 
 
-.carrello {
-    position: fixed;
-    top: 500px; /* Posizionato a 20px dal basso */
-    width: calc(100vw / 1.78); /* Larghezza massima per rispettare il rapporto 16:9 */
-    max-width: calc(100% - 80%); /* Limita la larghezza al 20% rimanente della pagina */
-    animation: moveRight 9s linear infinite;
-    z-index: 1; /* Assicura che il carrello sia sopra le altre componenti */
+.carrello-container {
+    height: 20%;
+    width: auto; /* Imposta la larghezza in base al contenuto */
+    max-width: 100%; /* Assicura che non superi la larghezza del container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
+.carrello img {
+    max-height: 30%;
+    width: 30%; /* Imposta la larghezza in base all'altezza per mantenere le proporzioni */
+    animation: moveRight 7s linear infinite;
+}
 
 @keyframes moveRight {
     0% {
-        left: -100%; /* Inizia al di fuori del viewport a sinistra */
+        transform: translateX(-100vw); /* Inizia al di fuori del viewport a sinistra */
     }
     100% {
-        left: calc(100% - 100px); /* Termina poco prima del bordo destro del viewport */
+        transform: translateX(100vw); /* Termina poco prima del bordo destro del viewport */
     }
 }
