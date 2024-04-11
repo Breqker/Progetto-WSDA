@@ -3,63 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Palinsesto Pubblicitario</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-        #contenuto {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-    </style>
+    <link rel="stylesheet" href="/Progetto-WSDA/src/main/resources/static/Palinsesto_AppleToTesla/palinsestoAppleToTesla.css">
 </head>
 <body>
 
 <div id="contenuto">
-    <!-- Il contenuto delle pubblicità sarà iniettato qui -->
+    <script src="/Progetto-WSDA/src/main/resources/static/Palinsesto_AppleToTesla/palinsestoAppleToTesla.js"></script>
 </div>
 
-<script>
-    // Funzione per caricare e eseguire il palinsesto XML
-    function caricaPalinsesto() {
-        fetch('adsConfig.xml') // Assicurarsi che il nome del file XML sia corretto
-            .then(response => response.text())
-            .then(data => {
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(data, 'text/xml');
-                const eventi = xmlDoc.getElementsByTagName('evento');
-                let index = 0;
-
-                function mostraEvento() {
-                    const evento = eventi[index];
-                    const fileHTML = evento.textContent.trim();
-                    const tempo = parseInt(evento.getAttribute('tempo'), 10);
-
-                    fetch(fileHTML)
-                        .then(response => response.text())
-                        .then(html => {
-                            document.getElementById('contenuto').innerHTML = html;
-                            setTimeout(prossimoEvento, tempo * 1000);
-                        });
-
-                    index = (index + 1) % eventi.length;
-                }
-
-                function prossimoEvento() {
-                    mostraEvento();
-                }
-
-                mostraEvento();
-            })
-            .catch(error => console.error('Errore nel caricamento del palinsesto:', error));
-    }
-
-    // Chiamata alla funzione per avviare il palinsesto
-    caricaPalinsesto();
-</script>
+<div id="footer">
+    <h2>Informazioni Meteo</h2>
+    <p>Qui vengono visualizzate le informazioni meteo fisse in basso.</p>
+    <!-- Puoi inserire qui il codice per visualizzare le informazioni meteo -->
+</div>
 
 </body>
 </html>
