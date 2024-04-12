@@ -4,6 +4,7 @@ body {
     justify-content: center;
     background: #222;
     height: 100vh;
+    overflow: hidden;
 }
 
 .container {

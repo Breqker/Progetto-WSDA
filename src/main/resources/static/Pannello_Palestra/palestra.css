@@ -3,6 +3,7 @@ html, body {
     padding: 0;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 #container {
@@ -94,7 +95,7 @@ html, body {
 /* Stile per il testo "Nuovi Arrivi" */
 .nuovi-arrivi {
     position: absolute;
-    bottom: 2vh;
+    bottom: 5vh;
     right: 5vw;
     text-align: center;
     z-index: 10;

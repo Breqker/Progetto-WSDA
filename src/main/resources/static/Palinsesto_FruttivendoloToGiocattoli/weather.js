@@ -38,12 +38,15 @@ function getWeather() {
             // Traduzione dell'icona del meteo
             const weatherIconTranslation = weatherIconsTranslations[data.currently.icon] || data.currently.icon;
 
+            // Limita l'umidità a due cifre decimali
+            const humidity = (data.currently.humidity * 100).toFixed();
+
             const footer = document.getElementById('footer');
             footer.innerHTML = `
                 <p>Ora: <span id="current-time">${formattedTime}</span> </p>
                 <p>Temperatura: <span id="temperature">${temperatureCelsius} °C</span></p>
                 <p>Descrizione Meteo: <span id="weather-description">${weatherIconTranslation}</span></p>
-                <p>Umidità: <span id="humidity">${data.currently.humidity * 100}%</span></p>
+                <p>Umidità: <span id="humidity">${humidity}%</span></p>
                 <p>Velocità Vento: <span id="wind-speed">${data.currently.windSpeed} m/s</span></p>
             `;
         })
