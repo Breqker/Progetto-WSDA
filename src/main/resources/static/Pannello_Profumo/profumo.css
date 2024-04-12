@@ -29,7 +29,7 @@ body {
 .rabanne {
     position: absolute;
     width: 100vh;
-    top: -109vh;
+    top: -100vh;
     left: 41vw;
     color: white;
     font-size: 4vh;
@@ -42,8 +42,8 @@ body {
 .note_manderino {
     position: absolute;
     width: 100vh;
-    top: -40vh;
-    left: 21vw;
+    top: -30vh;
+    left: 22vw;
     color: white;
     font-size: 2vh;
     text-align-last: center;
@@ -56,8 +56,8 @@ body {
 .note_cannella {
     position: absolute;
     width: 100vh;
-    top: -40vh;
-    left: 39vw;
+    top: -30vh;
+    left: 40vw;
     color: white;
     font-size: 2vh;
     text-align-last: center;
@@ -70,8 +70,8 @@ body {
 .note_cuoio {
     position: absolute;
     width: 100vh;
-    top: -40vh;
-    left: 57vw;
+    top: -30vh;
+    left: 58vw;
     color: white;
     font-size: 2vh;
     text-align-last: center;

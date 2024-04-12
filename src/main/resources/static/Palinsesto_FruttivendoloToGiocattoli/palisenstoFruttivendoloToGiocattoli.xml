@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <palinsesto>
-    <evento tempo="10">/Progetto-WSDA/src/main/resources/static/Pannello_Fruttivendolo/fruttivendolo.html</evento>
+    <evento tempo="10">Progetto-WSDA/src/main/resources/static/Pannello_Fruttivendolo/fruttivendolo.html</evento>
     <evento tempo="20">/Progetto-WSDA/src/main/resources/static/Pannello_Giocattoli/giocattoli.html</evento>
 </palinsesto>
