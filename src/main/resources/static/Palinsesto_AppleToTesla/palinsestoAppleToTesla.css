@@ -5,15 +5,15 @@ body, html {
 }
 #contenuto {
     width: 100%;
-    height: 95%;
+    height: 50%;
     overflow: hidden;
 }
 
 #footer {
     position: fixed;
-    top: 95%;
+    top: 50%;
     width: 100%;
-    height: 5%;
+    height: 50%;
     background-color: #ff0000;
     color: #002fff;
     padding: 10px;
