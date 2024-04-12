@@ -1,6 +1,6 @@
 // Funzione per caricare e eseguire il palinsesto XML
 function caricaPalinsesto() {
-    fetch('adsConfig.xml') // Assicurarsi che il nome del file XML sia corretto
+    fetch('palisenstoAppleToTesla.xml') // Assicurarsi che il nome del file XML sia corretto
         .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();

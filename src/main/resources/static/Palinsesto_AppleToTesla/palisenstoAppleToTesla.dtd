@@ -1,0 +1,27 @@
+
+!DOCTYPE xs:schema [
+        <!ELEMENT xs:schema (xs:element|xs:complexType)*>
+        <!ATTLIST xs:schema
+                attributeFormDefault CDATA #REQUIRED
+                elementFormDefault CDATA #REQUIRED
+                xmlns:xs CDATA #REQUIRED>
+        <!ELEMENT xs:element (#PCDATA)>
+        <!ATTLIST xs:element
+                maxOccurs CDATA #IMPLIED
+                minOccurs CDATA #IMPLIED
+                name CDATA #REQUIRED
+                type CDATA #REQUIRED>
+        <!ELEMENT xs:complexType (xs:simpleContent|xs:sequence)*>
+        <!ATTLIST xs:complexType
+                name CDATA #REQUIRED>
+        <!ELEMENT xs:simpleContent (xs:extension)*>
+        <!ELEMENT xs:extension (xs:attribute)*>
+        <!ATTLIST xs:extension
+                base CDATA #REQUIRED>
+        <!ELEMENT xs:attribute (#PCDATA)>
+        <!ATTLIST xs:attribute
+                type CDATA #REQUIRED
+                name CDATA #REQUIRED
+                use CDATA #REQUIRED>
+        <!ELEMENT xs:sequence (xs:element)*>
+        ]>
