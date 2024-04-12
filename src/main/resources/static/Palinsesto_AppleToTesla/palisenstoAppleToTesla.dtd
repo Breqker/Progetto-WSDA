@@ -1,5 +1,4 @@
-
-!DOCTYPE xs:schema [
+<!DOCTYPE xs:schema [
         <!ELEMENT xs:schema (xs:element|xs:complexType)*>
         <!ATTLIST xs:schema
                 attributeFormDefault CDATA #REQUIRED
