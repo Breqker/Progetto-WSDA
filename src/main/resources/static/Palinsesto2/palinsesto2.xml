@@ -2,4 +2,6 @@
 <palinsesto>
     <evento tempo="10">/Progetto-WSDA/src/main/resources/static/Pannello_Profumo/profumo.html</evento>
     <evento tempo="20">/Progetto-WSDA/src/main/resources/static/Pannello_Sushi/sushi.html</evento>
+    <evento tempo="30">/Progetto-WSDA/src/main/resources/static/Pannello_Giocattoli/giocattoli.html</evento>
+    <evento tempo="40">/Progetto-WSDA/src/main/resources/static/Pannello_Fruttivendolo/fruttivendolo.html</evento>
 </palinsesto>

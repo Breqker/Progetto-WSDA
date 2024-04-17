@@ -1,6 +1,6 @@
-// Funzione per caricare e eseguire il palinsesto XML
+
 function caricaPalinsesto() {
-    fetch('palisenstoAmazonToAnimali.xml') // Assicurarsi che il nome del file XML sia corretto
+    fetch('/Progetto-WSDA/src/main/resources/static/Palinsesto5/palinsesto5.xml')
         .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();
@@ -32,5 +32,4 @@ function caricaPalinsesto() {
         .catch(error => console.error('Errore nel caricamento del palinsesto:', error));
 }
 
-// Chiamata alla funzione per avviare il palinsesto
 caricaPalinsesto();
