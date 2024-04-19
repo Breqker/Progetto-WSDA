@@ -1,6 +1,6 @@
 
 function caricaPalinsesto() {
-    fetch('/Progetto-WSDA/src/main/resources/static/Palinsesto5/palinsesto5.xml')
+    fetch('/Progetto-WSDA/src/main/resources/static/Palinsesti/palinsesto1.xml')
         .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();
