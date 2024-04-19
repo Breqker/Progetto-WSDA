@@ -18,16 +18,16 @@ body, html {
     background-color: lightcyan;
     color: dodgerblue;
     text-align: center;
-    display: flex; /* Imposta il layout del footer a flessibile */
-    justify-content: space-around; /* Distribuisce gli elementi uniformemente lungo l'asse principale */
-    align-items: center; /* Centra verticalmente gli elementi */
-    font-family: Arial, sans-serif; /* Cambia il font */
-    font-size: 14px; /* Imposta la dimensione del font */
-    text-transform: uppercase; /* Trasforma il testo in maiuscolo */
-    letter-spacing: 1px; /* Aggiunge spaziatura tra le lettere */
-    border-top: 2px solid dodgerblue; /* Aggiunge una sottolineatura */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-top: 2px solid dodgerblue;
 }
 
 #footer p {
-    margin: 0; /* Rimuove il margine predefinito dai paragrafi */
+    margin: 0;
 }
