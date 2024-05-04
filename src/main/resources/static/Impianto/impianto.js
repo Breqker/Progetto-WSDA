@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Esempio di dati sugli impianti (da sostituire con i dati reali dal database)
     var impianti = [
-        { id: 1, lat: 38.1157, lng: 13.3615, attivo: true },
-        { id: 2, lat: 38.1200, lng: 13.3600, attivo: false } // Esempio di un secondo impianto con diverse coordinate
+        { id: 1, latitudine: 38.1157, longitudine: 13.3615, attivo: true, palinsesto: '/Progetto-WSDA/src/main/resources/static/Palinsesti/palinsesto1.xml' },
+        { id: 2, latitudine: 38.1200, longitudine: 13.3600, attivo: false, palinsesto: '/Progetto-WSDA/src/main/resources/static/Palinsesti/palinsesto2.xml' } // Esempio di un secondo impianto con diverse coordinate
     ];
 
     impianti.forEach(function(impianto) {
@@ -19,6 +19,35 @@ document.addEventListener("DOMContentLoaded", function() {
             popupAnchor: [0, -32]
         });
 
-        L.marker([impianto.lat, impianto.lng], { icon: icon }).addTo(map).bindPopup('Impianto ' + impianto.id);
+        L.marker([impianto.latitudine, impianto.longitudine], { icon: icon }).addTo(map).bindPopup('Impianto ' + impianto.id).on('popupopen', function() {
+            caricaPalinsesto(impianto.palinsesto);
+            inviaDatiImpianto(impianto.id, impianto.attivo, impianto.latitudine, impianto.longitudine);
+        });
     });
 });
+
+function inviaDatiImpianto(idimpianto, descrizione, latitudine, longitudine) {
+    const datiImpianto = {
+        id: idimpianto,
+        descrizione: descrizione,
+        latitudine: latitudine,
+        longitudine: longitudine
+    };
+
+    fetch('http://localhost:8000/monitoraggio', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(datiImpianto),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Errore durante l\'invio dei dati dell\'impianto');
+            }
+            console.log('Dati dell\'impianto inviati con successo');
+        })
+        .catch(error => {
+            console.error('Errore durante l\'invio dei dati dell\'impianto:', error);
+        });
+}

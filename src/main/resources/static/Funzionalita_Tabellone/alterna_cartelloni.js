@@ -1,6 +1,6 @@
 
-function caricaPalinsesto() {
-    fetch('/Progetto-WSDA/src/main/resources/static/Palinsesti/palinsesto1.xml')
+function caricaPalinsesto(palinsestoUrl) {
+    fetch(palinsestoUrl)
         .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();
@@ -32,4 +32,4 @@ function caricaPalinsesto() {
         .catch(error => console.error('Errore nel caricamento del palinsesto:', error));
 }
 
-caricaPalinsesto();
+caricaPalinsesto('/Progetto-WSDA/src/main/resources/static/Palinsesti/palinsesto1.xml');
