@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <palinsesto>
-    <evento tempo="10">/Progetto-WSDA/src/main/resources/static/Pannello_Amazon/amazon.html</evento>
-    <evento tempo="20">/Progetto-WSDA/src/main/resources/static/Pannello_Animali/animali.html</evento>
-    <evento tempo="30">/Progetto-WSDA/src/main/resources/static/Pannello_Tesla/tesla.html</evento>
-    <evento tempo="40">/Progetto-WSDA/src/main/resources/static/Pannello_Apple/apple.html</evento>
+    <evento tempo="10">/Pannello_Amazon/amazon.html</evento>
+    <evento tempo="20">/Pannello_Animali/animali.html</evento>
+    <evento tempo="30">/Pannello_Tesla/tesla.html</evento>
+    <evento tempo="40">/Pannello_Apple/apple.html</evento>
 </palinsesto>

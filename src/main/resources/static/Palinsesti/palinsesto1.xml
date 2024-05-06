@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <palinsesto>
-    <evento tempo="10">/Progetto-WSDA/src/main/resources/static/Pannello_Palestra/palestra.html</evento>
-    <evento tempo="20">/Progetto-WSDA/src/main/resources/static/Pannello_Poltrone/poltrone.html</evento>
-    <evento tempo="30">/Progetto-WSDA/src/main/resources/static/Pannello_Apple/apple.html</evento>
-    <evento tempo="40">/Progetto-WSDA/src/main/resources/static/Pannello_Sushi/sushi.html</evento>
+    <evento tempo="10">/Pannello_Palestra/palestra.html</evento>
+    <evento tempo="20">/Pannello_Poltrone/poltrone.html</evento>
+    <evento tempo="30">/Pannello_Apple/apple.html</evento>
+    <evento tempo="40">/Pannello_Sushi/sushi.html</evento>
 </palinsesto>

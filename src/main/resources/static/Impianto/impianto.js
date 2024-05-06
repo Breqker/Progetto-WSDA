@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Esempio di dati sugli impianti (da sostituire con i dati reali dal database)
     var impianti = [
-        { id: 1, latitudine: 38.1157, longitudine: 13.3615, attivo: true, palinsesto: '/Progetto-WSDA/src/main/resources/static/Palinsesti/palinsesto1.xml' },
-        { id: 2, latitudine: 38.1200, longitudine: 13.3600, attivo: false, palinsesto: '/Progetto-WSDA/src/main/resources/static/Palinsesti/palinsesto2.xml' } // Esempio di un secondo impianto con diverse coordinate
+        { id: 1, latitudine: 38.1157, longitudine: 13.3615, attivo: true, palinsesto: '/Palinsesti/palinsesto1.xml' },
+        { id: 2, latitudine: 38.1200, longitudine: 13.3600, attivo: false, palinsesto: '/Palinsesti/palinsesto2.xml' } // Esempio di un secondo impianto con diverse coordinate
     ];
 
     impianti.forEach(function(impianto) {
         var icon = L.icon({
-            iconUrl: impianto.attivo ? '/Progetto-WSDA/src/main/resources/static/Impianto/Immagini/switch-on.png' : '/Progetto-WSDA/src/main/resources/static/Impianto/Immagini/switch-off.png',
+            iconUrl: impianto.attivo ? '/Impianto/Immagini/switch-on.png' : '/Impianto/Immagini/switch-off.png',
             iconSize: [64, 64],
             iconAnchor: [32, 64],
             popupAnchor: [0, -32]
