@@ -1,4 +1,4 @@
-const apiKey = 'GjaAejA1tRt6LBlIjqxll30YjqGgsKYI';
+const apiKey = 'nUo07uhja5YjEMLieZPmxPzpLlq2r15Z';
 const latAndLong = '38.1157,13.3615'; // coordinate generiche del centro di Palermo
 
 const weatherIconsTranslations = {
@@ -15,17 +15,20 @@ const weatherIconsTranslations = {
 };
 
 function getWeather() {
-    const timestamp = Math.floor(Date.now() / 1000);
-    const apiUrl = `https://api.pirateweather.net/forecast/${apiKey}/${latAndLong}/${timestamp}`;
+    const apiUrl = `https://api.pirateweather.net/forecast/${apiKey}/${latAndLong}`;
 
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Errore nella richiesta API');
+                throw new Error(`Errore nella richiesta API: ${response.status} ${response.statusText}`);
             }
             return response.json();
         })
         .then(data => {
+            if (!data || !data.currently) {
+                throw new Error('Dati mancanti nella risposta dell\'API');
+            }
+
             const timestamp = new Date(data.currently.time * 1000);
             const ore = timestamp.getHours();
             const minuti = timestamp.getMinutes().toString().padStart(2, '0');

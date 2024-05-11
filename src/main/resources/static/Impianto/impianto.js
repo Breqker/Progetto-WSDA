@@ -51,3 +51,15 @@ function inviaDatiImpianto(idimpianto, descrizione, latitudine, longitudine) {
             console.error('Errore durante l\'invio dei dati dell\'impianto:', error);
         });
 }
+
+function sendData(idImpianto, idPalinsesto, idCartellone, durata) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:8000/receiveSignal", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText);
+        }
+    };
+    xhr.send("idimpianto=" + idImpianto + "&idpalinsesto=" + idPalinsesto + "&idcartellone=" + idCartellone + "&durata=" + durata);
+}
