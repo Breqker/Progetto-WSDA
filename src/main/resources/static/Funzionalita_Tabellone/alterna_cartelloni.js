@@ -32,4 +32,31 @@ function caricaPalinsesto(palinsestoURl) {
         .catch(error => console.error('Errore nel caricamento del palinsesto:', error));
 }
 
+
+function inviaSegnalazione(idImpianto, idPalinsesto, idCartellone, durata) {
+    const segnalazione = {
+        idImpianto: idImpianto,
+        idPalinsesto: idPalinsesto,
+        idCartellone: idCartellone,
+        durata: durata
+    };
+
+    fetch('http://localhost:8000/monitoraggio', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(segnalazione)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Errore durante l\'invio della segnalazione');
+            }
+            console.log('Segnalazione inviata con successo');
+        })
+        .catch(error => console.error('Errore durante l\'invio della segnalazione:', error));
+}
+//carico palinsesto
 caricaPalinsesto('/Palinsesti/palinsesto2.xml');
+// Chiamare questa funzione quando si desidera inviare una segnalazione al sistema di monitoraggio
+inviaSegnalazione('idImpianto', 'idPalinsesto', 'idCartellone', 30); // Esempio di chiamata con valori di esempio
