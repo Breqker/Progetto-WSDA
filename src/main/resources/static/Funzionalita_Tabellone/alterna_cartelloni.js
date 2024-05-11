@@ -59,4 +59,4 @@ function inviaSegnalazione(idImpianto, idPalinsesto, idCartellone, durata) {
 //carico palinsesto
 caricaPalinsesto('/Palinsesti/palinsesto2.xml');
 // Chiamare questa funzione quando si desidera inviare una segnalazione al sistema di monitoraggio
-inviaSegnalazione('idImpianto', 'idPalinsesto', 'idCartellone', 30); // Esempio di chiamata con valori di esempio
+inviaSegnalazione('idImpianto', 'idPalinsesto', 'idCartellone', 20); // Esempio di chiamata con valori di esempio
