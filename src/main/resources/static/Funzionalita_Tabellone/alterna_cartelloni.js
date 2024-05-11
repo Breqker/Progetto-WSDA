@@ -33,15 +33,15 @@ function caricaPalinsesto(palinsestoURl) {
 }
 
 
-function inviaSegnalazione(idImpianto, idPalinsesto, idCartellone, durata) {
+function inviaSegnalazione(idImpianto, descrizione, latitudine, longitudine) {
     const segnalazione = {
         idImpianto: idImpianto,
-        idPalinsesto: idPalinsesto,
-        idCartellone: idCartellone,
-        durata: durata
+        descrizione: descrizione,
+        latitudine: latitudine,
+        longitudine: longitudine
     };
 
-    fetch('http://localhost:8000/monitoraggio', {
+    fetch('http://localhost:8000/Progetto_WSDA_EE_war_exploded/monitoraggio', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -59,4 +59,4 @@ function inviaSegnalazione(idImpianto, idPalinsesto, idCartellone, durata) {
 //carico palinsesto
 caricaPalinsesto('/Palinsesti/palinsesto2.xml');
 // Chiamare questa funzione quando si desidera inviare una segnalazione al sistema di monitoraggio
-inviaSegnalazione('idImpianto', 'idPalinsesto', 'idCartellone', 20); // Esempio di chiamata con valori di esempio
+inviaSegnalazione(1, false, 12.2, 13.6); // Esempio di chiamata con valori di esempio
