@@ -12,7 +12,10 @@
     <input type="text" id="idImpianto" name="idImpianto" required><br><br>
 
     <label for="descrizione">Descrizione:</label>
-    <input type="text" id="descrizione" name="descrizione" required><br><br>
+    <select id="descrizione" name="descrizione" required>
+        <option value="true">Attivo</option>
+        <option value="false">Non Attivo</option>
+    </select><br><br>
 
     <label for="latitudine">Latitudine:</label>
     <input type="number" step="any" id="latitudine" name="latitudine" required><br><br>
@@ -30,8 +33,8 @@
         event.preventDefault(); // Evita il comportamento di default del modulo di invio del modulo
 
         // Recupera i dati dal modulo
-        const idImpianto = document.getElementById("idImpianto").value;
-        const descrizione = document.getElementById("descrizione").value;
+        const idImpianto = parseInt(document.getElementById("idImpianto").value);
+        const descrizione = document.getElementById("descrizione").value === 'true';
         const latitudine = parseFloat(document.getElementById("latitudine").value);
         const longitudine = parseFloat(document.getElementById("longitudine").value);
 
