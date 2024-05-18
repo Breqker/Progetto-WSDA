@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invia Segnalazione</title>
+</head>
+<body>
+<h1>Invia Segnalazione</h1>
+<form id="segnalazioneForm">
+    <label for="idImpianto">ID Impianto:</label>
+    <input type="text" id="idImpianto" name="idImpianto" required><br><br>
+
+    <label for="descrizione">Descrizione:</label>
+    <input type="text" id="descrizione" name="descrizione" required><br><br>
+
+    <label for="latitudine">Latitudine:</label>
+    <input type="number" step="any" id="latitudine" name="latitudine" required><br><br>
+
+    <label for="longitudine">Longitudine:</label>
+    <input type="number" step="any" id="longitudine" name="longitudine" required><br><br>
+
+    <button type="submit">Invia Segnalazione</button>
+</form>
+
+<div id="rispostaServer"></div>
+
+<script>
+    document.getElementById("segnalazioneForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Evita il comportamento di default del modulo di invio del modulo
+
+        // Recupera i dati dal modulo
+        const idImpianto = document.getElementById("idImpianto").value;
+        const descrizione = document.getElementById("descrizione").value;
+        const latitudine = parseFloat(document.getElementById("latitudine").value);
+        const longitudine = parseFloat(document.getElementById("longitudine").value);
+
+        // Crea l'oggetto segnalazione
+        const segnalazione = {
+            idImpianto: idImpianto,
+            descrizione: descrizione,
+            latitudine: latitudine,
+            longitudine: longitudine
+        };
+
+        // Effettua la richiesta fetch alla servlet
+        fetch('http://localhost:8000/Progetto_WSDA_EE_war_exploded/monitoraggio_servlet', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(segnalazione)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Errore durante l\'invio della segnalazione');
+                }
+                console.log('Segnalazione inviata con successo');
+                return response.text(); // Ritorna il testo della risposta
+            })
+            .then(data => {
+                document.getElementById("rispostaServer").innerText = data;
+            })
+            .catch(error => {
+                document.getElementById("rispostaServer").innerText = 'Errore: ' + error.message;
+                console.error('Errore durante l\'invio della segnalazione:', error);
+            });
+    });
+</script>
+</body>
+</html>
