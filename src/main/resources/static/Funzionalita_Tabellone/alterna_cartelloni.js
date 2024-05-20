@@ -33,30 +33,7 @@ function caricaPalinsesto(palinsestoURl) {
 }
 
 
-function inviaSegnalazione(idImpianto, descrizione, latitudine, longitudine) {
-    const segnalazione = {
-        idImpianto: idImpianto,
-        descrizione: descrizione,
-        latitudine: latitudine,
-        longitudine: longitudine
-    };
-
-    fetch('http://localhost:8000/Progetto_WSDA_EE_war_exploded/monitoraggio', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(segnalazione)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Errore durante l\'invio della segnalazione');
-            }
-            console.log('Segnalazione inviata con successo');
-        })
-        .catch(error => console.error('Errore durante l\'invio della segnalazione:', error));
-}
 //carico palinsesto
 caricaPalinsesto('/Palinsesti/palinsesto2.xml');
 // Chiamare questa funzione quando si desidera inviare una segnalazione al sistema di monitoraggio
-inviaSegnalazione(1, false, 12.2, 13.6); // Esempio di chiamata con valori di esempio
+

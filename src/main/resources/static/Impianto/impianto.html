@@ -13,11 +13,38 @@
         <div id="map"></div>
         <div id="top-div">Contenuto Top</div>
     </div>
-    <div id="bottom-div">Contenuto Bottom</div>
+    <div id="impiantiDiv">Contenuto Bottom</div>
 </div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="/Palinsesti/alterna_cartelloni.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('http://localhost:8000/Progetto_WSDA_EE_war_exploded/getImpianti')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Add this line to debug
+                const impiantiDiv = document.getElementById('impiantiDiv');
+                data.forEach(impianto => {
+                    const p = document.createElement('p');
+                    p.textContent = `ID Impianto: ${impianto.idImpianto}, ID Palinsesto: ${impianto.idPalinsesto}, Latitudine: ${impianto.latitudine}, Longitudine: ${impianto.longitudine}`;
+                    impiantiDiv.appendChild(p);
+                });
+            })
+            .catch(error => console.error('Errore:', error));
+    });
+
+</script>
+
+
+
+
+
+
+<!--
+<script src="/Palinsesti/alterna_cartelloni.js"></script> -->
 <script src="/Impianto/impianto.js"></script>
 </body>
 </html>
+
+
