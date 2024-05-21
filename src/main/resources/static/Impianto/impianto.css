@@ -6,30 +6,7 @@ body {
     flex-direction: column;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.top-container {
-    display: flex;
-    height: 50%;
-}
-
 #map {
-    width: 50%;
+    width: 100%;
     height: 100%;
-    border: 1px solid #ccc;
-}
-
-#top-div {
-    width: 50%;
-    height: 100%;
-    border: 1px solid #ccc;
-}
-
-#impiantiDiv {
-    height: 50%;
-    border: 1px solid #ccc;
 }
