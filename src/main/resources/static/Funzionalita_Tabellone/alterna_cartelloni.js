@@ -41,9 +41,9 @@ function generaIdUnivoco() {
     return 'segnalazione_' + segnalazioneCounter + '_' + Date.now();
 }
 
-function inviaSegnalazione(codPalinsesto) {
+function inviaSegnalazione(codImpianto,codPalinsesto) {
     const idSegnalazione = generaIdUnivoco();
-    const codImpianto = 'IMPIANTO1'; // Valori statici per l'esempio
+    //const codImpianto = 'IMPIANTO2'; // Valori statici per l'esempio
     const durataVisual = 10; // Esempio di durata
 
     // Crea l'oggetto segnalazione
@@ -86,9 +86,9 @@ function inviaSegnalazione(codPalinsesto) {
 }
 
 // Carica il palinsesto e avvia le segnalazioni
-const palinsestoURL = '/Palinsesti/palinsesto1.xml';
+const palinsestoURL = '/Palinsesti/palinsesto3.xml';
 caricaPalinsesto(palinsestoURL);
 
 setInterval(() => {
-    inviaSegnalazione('palinsesto1');
+    inviaSegnalazione('IMPIANTO3','palinsesto3');
 }, 5000);
