@@ -37,9 +37,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 
-
-    // Chiamata alla funzione per caricare gli impianti sulla mappa
-
     // Funzione che invia una segnalazione al server ogni 2 minuti
     function inviaSegnalazionePeriodica() {
         setInterval(function() {
@@ -85,6 +82,47 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Chiamata alla funzione per ricevere segnalazioni dal server
     riceviSegnalazione();
+
+    // Funzione per caricare i dati degli impianti dal server e mostrarli nel div inferiore
+    function caricaDatiImpianti() {
+        fetch('http://localhost:8000/Progetto_WSDA_EE_war_exploded/getImpianti')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Debug
+                const impiantiDiv = document.getElementById('impiantiDiv');
+                data.forEach(impianto => {
+                    const p = document.createElement('p');
+                    p.textContent = `ID Impianto: ${impianto.idImpianto}, ID Palinsesto: ${impianto.idPalinsesto}, Latitudine: ${impianto.latitudine}, Longitudine: ${impianto.longitudine}`;
+                    impiantiDiv.appendChild(p);
+                });
+            })
+            .catch(error => console.error('Errore:', error));
+    }
+
+    // Funzione per caricare lo stato degli impianti dal server e mostrarli nel div superiore
+    function caricaStatusImpianti() {
+        fetch('http://localhost:8000/Progetto_WSDA_EE_war_exploded/getStatusImpianti')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data); // Debug
+                const topDiv = document.getElementById('top-div');
+                data.forEach(impianto_ws => {
+                    const p = document.createElement('p');
+                    p.textContent = `ID Impianto: ${impianto_ws.idImpianto}, ID Palinsesto: ${impianto_ws.idPalinsesto}, Latitudine: ${impianto_ws.latitudine}, Longitudine: ${impianto_ws.longitudine}, Attivo: ${impianto_ws.isActive}`;
+                    topDiv.appendChild(p);
+                });
+            })
+            .catch(error => console.error('Errore:', error));
+    }
+
+    // Chiamate alle funzioni per caricare i dati e lo stato degli impianti
+    caricaDatiImpianti();
+    caricaStatusImpianti();
 });
 
 // Funzione che invia i dati dell'impianto al server
