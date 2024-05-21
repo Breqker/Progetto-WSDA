@@ -115,6 +115,18 @@ document.addEventListener("DOMContentLoaded", function() {
                     const p = document.createElement('p');
                     p.textContent = `ID Impianto: ${impianto_ws.idImpianto}, ID Palinsesto: ${impianto_ws.idPalinsesto}, Latitudine: ${impianto_ws.latitudine}, Longitudine: ${impianto_ws.longitudine}, Attivo: ${impianto_ws.isActive}`;
                     topDiv.appendChild(p);
+
+                    // Aggiungi un marker per ogni impianto_ws sulla mappa
+                    var icon = L.icon({
+                        iconUrl: impianto_ws.isActive ? '/Impianto/Immagini/switch-on.png' : '/Impianto/Immagini/switch-off.png',
+                        iconSize: [64, 64],
+                        iconAnchor: [32, 64],
+                        popupAnchor: [0, -32]
+                    });
+
+                    L.marker([impianto_ws.latitudine, impianto_ws.longitudine], { icon: icon })
+                        .addTo(map)
+                        .bindPopup('Impianto ' + impianto_ws.idImpianto);
                 });
             })
             .catch(error => console.error('Errore:', error));
