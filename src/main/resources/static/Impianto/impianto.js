@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     // Chiamata alla funzione per caricare gli impianti sulla mappa
-    caricaImpianti();
 
     // Funzione che invia una segnalazione al server ogni 2 minuti
     function inviaSegnalazionePeriodica() {

@@ -23,7 +23,7 @@
         fetch('http://localhost:8000/Progetto_WSDA_EE_war_exploded/getImpianti')
             .then(response => response.json())
             .then(data => {
-                console.log(data); // Add this line to debug
+                console.log(data); // Debug
                 const impiantiDiv = document.getElementById('impiantiDiv');
                 data.forEach(impianto => {
                     const p = document.createElement('p');
@@ -36,15 +36,31 @@
 
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('http://localhost:8000/Progetto_WSDA_EE_war_exploded/getStatusImpianti')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data); // Debug
+                const topDiv = document.getElementById('top-div');
+                data.forEach(impianto_ws => {
+                    const p = document.createElement('p');
+                    p.textContent = `ID Impianto: ${impianto_ws.idImpianto}, ID Palinsesto: ${impianto_ws.idPalinsesto}, Latitudine: ${impianto_ws.latitudine}, Longitudine: ${impianto_ws.longitudine}, Attivo: ${impianto_ws.isActive}`;
+                    topDiv.appendChild(p);
+                });
+            })
+            .catch(error => console.error('Errore:', error));
+    });
 
-
-
-
+</script>
 
 <!--
-<script src="/Palinsesti/alterna_cartelloni.js"></script> -->
-<script src="/Impianto/impianto.js"></script>
+<script src="/Palinsesti/alterna_cartelloni.js"></script>
+<script src="/Impianto/impianto.js"></script> -->
 </body>
 </html>
-
-

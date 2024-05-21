@@ -1,3 +1,4 @@
+let currentCartellone = '';  // Dichiarato come variabile globale
 
 function caricaPalinsesto(palinsestoURl) {
     fetch(palinsestoURl)
@@ -11,6 +12,7 @@ function caricaPalinsesto(palinsestoURl) {
             function mostraEvento() {
                 const evento = eventi[index];
                 const fileHTML = evento.textContent.trim();
+                currentCartellone = fileHTML.split('/').pop().split('.')[0]; // Aggiornamento di currentCartellone
                 const tempo = parseInt(evento.getAttribute('tempo'), 10);
 
                 fetch(fileHTML)
@@ -32,8 +34,61 @@ function caricaPalinsesto(palinsestoURl) {
         .catch(error => console.error('Errore nel caricamento del palinsesto:', error));
 }
 
+let segnalazioneCounter = 0;
 
-//carico palinsesto
-caricaPalinsesto('/Palinsesti/palinsesto2.xml');
-// Chiamare questa funzione quando si desidera inviare una segnalazione al sistema di monitoraggio
+function generaIdUnivoco() {
+    segnalazioneCounter += 1;
+    return 'segnalazione_' + segnalazioneCounter + '_' + Date.now();
+}
 
+function inviaSegnalazione(codPalinsesto) {
+    const idSegnalazione = generaIdUnivoco();
+    const codImpianto = 'IMPIANTO1'; // Valori statici per l'esempio
+    const durataVisual = 10; // Esempio di durata
+
+    // Crea l'oggetto segnalazione
+    const segnalazione = {
+        idSegnalazione: idSegnalazione,
+        codImpianto: codImpianto,
+        codPalinsesto: codPalinsesto,
+        codCartellone: currentCartellone, // Utilizzo di currentCartellone aggiornato
+        durataVisual: durataVisual
+    };
+
+    // Effettua la richiesta fetch alla servlet
+    fetch('http://localhost:8000/Progetto_WSDA_EE_war_exploded/monitoraggio_servlet', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(segnalazione)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Errore durante l\'invio della segnalazione');
+            }
+            console.log('Segnalazione inviata con successo');
+            return response.text(); // Ritorna il testo della risposta
+        })
+        .then(data => {
+            const rispostaServerElem = document.getElementById("rispostaServer");
+            if (rispostaServerElem) {
+                rispostaServerElem.innerText = data;
+            }
+        })
+        .catch(error => {
+            const rispostaServerElem = document.getElementById("rispostaServer");
+            if (rispostaServerElem) {
+                rispostaServerElem.innerText = 'Errore: ' + error.message;
+            }
+            console.error('Errore durante l\'invio della segnalazione:', error);
+        });
+}
+
+// Carica il palinsesto e avvia le segnalazioni
+const palinsestoURL = '/Palinsesti/palinsesto1.xml';
+caricaPalinsesto(palinsestoURL);
+
+setInterval(() => {
+    inviaSegnalazione('palinsesto1');
+}, 5000);
