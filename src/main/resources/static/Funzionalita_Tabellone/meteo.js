@@ -1,4 +1,4 @@
-const apiKey = 'nUo07uhja5YjEMLieZPmxPzpLlq2r15Z';
+const apiKey = 'DC8KAecpOvvDIJw9Dr6KZ7ePmO4KZo5d';
 const latAndLong = '38.1157,13.3615'; // coordinate generiche del centro di Palermo
 
 const weatherIconsTranslations = {

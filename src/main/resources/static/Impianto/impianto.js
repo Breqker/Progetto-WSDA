@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Funzione per caricare lo stato degli impianti dal server e mostrarli nel div superiore e sulla mappa
+    // Funzione per caricare lo stato degli impianti dal server e mostrarli nel div superiore
     function caricaStatusImpianti() {
         fetch('http://localhost:8000/Progetto_WSDA_EE_war_exploded/getStatusImpianti')
             .then(response => {
@@ -16,23 +16,28 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(data => {
                 console.log(data); // Debug
+                const topDiv = document.getElementById('top-div');
                 data.forEach(impianto_ws => {
+                    const p = document.createElement('p');
+                    p.textContent = `ID Impianto: ${impianto_ws.idImpianto}, ID Palinsesto: ${impianto_ws.idPalinsesto}, Latitudine: ${impianto_ws.latitudine}, Longitudine: ${impianto_ws.longitudine}`;
+                    topDiv.appendChild(p);
+
                     // Aggiungi un marker per ogni impianto_ws sulla mappa
                     var icon = L.icon({
                         iconUrl: impianto_ws.isActive ? '/Impianto/Immagini/switch-on.png' : '/Impianto/Immagini/switch-off.png',
-                        iconSize: [32, 32],
-                        iconAnchor: [16, 32],
-                        popupAnchor: [0, -16]
+                        iconSize: [64, 64],
+                        iconAnchor: [32, 64],
+                        popupAnchor: [0, -32]
                     });
 
                     L.marker([impianto_ws.latitudine, impianto_ws.longitudine], { icon: icon })
                         .addTo(map)
-                        .bindPopup(`ID Impianto: ${impianto_ws.idImpianto}<br>ID Palinsesto: ${impianto_ws.idPalinsesto}<br>Latitudine: ${impianto_ws.latitudine}<br>Longitudine: ${impianto_ws.longitudine}<br>Attivo: ${impianto_ws.isActive}`);
+                        .bindPopup(impianto_ws.idImpianto);
                 });
             })
             .catch(error => console.error('Errore:', error));
     }
 
-    // Chiamata alla funzione per caricare lo stato degli impianti
+    // Chiamate alle funzioni per caricare i dati e lo stato degli impianti
     caricaStatusImpianti();
 });
