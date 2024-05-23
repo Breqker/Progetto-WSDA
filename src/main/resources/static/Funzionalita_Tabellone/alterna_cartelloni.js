@@ -86,9 +86,12 @@ function inviaSegnalazione(codImpianto,codPalinsesto) {
 }
 
 // Carica il palinsesto e avvia le segnalazioni
-const palinsestoURL = '/Palinsesti/palinsesto3.xml';
+const codImpianto = 'IMPIANTO3';
+const codPalinsesto = 'palinsesto3';
+const palinsestoURL = `/Palinsesti/${codPalinsesto}.xml`;
+
 caricaPalinsesto(palinsestoURL);
 
 setInterval(() => {
-    inviaSegnalazione('IMPIANTO3','palinsesto3');
+    inviaSegnalazione(codImpianto,codPalinsesto);
 }, 5000);
