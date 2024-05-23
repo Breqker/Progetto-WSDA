@@ -25,9 +25,31 @@ document.addEventListener("DOMContentLoaded", function() {
                         popupAnchor: [0, -16]
                     });
 
-                    L.marker([impianto_ws.latitudine, impianto_ws.longitudine], { icon: icon })
-                        .addTo(map)
-                        .bindPopup(`ID Impianto: ${impianto_ws.idImpianto}<br>ID Palinsesto: ${impianto_ws.idPalinsesto}<br>Latitudine: ${impianto_ws.latitudine}<br>Longitudine: ${impianto_ws.longitudine}`);
+                    var marker = L.marker([impianto_ws.latitudine, impianto_ws.longitudine], { icon: icon })
+                        .addTo(map);
+
+                    // Funzione per ottenere l'indirizzo dalle coordinate
+                    function getAddress(lat, lon, callback) {
+                        var url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
+
+                        fetch(url)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error(`HTTP error! Status: ${response.status}`);
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                callback(data);
+                            })
+                            .catch(error => console.error('Errore:', error));
+                    }
+
+                    // Ottieni l'indirizzo e aggiungi il popup al marker
+                    getAddress(impianto_ws.latitudine, impianto_ws.longitudine, function(addressData) {
+                        var address = addressData.display_name || 'Indirizzo non disponibile';
+                        marker.bindPopup(`ID Impianto: ${impianto_ws.idImpianto}<br>ID Palinsesto: ${impianto_ws.idPalinsesto}<br>Indirizzo: ${address}<br>Latitudine: ${impianto_ws.latitudine}<br>Longitudine: ${impianto_ws.longitudine}`);
+                    });
                 });
             })
             .catch(error => console.error('Errore:', error));
