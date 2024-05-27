@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', function() {
     table.addEventListener('change', function(e) {
         if (e.target.classList.contains('toggle-switch')) {
             const row = e.target.closest('tr');
-            const statoCell = row.querySelector('.stato-cell');
+            const statoCell = row.cells[2];
             if (e.target.checked) {
-                statoCell.textContent = 'Attivo';
+                statoCell.querySelector('.slider').classList.add('active');
             } else {
-                statoCell.textContent = 'Disattivo';
+                statoCell.querySelector('.slider').classList.remove('active');
             }
         }
     });
@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 toggleLabel.appendChild(slider);
                 statoCell.classList.add('stato-cell');
                 statoCell.appendChild(toggleLabel);
-                statoCell.textContent = 'Attivo';
 
                 latCell.textContent = latitudine;
                 longCell.textContent = longitudine;
