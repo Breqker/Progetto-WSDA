@@ -170,3 +170,54 @@ input {
 form button {
     margin-top: 10px;
 }
+
+/* Drag handle */
+.drag-handle {
+    cursor: move;
+    margin-right: 10px;
+}
+
+/* Sortable ghost */
+.sortable-ghost {
+    opacity: 0.4;
+}
+
+.sort-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.sort-icon {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.sort-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+}
+
+.sort-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    border: none;
+    background-color: white;
+    color: black; /* Cambiato colore del testo a nero */
+    cursor: pointer;
+}
+
+.sort-menu button:hover {
+    background-color: #f2f2f2;
+}

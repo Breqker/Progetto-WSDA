@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestione Impianti</title>
     <link rel="stylesheet" href="gestione_impianti.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
 </head>
 <body>
 <div class="container">
     <h1>Gestione Impianti</h1>
+    <div class="sort-container">
+        <img src="Immagini/sort.png" alt="Ordina" id="sortIcon" class="sort-icon">
+        <div id="sortMenu" class="sort-menu">
+            <button id="sortByNameBtn">Ordina per Nome</button>
+            <button id="sortByStatusBtn">Ordina per Stato</button>
+        </div>
+    </div>
     <table id="impiantiTable">
         <thead>
         <tr>
+            <th></th>
             <th>Nome Impianto</th>
             <th>Palinsesto</th>
             <th>Stato</th>
@@ -22,6 +31,7 @@
         </thead>
         <tbody>
         <tr>
+            <td><span class="drag-handle">☰</span></td>
             <td>Impianto 1</td>
             <td>Palinsesto 1</td>
             <td>
@@ -38,6 +48,7 @@
             </td>
         </tr>
         <tr>
+            <td><span class="drag-handle">☰</span></td>
             <td>Impianto 2</td>
             <td>Palinsesto 2</td>
             <td>
@@ -54,6 +65,7 @@
             </td>
         </tr>
         <tr>
+            <td><span class="drag-handle">☰</span></td>
             <td>Impianto 3</td>
             <td>Palinsesto 3</td>
             <td>
@@ -70,6 +82,7 @@
             </td>
         </tr>
         <tr>
+            <td><span class="drag-handle">☰</span></td>
             <td>Impianto 4</td>
             <td>Palinsesto 4</td>
             <td>
@@ -86,6 +99,7 @@
             </td>
         </tr>
         <tr>
+            <td><span class="drag-handle">☰</span></td>
             <td>Impianto 5</td>
             <td>Palinsesto 5</td>
             <td>
