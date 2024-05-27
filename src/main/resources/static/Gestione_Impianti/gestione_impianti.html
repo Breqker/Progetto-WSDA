@@ -21,27 +21,100 @@
         </tr>
         </thead>
         <tbody>
-        <!-- Initial rows -->
+        <tr>
+            <td>Impianto 1</td>
+            <td>Palinsesto 1</td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" class="toggle-switch" checked>
+                    <span class="slider"></span>
+                </label>
+            </td>
+            <td>45.4642</td>
+            <td>9.1900</td>
+            <td>
+                <img src="Immagini/edit.png" alt="Modifica" class="edit-btn">
+                <img src="Immagini/trash.png" alt="Elimina" class="delete-btn">
+            </td>
+        </tr>
+        <tr>
+            <td>Impianto 2</td>
+            <td>Palinsesto 2</td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" class="toggle-switch" checked>
+                    <span class="slider"></span>
+                </label>
+            </td>
+            <td>41.9028</td>
+            <td>12.4964</td>
+            <td>
+                <img src="Immagini/edit.png" alt="Modifica" class="edit-btn">
+                <img src="Immagini/trash.png" alt="Elimina" class="delete-btn">
+            </td>
+        </tr>
+        <tr>
+            <td>Impianto 3</td>
+            <td>Palinsesto 3</td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" class="toggle-switch" checked>
+                    <span class="slider"></span>
+                </label>
+            </td>
+            <td>40.8518</td>
+            <td>14.2681</td>
+            <td>
+                <img src="Immagini/edit.png" alt="Modifica" class="edit-btn">
+                <img src="Immagini/trash.png" alt="Elimina" class="delete-btn">
+            </td>
+        </tr>
+        <tr>
+            <td>Impianto 4</td>
+            <td>Palinsesto 4</td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" class="toggle-switch" checked>
+                    <span class="slider"></span>
+                </label>
+            </td>
+            <td>45.4654</td>
+            <td>9.1866</td>
+            <td>
+                <img src="Immagini/edit.png" alt="Modifica" class="edit-btn">
+                <img src="Immagini/trash.png" alt="Elimina" class="delete-btn">
+            </td>
+        </tr>
+        <tr>
+            <td>Impianto 5</td>
+            <td>Palinsesto 5</td>
+            <td>
+                <label class="switch">
+                    <input type="checkbox" class="toggle-switch" checked>
+                    <span class="slider"></span>
+                </label>
+            </td>
+            <td>45.4643</td>
+            <td>9.1898</td>
+            <td>
+                <img src="Immagini/edit.png" alt="Modifica" class="edit-btn">
+                <img src="Immagini/trash.png" alt="Elimina" class="delete-btn">
+            </td>
+        </tr>
         </tbody>
     </table>
     <button id="addImpiantoBtn">Aggiungi Impianto</button>
 
     <!-- Modal for adding/editing impianto -->
-    <div id="modal" class="modal" aria-hidden="true">
-        <div class="modal-content" role="dialog" aria-labelledby="modalTitle">
-            <button class="close-btn" aria-label="Close">&times;</button>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
             <h2 id="modalTitle">Aggiungi Nuovo Impianto</h2>
             <form id="impiantoForm">
                 <label for="nome">Nome Impianto:</label>
                 <input type="text" id="nome" name="nome" required>
                 <label for="palinsesto">Palinsesto:</label>
-                <select id="palinsesto" name="palinsesto" required>
-                    <option value="Palinsesto 1">Palinsesto 1</option>
-                    <option value="Palinsesto 2">Palinsesto 2</option>
-                    <option value="Palinsesto 3">Palinsesto 3</option>
-                    <option value="Palinsesto 4">Palinsesto 4</option>
-                    <option value="Palinsesto 5">Palinsesto 5</option>
-                </select>
+                <input type="text" id="palinsesto" name="palinsesto" required>
                 <label for="latitudine">Latitudine:</label>
                 <input type="text" id="latitudine" name="latitudine" required>
                 <label for="longitudine">Longitudine:</label>
@@ -53,9 +126,9 @@
     </div>
 
     <!-- Modal for confirming deletion -->
-    <div id="confirmModal" class="modal" aria-hidden="true">
-        <div class="modal-content" role="dialog" aria-labelledby="confirmTitle">
-            <h2 id="confirmTitle">Conferma Eliminazione</h2>
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h2>Conferma Eliminazione</h2>
             <p>Sei sicuro di voler eliminare questo impianto?</p>
             <button id="confirmDeleteBtn">Elimina</button>
             <button id="cancelDeleteBtn">Annulla</button>

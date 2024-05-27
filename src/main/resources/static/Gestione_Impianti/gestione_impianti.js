@@ -16,18 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let isEditing = false;
     let currentRow;
 
-    function openModal(modal) {
-        modal.style.display = 'block';
-        modal.setAttribute('aria-hidden', 'false');
-        const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (focusableElements.length) focusableElements[0].focus();
-    }
-
-    function closeModal(modal) {
-        modal.style.display = 'none';
-        modal.setAttribute('aria-hidden', 'true');
-    }
-
     table.addEventListener('change', function(e) {
         if (e.target.classList.contains('toggle-switch')) {
             const row = e.target.closest('tr');
@@ -43,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     table.addEventListener('click', function(e) {
         if (e.target.classList.contains('delete-btn')) {
             rowToDelete = e.target.closest('tr');
-            openModal(confirmModal);
+            confirmModal.style.display = 'block';
         } else if (e.target.classList.contains('edit-btn')) {
             isEditing = true;
             currentRow = e.target.closest('tr');
@@ -53,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('palinsesto').value = currentRow.cells[1].textContent;
             document.getElementById('latitudine').value = currentRow.cells[3].textContent;
             document.getElementById('longitudine').value = currentRow.cells[4].textContent;
-            openModal(modal);
+            modal.style.display = 'block';
         }
     });
 
@@ -62,22 +50,22 @@ document.addEventListener('DOMContentLoaded', function() {
         impiantoForm.reset();
         modalTitle.textContent = 'Aggiungi Nuovo Impianto';
         submitBtn.textContent = 'Aggiungi';
-        openModal(modal);
+        modal.style.display = 'block';
     });
 
     closeModalBtn.addEventListener('click', function() {
-        closeModal(modal);
+        modal.style.display = 'none';
     });
 
     cancelBtn.addEventListener('click', function() {
-        closeModal(modal);
+        modal.style.display = 'none';
     });
 
     window.addEventListener('click', function(event) {
         if (event.target === modal) {
-            closeModal(modal);
+            modal.style.display = 'none';
         } else if (event.target === confirmModal) {
-            closeModal(confirmModal);
+            confirmModal.style.display = 'none';
         }
     });
 
@@ -85,13 +73,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (rowToDelete) {
             table.deleteRow(rowToDelete.rowIndex - 1);
             rowToDelete = null;
-            closeModal(confirmModal);
+            confirmModal.style.display = 'none';
         }
     });
 
     cancelDeleteBtn.addEventListener('click', function() {
         rowToDelete = null;
-        closeModal(confirmModal);
+        confirmModal.style.display = 'none';
     });
 
     impiantoForm.addEventListener('submit', function(event) {
@@ -125,30 +113,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 const toggleInput = document.createElement('input');
                 toggleInput.type = 'checkbox';
                 toggleInput.classList.add('toggle-switch');
-                toggleInput.checked = false;
-                const toggleSlider = document.createElement('span');
-                toggleSlider.classList.add('slider');
+                toggleInput.checked = true;
+                const slider = document.createElement('span');
+                slider.classList.add('slider');
                 toggleLabel.appendChild(toggleInput);
-                toggleLabel.appendChild(toggleSlider);
-
-                statoCell.appendChild(toggleLabel);
+                toggleLabel.appendChild(slider);
                 statoCell.classList.add('stato-cell');
-                statoCell.textContent = 'Disattivo';
+                statoCell.appendChild(toggleLabel);
+                statoCell.textContent = 'Attivo';
 
                 latCell.textContent = latitudine;
                 longCell.textContent = longitudine;
 
-                // Azioni
-                const editBtn = document.createElement('button');
-                editBtn.textContent = 'Edit';
+                const editBtn = document.createElement('img');
+                editBtn.src = 'Immagini/edit.png';
+                editBtn.alt = 'Modifica';
                 editBtn.classList.add('edit-btn');
-                const deleteBtn = document.createElement('button');
-                deleteBtn.textContent = 'Delete';
-                deleteBtn.classList.add('delete-btn');
                 actionCell.appendChild(editBtn);
+
+                const deleteBtn = document.createElement('img');
+                deleteBtn.src = 'Immagini/trash.png';
+                deleteBtn.alt = 'Elimina';
+                deleteBtn.classList.add('delete-btn');
                 actionCell.appendChild(deleteBtn);
             }
-            closeModal(modal);
+            modal.style.display = 'none';
+            impiantoForm.reset();
+        } else {
+            alert('Tutti i campi sono obbligatori.');
         }
     });
 });
