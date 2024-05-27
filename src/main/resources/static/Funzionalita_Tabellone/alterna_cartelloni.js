@@ -1,7 +1,8 @@
-let currentCartellone = '';  // Dichiarato come variabile globale
+let currentCartellone = '';
+let currentDurataVisual = 1;
 
-function caricaPalinsesto(palinsestoURl) {
-    fetch(palinsestoURl)
+function caricaPalinsesto(palinsestoURL) {
+    fetch(palinsestoURL)
         .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();
@@ -12,14 +13,20 @@ function caricaPalinsesto(palinsestoURl) {
             function mostraEvento() {
                 const evento = eventi[index];
                 const fileHTML = evento.textContent.trim();
-                currentCartellone = fileHTML.split('/').pop().split('.')[0]; // Aggiornamento di currentCartellone
-                const tempo = parseInt(evento.getAttribute('tempo'), 10);
+                currentCartellone = fileHTML.split('/').pop().split('.')[0];
+
+                // Estrazione dell'attributo tempo dell'evento corrente
+                const tempoCorrente = parseInt(evento.getAttribute('tempo'), 10);
+                // Estrazione dell'attributo tempo dell'evento successivo
+                const tempoSuccessivo = parseInt(eventi[(index + 1) % eventi.length].getAttribute('tempo'), 10);
+                // Calcolo della durata visuale come differenza tra il tempo successivo e il tempo corrente
+                currentDurataVisual = tempoSuccessivo - tempoCorrente;
 
                 fetch(fileHTML)
                     .then(response => response.text())
                     .then(html => {
                         document.getElementById('contenuto').innerHTML = html;
-                        setTimeout(prossimoEvento, tempo * 1000);
+                        setTimeout(prossimoEvento, currentDurataVisual * 1000);
                     });
 
                 index = (index + 1) % eventi.length;
@@ -41,21 +48,19 @@ function generaIdUnivoco() {
     return 'segnalazione_' + segnalazioneCounter + '_' + Date.now();
 }
 
-function inviaSegnalazione(codImpianto,codPalinsesto) {
+function inviaSegnalazione(codImpianto, codPalinsesto) {
     const idSegnalazione = generaIdUnivoco();
-    //const codImpianto = 'IMPIANTO2'; // Valori statici per l'esempio
-    const durataVisual = 10; // Esempio di durata
 
-    // Crea l'oggetto segnalazione
+
     const segnalazione = {
         idSegnalazione: idSegnalazione,
         codImpianto: codImpianto,
         codPalinsesto: codPalinsesto,
-        codCartellone: currentCartellone, // Utilizzo di currentCartellone aggiornato
-        durataVisual: durataVisual
+        codCartellone: currentCartellone,
+        durataVisual: currentDurataVisual
     };
 
-    // Effettua la richiesta fetch alla servlet
+
     fetch('http://localhost:8000/Progetto_WSDA_EE_war_exploded/monitoraggio_servlet', {
         method: 'POST',
         headers: {
@@ -85,13 +90,15 @@ function inviaSegnalazione(codImpianto,codPalinsesto) {
         });
 }
 
-// Carica il palinsesto e avvia le segnalazioni
-const codImpianto = 'IMPIANTO3';
-const codPalinsesto = 'palinsesto3';
+
+const scriptElement = document.querySelector('script[src="/Funzionalita_Tabellone/alterna_cartelloni.js"]');
+const codImpianto = scriptElement.getAttribute('data-cod-impianto');
+const codPalinsesto = scriptElement.getAttribute('data-cod-palinsesto');
 const palinsestoURL = `/Palinsesti/${codPalinsesto}.xml`;
 
 caricaPalinsesto(palinsestoURL);
 
+
 setInterval(() => {
-    inviaSegnalazione(codImpianto,codPalinsesto);
+    inviaSegnalazione(codImpianto, codPalinsesto);
 }, 5000);

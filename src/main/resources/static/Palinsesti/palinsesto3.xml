@@ -2,6 +2,6 @@
 <palinsesto>
     <evento tempo="10">/Pannello_Amazon/amazon.html</evento>
     <evento tempo="20">/Pannello_Animali/animali.html</evento>
-    <evento tempo="30">/Pannello_Tesla/tesla.html</evento>
-    <evento tempo="40">/Pannello_Apple/apple.html</evento>
+    <evento tempo="40">/Pannello_Tesla/tesla.html</evento>
+    <evento tempo="50">/Pannello_Apple/apple.html</evento>
 </palinsesto>

@@ -2,6 +2,6 @@
 <palinsesto>
     <evento tempo="10">/Pannello_Fruttivendolo/fruttivendolo.html</evento>
     <evento tempo="20">/Pannello_Giocattoli/giocattoli.html</evento>
-    <evento tempo="30">/Pannello_Sushi/sushi.html</evento>
-    <evento tempo="40">/Pannello_Palestra/palestra.html</evento>
+    <evento tempo="40">/Pannello_Sushi/sushi.html</evento>
+    <evento tempo="50">/Pannello_Palestra/palestra.html</evento>
 </palinsesto>
