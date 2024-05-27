@@ -186,7 +186,7 @@ form button {
     position: relative;
     display: inline-block;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left; /* Cambiato a sinistra */
     width: 100%;
 }
 
@@ -202,8 +202,7 @@ form button {
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0; /* Allinea a sinistra rispetto al contenitore */
     margin-top: 10px;
 }
 
