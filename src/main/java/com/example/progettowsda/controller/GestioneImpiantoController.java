@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/dbaccess")
-public class MainController {
+public class GestioneImpiantoController {
 
     @Autowired
     private ImpiantoRepository impiantoRepository;

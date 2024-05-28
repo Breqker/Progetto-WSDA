@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Segnalazioni per Impianto</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<h1>Segnalazioni per Impianto</h1>
+<p>Elenco delle segnalazioni visualizzate nell'intervallo specificato per l'impianto ID: <span th:text="${segnalazioni[0].impianto.idImpianto}"></span></p>
+<table>
+    <thead>
+    <tr>
+        <th>ID Segnalazione</th>
+        <th>ID Palinsesto</th>
+        <th>Codice Cartellone</th>
+        <th>Durata Visualizzazione</th>
+        <th>Data Inserimento</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="segnalazione : ${segnalazioni}">
+        <td th:text="${segnalazione.idSegnalazione}">ID Segnalazione</td>
+        <td th:text="${segnalazione.palinsesto.idPalinsesto}">ID Palinsesto</td>
+        <td th:text="${segnalazione.codCartellone}">Codice Cartellone</td>
+        <td th:text="${segnalazione.durataVisual}">Durata Visualizzazione</td>
+        <td th:text="${segnalazione.dataInserimento}">Data Inserimento</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
