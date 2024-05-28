@@ -1,19 +1,27 @@
 package com.example.progettowsda.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
+
+import jakarta.persistence.*;
+
 
 @Entity
-@IdClass(ImpiantoId.class)
+@Table(name = "impianto")
 public class Impianto {
     @Id
+    @Column(name = "id_impianto")
     private String idImpianto;
 
-    @Id
-    private String idPalinsesto;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ref_palinsesto", referencedColumnName = "id_palinsesto")
+    private Palinsesto palinsesto;
 
+    @Column(name = "stato")
+    private boolean stato;
+
+    @Column(name = "latitudine")
     private double latitudine;
+
+    @Column(name = "longitudine")
     private double longitudine;
 
     // Getters and setters
@@ -26,12 +34,20 @@ public class Impianto {
         this.idImpianto = idImpianto;
     }
 
-    public String getIdPalinsesto() {
-        return idPalinsesto;
+    public Palinsesto getPalinsesto() {
+        return palinsesto;
     }
 
-    public void setIdPalinsesto(String idPalinsesto) {
-        this.idPalinsesto = idPalinsesto;
+    public void setPalinsesto(Palinsesto palinsesto) {
+        this.palinsesto = palinsesto;
+    }
+
+    public boolean isStato() {
+        return stato;
+    }
+
+    public void setStato(boolean stato) {
+        this.stato = stato;
     }
 
     public double getLatitudine() {
