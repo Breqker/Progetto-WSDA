@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="report_impianti.css">
+    <title>Report Impianti</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <h5 class="sidebar-heading">Impianti</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="selectImpianto('Impianto 1')">Impianto 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="selectImpianto('Impianto 2')">Impianto 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="selectImpianto('Impianto 3')">Impianto 3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="selectImpianto('Impianto 4')">Impianto 4</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="selectImpianto('Impianto 5')">Impianto 5</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="selectImpianto('Impianto 6')">Impianto 6</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Dashboard Impianti</h1>
+            </div>
+            <div id="date-selection" class="form-container" style="display:none;">
+                <label for="start">Start Date:</label>
+                <input type="datetime-local" id="start" name="start">
+                <label for="end">End Date:</label>
+                <input type="datetime-local" id="end" name="end">
+                <button class="btn btn-primary" onclick="fetchReport()">Generate Report</button>
+            </div>
+            <div class="charts-grid" style="display:none;">
+                <div class="chart-container">
+                    <canvas id="barChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="pieChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="lineChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="report_impianti.js"></script>
+</body>
+</html>
