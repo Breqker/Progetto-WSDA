@@ -1,18 +1,22 @@
-package it.unipa.wsda.dbaccess;
+package com.example.progettowsda.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
+@IdClass(ImpiantoId.class)
 public class Impianto {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     private String idImpianto;
+
+    @Id
     private String idPalinsesto;
+
     private double latitudine;
     private double longitudine;
+
+    // Getters and setters
 
     public String getIdImpianto() {
         return idImpianto;

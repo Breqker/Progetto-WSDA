@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Aggiungi Impianto</title>
+</head>
+<body>
+<h1>Aggiungi Nuovo Impianto</h1>
+<form action="#" th:action="@{/dbaccess/add}" th:method="post">
+    <label for="idImpianto">ID Impianto:</label>
+    <input type="text" id="idImpianto" name="idImpianto" required />
+    <br/>
+    <label for="idPalinsesto">ID Palinsesto:</label>
+    <input type="text" id="idPalinsesto" name="idPalinsesto" required />
+    <br/>
+    <label for="latitudine">Latitudine:</label>
+    <input type="number" step="any" id="latitudine" name="latitudine" required />
+    <br/>
+    <label for="longitudine">Longitudine:</label>
+    <input type="number" step="any" id="longitudine" name="longitudine" required />
+    <br/>
+    <button type="submit">Salva</button>
+</form>
+</body>
+</html>
