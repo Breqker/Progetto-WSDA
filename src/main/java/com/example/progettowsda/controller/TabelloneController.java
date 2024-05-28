@@ -20,6 +20,6 @@ public class TabelloneController {
             model.addAttribute("codPalinsesto", codPalinsesto);
         }
         // Restituisce il nome del template Thymeleaf (tabellone.html)
-        return "funzionalita_tabellone/tabellone";
+        return "tabellone";
     }
 }
