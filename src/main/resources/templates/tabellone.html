@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabellone</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/Funzionalita_Tabellone/tabellone.css}">
+</head>
+<body>
+
+<div id="contenuto">
+    <script th:src="@{/Funzionalita_Tabellone/alterna_cartelloni.js}"
+            th:data-cod-impianto="${codImpianto}"
+            th:data-cod-palinsesto="${codPalinsesto}"></script>
+</div>
+
+<div id="footer">
+    <script th:src="@{/Funzionalita_Tabellone/meteo.js}"></script>
+</div>
+
+</body>
+</html>
