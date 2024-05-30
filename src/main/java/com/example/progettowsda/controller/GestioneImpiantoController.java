@@ -28,7 +28,7 @@ public class GestioneImpiantoController {
         model.addAttribute("impianto", new Impianto());
         Iterable<Palinsesto> palinsesti = palinsestoRepository.findAll();
         model.addAttribute("palinsesti", palinsesti);
-        return "main"; // Thymeleaf template name for the main page
+        return "gestione_impianti"; // Thymeleaf template name for the main page
     }
 
     @PostMapping(path = "/add")
@@ -53,7 +53,7 @@ public class GestioneImpiantoController {
         Iterable<Palinsesto> palinsesti = palinsestoRepository.findAll();
         model.addAttribute("palinsesti", palinsesti);
         model.addAttribute("impianto", imp);
-        return "main"; // Thymeleaf template name for the main page
+        return "gestione_impianti"; // Thymeleaf template name for the main page
     }
 
     @PostMapping(path = "/mod/{idImpianto}")

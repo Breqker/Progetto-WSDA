@@ -1,122 +1,162 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
     margin: 0;
     padding: 0;
 }
 
+/* Container styling */
 .container {
-    width: 80%;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    background: #ffffff;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-h1 {
+/* Sidebar styling */
+.sidebar {
+    width: 100%;
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.sidebar a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+}
+
+/* Content styling */
+.content {
+    width: 100%;
+    height: calc(100% - 40px);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+h2, h3 {
+    font-size: 2rem;
+    color: #343a40;
+    margin-bottom: 20px;
     text-align: center;
-    color: #333;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Form styling */
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+label {
+    font-weight: bold;
+    color: #495057;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    align-self: center;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Table styling */
+#impiantiList {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    font-size: 1.2rem; /* Increase font size */
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    border: 1px solid #ced4da;
+    padding: 20px; /* Increase padding for more height */
     text-align: left;
 }
 
 th {
-    background-color: #f2f2f2;
-    color: #333;
-}
-
-button {
-    padding: 10px 15px;
-    color: #fff;
     background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 5px;
+    color: #ffffff;
 }
 
-button#addImpiantoBtn {
-    display: block;
-    width: 200px;
-    margin: 0 auto;
-    background-color: #007bff;
+tr:nth-child(even) {
+    background-color: #f8f9fa;
 }
 
-button:hover {
-    opacity: 0.8;
+tr:hover {
+    background-color: #e9ecef;
 }
 
-.delete-btn,
-.edit-btn {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    margin-right: 5px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+tr.selected {
+    background-color: #d1ecf1;
+    color: #0c5460;
 }
 
-.delete-btn:hover,
-.edit-btn:hover {
-    transform: scale(1.2);
-    opacity: 0.7;
-}
-
-/* Toggle Switch Style */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: red;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    left: 2px;
-    bottom: 2px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: green;
-}
-
-input:checked + .slider:before {
-    transform: translateX(20px);
-}
-
+/* Modal styling */
 .modal {
     display: none;
     position: fixed;
@@ -126,97 +166,52 @@ input:checked + .slider:before {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
 }
 
-.close-btn {
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close-btn:hover,
-.close-btn:focus {
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
 
-label {
-    margin-top: 10px;
-}
+    .container {
+        padding: 0;
+    }
 
-input {
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
+    .sidebar {
+        flex-direction: column;
+        align-items: center;
+    }
 
-form button {
-    margin-top: 10px;
-}
-
-/* Drag handle */
-.drag-handle {
-    cursor: move;
-    margin-right: 10px;
-}
-
-/* Sortable ghost */
-.sortable-ghost {
-    opacity: 0.4;
-}
-
-.sort-container {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 20px;
-    text-align: left;
-    width: 100%;
-}
-
-.sort-icon {
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-}
-
-.sort-menu {
-    display: none;
-    position: absolute;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-    left: 0;
-    margin-top: 10px;
-}
-
-.sort-menu button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    text-align: left;
-    border: none;
-    background-color: white;
-    color: black;
-    cursor: pointer;
-}
-
-.sort-menu button:hover {
-    background-color: #f2f2f2;
+    .sidebar a {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
 }

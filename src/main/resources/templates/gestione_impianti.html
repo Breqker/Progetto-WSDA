@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Main Page</title>
+  <link rel="stylesheet" href="/Gestione_impianti/gestione_impianti.css">
+  <script src="/Gestione_impianti/gestione_impianti.js" defer></script>
+</head>
+<body>
+<div class="container">
+  <div class="sidebar">
+    <a href="#" id="aggiungi">Aggiungi</a>
+    <a href="#" id="modifica">Modifica</a>
+    <a href="#" id="elimina">Elimina</a>
+    <a href="/dbaccess/main">Back to Main</a>
+  </div>
+
+  <div class="content">
+    <!-- Display all Impianti -->
+    <div id="impiantiList">
+      <table id="impiantiTable">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Palinsesto</th>
+          <th>Latitudine</th>
+          <th>Longitudine</th>
+          <th>Stato</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="impianto : ${impianti}" onclick="selectRow(this)">
+          <td th:text="${impianto.idImpianto}"></td>
+          <td th:text="${impianto.palinsesto.idPalinsesto}"></td>
+          <td th:text="${impianto.latitudine}"></td>
+          <td th:text="${impianto.longitudine}"></td>
+          <td th:text="${impianto.stato} ? 'Attivo' : 'Non attivo'"></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Pop-up Modal for Adding New Impianto -->
+<div id="addModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Aggiungi Nuovo Impianto</h3>
+    <form action="#" id="addForm" method="post" th:action="@{/dbaccess/add}" th:object="${impianto}">
+      <div>
+        <label for="IdImpianto">ID Impianto:</label>
+        <input type="text" id="IdImpianto" name="idImpianto" th:field="*{idImpianto}" required><br>
+        <label for="palinsesto">Palinsesto:</label>
+        <select id="palinsesto" name="palinsesto.idPalinsesto">
+          <option th:each="palinsesto : ${palinsesti}" th:value="${palinsesto.idPalinsesto}"
+                  th:text="${palinsesto.idPalinsesto}"></option>
+        </select>
+      </div>
+      <div>
+        <label for="latitudine">Latitudine:</label>
+        <input type="text" id="latitudine" name="latitudine" required/>
+      </div>
+      <div>
+        <label for="longitudine">Longitudine:</label>
+        <input type="text" id="longitudine" name="longitudine" required/>
+      </div>
+      <div>
+        <label for="stato">Stato:</label>
+        <input type="checkbox" id="stato" name="stato" checked/>
+      </div>
+      <button type="submit">Aggiungi</button>
+    </form>
+  </div>
+</div>
+
+<!-- Pop-up Modal for Editing Impianto -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Modifica Impianto</h3>
+    <form action="#" id="editForm" method="post">
+      <div>
+        <label for="editPalinsesto">Palinsesto:</label>
+        <select id="editPalinsesto" name="palinsesto.idPalinsesto">
+          <option th:each="palinsesto : ${palinsesti}" th:value="${palinsesto.idPalinsesto}"
+                  th:text="${palinsesto.idPalinsesto}"></option>
+        </select>
+      </div>
+      <div>
+        <label for="editLatitudine">Latitudine:</label>
+        <input type="text" id="editLatitudine" name="latitudine" required/>
+      </div>
+      <div>
+        <label for="editLongitudine">Longitudine:</label>
+        <input type="text" id="editLongitudine" name="longitudine" required/>
+      </div>
+      <div>
+        <label for="editStato">Stato:</label>
+        <input type="checkbox" id="editStato" name="stato"/>
+      </div>
+      <input type="hidden" id="editIdImpianto" name="idImpianto"/>
+      <button type="submit">Modifica</button>
+    </form>
+  </div>
+</div>
+
+<script th:src="@{/Gestione_Impianti/gestione_impianti.js}"></script>
+
+</body>
+</html>
