@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestione Impianti</title>
+  <link rel="stylesheet" href="gestione_impianti.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h1>Gestione Impianti</h1>
+  <div class="sort-container">
+    <img src="Immagini/sort.png" alt="Ordina" id="sortIcon" class="sort-icon">
+    <div id="sortMenu" class="sort-menu">
+      <button id="sortByNameBtn">Ordina per Nome</button>
+      <button id="sortByStatusBtn">Ordina per Stato</button>
+    </div>
+  </div>
+  <table id="impiantiTable">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Nome Impianto</th>
+      <th>Palinsesto</th>
+      <th>Stato</th>
+      <th>Latitudine</th>
+      <th>Longitudine</th>
+      <th>Azioni</th>
+    </tr>
+    </thead>
+    <tbody th:each="impianto : ${impianti}">
+    <tr>
+      <td><span class="drag-handle">☰</span></td>
+      <td th:text="${impianto.nome}">Impianto 1</td>
+      <td th:text="${impianto.palinsesto.idPalinsesto}">Palinsesto 1</td>
+      <td>
+        <label class="switch">
+          <input type="checkbox" class="toggle-switch" th:checked="${impianto.stato}">
+          <span class="slider"></span>
+        </label>
+      </td>
+      <td th:text="${impianto.latitudine}">45.4642</td>
+      <td th:text="${impianto.longitudine}">9.1900</td>
+      <td>
+        <a th:href="@{/dbaccess/mod/{id}(id=${impianto.idImpianto})}">
+          <img src="Immagini/edit.png" alt="Modifica" class="edit-btn">
+        </a>
+        <a th:href="@{/dbaccess/delete/{id}(id=${impianto.idImpianto})}" onclick="return confirm('Sei sicuro di voler eliminare questo impianto?');">
+          <img src="Immagini/trash.png" alt="Elimina" class="delete-btn">
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button id="addImpiantoBtn" onclick="showModal('add')">Aggiungi Impianto</button>
+
+  <!-- Modal for adding/editing impianto -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle">Aggiungi Nuovo Impianto</h2>
+      <!-- Thymeleaf form starts here -->
+      <form th:action="@{/dbaccess/add}" th:object="${impianto}" method="post">
+        <label for="idImpianto">ID Impianto:</label>
+        <input type="text" id="idImpianto" th:field="*{idImpianto}" required><br>
+
+        <label for="idPalinsesto">ID Palinsesto:</label>
+        <select id="idPalinsesto" th:field="*{palinsesto.idPalinsesto}" required>
+          <option th:each="palinsesto : ${palinsesti}"
+                  th:value="${palinsesto.idPalinsesto}"
+                  th:text="${palinsesto.idPalinsesto}"></option>
+        </select><br>
+
+        <label for="latitudine">Latitudine:</label>
+        <input type="text" id="latitudine" th:field="*{latitudine}" required><br>
+
+        <label for="longitudine">Longitudine:</label>
+        <input type="text" id="longitudine" th:field="*{longitudine}" required><br>
+
+        <button type="submit" id="submitBtn">Aggiungi</button>
+        <button type="button" id="cancelBtn" onclick="closeModal()">Annulla</button>
+      </form>
+
+      <!-- Thymeleaf form ends here -->
+    </div>
+  </div>
+
+  <!-- Modal for confirming deletion -->
+  <div id="confirmModal" class="modal">
+    <div class="modal-content">
+      <h2>Conferma Eliminazione</h2>
+      <p>Sei sicuro di voler eliminare questo impianto?</p>
+      <button id="confirmDeleteBtn">Elimina</button>
+      <button id="cancelDeleteBtn" onclick="closeConfirmModal()">Annulla</button>
+    </div>
+  </div>
+</div>
+<script>
+  document.getElementById('sortIcon').addEventListener('click', function() {
+    document.getElementById('sortMenu').style.display = 'block';
+  });
+
+  document.getElementById('sortByNameBtn').addEventListener('click', function() {
+    // Logica per ordinare per nome
+  });
+
+  document.getElementById('sortByStatusBtn').addEventListener('click', function() {
+    // Logica per ordinare per stato
+  });
+
+  function showModal(action) {
+    var modal = document.getElementById('modal');
+    var title = document.getElementById('modalTitle');
+    var form = modal.querySelector('form');
+    if (action === 'add') {
+      title.textContent = 'Aggiungi Nuovo Impianto';
+      form.action = '/dbaccess/add';
+    } else {
+      title.textContent = 'Modifica Impianto';
+      form.action = '/dbaccess/mod/' + action;
+    }
+    modal.style.display = 'block';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
+  function closeConfirmModal() {
+    document.getElementById('confirmModal').style.display = 'none';
+  }
+</script>
+</body>
+</html>

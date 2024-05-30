@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Main Page</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+<div class="container">
+  <div class="sidebar">
+    <a href="#addNew">Add New Impianto</a>
+    <a href="#impiantiList">Impianti List</a>
+    <a href="#editImpianto">Edit Impianto</a>
+    <a href="/dbaccess/main">Back to Main</a>
+  </div>
+
+  <div class="content">
+    <h2>Impianti</h2>
+
+    <!-- Add new Impianto form -->
+    <div id="addNew">
+      <h3>Add New Impianto</h3>
+      <form action="#" th:action="@{/dbaccess/add}" method="post" th:object="${impianto}">
+        <div>
+          <label for="IdImpianto">ID Impianto:</label>
+          <input type="text" th:field="*{idImpianto}" required><br>
+          <label for="palinsesto">Palinsesto:</label>
+          <select id="palinsesto" name="palinsesto.idPalinsesto">
+            <option th:each="palinsesto : ${palinsesti}" th:value="${palinsesto.idPalinsesto}"
+                    th:text="${palinsesto.idPalinsesto}"></option>
+          </select>
+        </div>
+        <div>
+          <label for="latitudine">Latitudine:</label>
+          <input type="text" id="latitudine" name="latitudine" required/>
+        </div>
+        <div>
+          <label for="longitudine">Longitudine:</label>
+          <input type="text" id="longitudine" name="longitudine" required/>
+        </div>
+        <div>
+          <label for="stato">Stato:</label>
+          <input type="checkbox" id="stato" name="stato" checked/>
+        </div>
+        <input type="hidden" th:field="*{idImpianto}"/>
+        <button type="submit">Add</button>
+      </form>
+    </div>
+
+    <!-- Display all Impianti -->
+    <div id="impiantiList">
+      <h3>Impianti List</h3>
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Palinsesto</th>
+          <th>Latitudine</th>
+          <th>Longitudine</th>
+          <th>Stato</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="impianto : ${impianti}">
+          <td th:text="${impianto.idImpianto}"></td>
+          <td th:text="${impianto.palinsesto.idPalinsesto}"></td>
+          <td th:text="${impianto.latitudine}"></td>
+          <td th:text="${impianto.longitudine}"></td>
+          <td th:text="${impianto.stato} ? 'Attivo' : 'Non attivo'"></td>
+          <td>
+            <a th:href="@{/dbaccess/mod/{idImpianto}(idImpianto=${impianto.idImpianto})}">Edit</a>
+            |
+            <a th:href="@{/dbaccess/delete/{idImpianto}(idImpianto=${impianto.idImpianto})}">Delete</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Edit Impianto form -->
+    <div id="editImpianto" th:if="${impianto.idImpianto}">
+      <h3>Edit Impianto</h3>
+      <form action="#" th:action="@{/dbaccess/mod/{idImpianto}(idImpianto=${impianto.idImpianto})}" method="post"
+            th:object="${impianto}">
+        <input type="hidden" id="idImpianto" name="idImpianto" th:value="${impianto.idImpianto}" />
+        <div>
+          <label for="palinsesto">Palinsesto:</label>
+          <select id="palinsesto" name="palinsesto.idPalinsesto">
+            <option th:each="palinsesto : ${palinsesti}" th:value="${palinsesto.idPalinsesto}"
+                    th:text="${palinsesto.idPalinsesto}"
+                    th:selected="${palinsesto.idPalinsesto == impianto.palinsesto.idPalinsesto}"></option>
+          </select>
+        </div>
+        <div>
+          <label for="latitudine">Latitudine:</label>
+          <input type="text" id="latitudine" name="latitudine" th:value="${impianto.latitudine}" />
+        </div>
+        <div>
+          <label for="longitudine">Longitudine:</label>
+          <input type="text" id="longitudine" name="longitudine" th:value="${impianto.longitudine}" />
+        </div>
+        <div>
+          <label for="stato">Stato:</label>
+          <input type="checkbox" id="stato" name="stato" th:checked="${impianto.stato}" />
+        </div>
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

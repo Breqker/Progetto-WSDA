@@ -21,12 +21,14 @@ public class GestioneImpiantoController {
     @Autowired
     private PalinsestoRepository palinsestoRepository;
 
-    @GetMapping(path = "/add")
-    public String showAddForm(Model model) {
+    @GetMapping(path = "/main")
+    public String showMainPage(Model model) {
+        Iterable<Impianto> impianti = impiantoRepository.findAll();
+        model.addAttribute("impianti", impianti);
+        model.addAttribute("impianto", new Impianto());
         Iterable<Palinsesto> palinsesti = palinsestoRepository.findAll();
         model.addAttribute("palinsesti", palinsesti);
-        model.addAttribute("impianto", new Impianto());
-        return "addForm";
+        return "main"; // Thymeleaf template name for the main page
     }
 
     @PostMapping(path = "/add")
@@ -39,19 +41,7 @@ public class GestioneImpiantoController {
         impianto.setStato(true); // Default to true
         impiantoRepository.save(impianto);
 
-        model.addAttribute("idImpianto", impianto.getIdImpianto());
-        model.addAttribute("idPalinsesto", impianto.getPalinsesto().getIdPalinsesto());
-        model.addAttribute("latitudine", impianto.getLatitudine());
-        model.addAttribute("longitudine", impianto.getLongitudine());
-
-        return "saved";
-    }
-
-    @GetMapping(path = "/all")
-    public String getAllImpianti(Model model) {
-        Iterable<Impianto> impianti = impiantoRepository.findAll();
-        model.addAttribute("impianti", impianti);
-        return "impiantiList"; // Thymeleaf template name to show the list of impianti
+        return "redirect:/dbaccess/main";
     }
 
     @GetMapping(path = "/mod/{idImpianto}")
@@ -63,7 +53,7 @@ public class GestioneImpiantoController {
         Iterable<Palinsesto> palinsesti = palinsestoRepository.findAll();
         model.addAttribute("palinsesti", palinsesti);
         model.addAttribute("impianto", imp);
-        return "modForm"; // Thymeleaf template name for the modification form
+        return "main"; // Thymeleaf template name for the main page
     }
 
     @PostMapping(path = "/mod/{idImpianto}")
@@ -85,20 +75,12 @@ public class GestioneImpiantoController {
 
         impiantoRepository.save(imp);
 
-        // Add attributes for confirmation message
-        model.addAttribute("idImpianto", imp.getIdImpianto());
-        model.addAttribute("idPalinsesto", imp.getPalinsesto().getIdPalinsesto());
-        model.addAttribute("latitudine", imp.getLatitudine());
-        model.addAttribute("longitudine", imp.getLongitudine());
-        model.addAttribute("stato", imp.isStato());
-
-        return "modified"; // Thymeleaf template name for the modified confirmation page
+        return "redirect:/dbaccess/main";
     }
-
 
     @GetMapping(path = "/delete/{idImpianto}")
     public String deleteImpianto(@PathVariable("idImpianto") String idImpianto) {
         impiantoRepository.deleteById(idImpianto);
-        return "deleted"; // Thymeleaf template name for the deletion confirmation page
+        return "redirect:/dbaccess/main";
     }
 }
