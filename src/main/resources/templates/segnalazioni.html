@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Segnalazioni e statistiche</title>
+    <link rel="stylesheet" type="text/css" href="/style_statistiche.css">
+</head>
+<body>
+<h1>Segnalazioni e statistiche</h1>
+
+<form action="/dbaccess/segnalazioni" method="post">
+    <label for="idImpianto">Seleziona impianto:</label>
+    <select id="idImpianto" name="idImpianto">
+        <option th:each="impianto : ${impianti}" th:value="${impianto.idImpianto}" th:text="${impianto.idImpianto}"></option>
+    </select>
+    <br>
+    <label for="startDateTime">Data inizio:</label>
+    <input type="datetime-local" id="startDateTime" name="startDateTime">
+    <br>
+    <label for="endDateTime">Data fine:</label>
+    <input type="datetime-local" id="endDateTime" name="endDateTime">
+    <br>
+    <button type="submit">Cerca</button>
+</form>
+
+<h2>Segnalazioni trovate</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID Segnalazione</th>
+        <th>ID Cartellone</th>
+        <th>Durata Visualizzazione</th>
+        <th>Data Inserimento</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="segnalazione : ${segnalazioni}">
+        <td th:text="${segnalazione.idSegnalazione}"></td>
+        <td th:text="${segnalazione.codCartellone}"></td>
+        <td th:text="${segnalazione.durataVisual}"></td>
+        <td th:text="${#temporals.format(segnalazione.dataInserimento, 'dd-MM-yyyy HH:mm')}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Statistiche</h2>
+<p>Somma delle durate di visualizzazione: <span th:text="${sommaDurate}"></span></p>
+<p>Numero totale di segnalazioni: <span th:text="${numeroSegnalazioni}"></span></p>
+
+<h2>Grafico</h2>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript">
+    // Recupera i dati da Thymeleaf e li utilizza per creare il grafico
+    var chartData = [
+        // Itera sull'insieme di cartelloni visualizzati
+        th:each="entry : ${cartelloniVisualizzati.entrySet()}"
+    ];
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        title: {
+            text: "Cartelloni Visualizzati"
+        },
+        data: [{
+            type: "pie",
+            startAngle: 240,
+            yValueFormatString: "##0",
+            indexLabel: "{label} {y}",
+            dataPoints: chartData.map(function(entry) {
+                return { y: entry.value, label: entry.key };
+            })
+        }]
+    });
+    chart.render();
+</script>
+
+</body>
+</html>
