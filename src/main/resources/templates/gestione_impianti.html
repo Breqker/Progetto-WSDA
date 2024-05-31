@@ -41,11 +41,13 @@
           </td>
         </tr>
         <tr>
-          <td colspan="6">
+          <td colspan="6" class="add-button-container">
             <a href="#" class="add-button" onclick="openAddModal()">Aggiungi Impianto</a>
           </td>
         </tr>
         </tbody>
+
+
       </table>
     </div>
   </div>
@@ -58,7 +60,7 @@
 
 <div id="addModal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span class="close" onclick="closeAddModal()">&times;</span>
     <h3>Aggiungi Nuovo Impianto</h3>
     <form action="#" id="addForm" method="post" th:action="@{/dbaccess/add}" th:object="${impianto}">
       <div>
@@ -71,29 +73,27 @@
         </select>
       </div>
       <div>
-        <label for="latitudine">Latitudine:</label>
-        <input type="text" id="latitudine" name="latitudine" required/>
-      </div>
-      <div>
-        <label for="longitudine">Longitudine:</label>
-        <input type="text" id="longitudine" name="longitudine" required/>
-      </div>
-      <div>
-        <label for="stato">Stato:</label>
-        <input type="checkbox" id="stato" name="stato" checked/>
+        <label>Coordinate:</label>
+        <div id="mapAdd" style="height: 400px; width: 100%;"></div>
+        <input type="hidden" id="latitudine" name="latitudine" required/>
+        <input type="hidden" id="longitudine" name="longitudine" required/>
       </div>
       <button type="submit">Aggiungi</button>
     </form>
   </div>
 </div>
+
+
 <div id="editModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeEditModal()">&times;</span> <!-- Aggiunto il bottone di chiusura -->
+    <span class="close" onclick="closeEditModal()">&times;</span>
     <h3>Modifica Impianto</h3>
     <form action="#" id="editForm" method="post">
       <div>
         <label for="editStato">Stato:</label>
-        <input type="checkbox" id="editStato" name="stato"/>
+        <input type="checkbox" id="editStato" name="stato" onchange="toggleLatLongFields(this)"/>
+        <input type="hidden" id="editStatoValue" name="stato" value="">
+
       </div>
       <div>
         <label for="editPalinsesto">Palinsesto:</label>
@@ -103,19 +103,28 @@
         </select>
       </div>
       <div>
-        <label for="editLatitudine">Latitudine:</label>
-        <input type="text" id="editLatitudine" name="latitudine" required/>
+        <label>
+          Modifica latitudine e longitudine:
+          <input type="checkbox" id="editModificaLatitudine" onchange="toggleLatLongFields(this)"/>
+        </label>
       </div>
-      <div>
-        <label for="editLongitudine">Longitudine:</label>
-        <input type="text" id="editLongitudine" name="longitudine" required/>
+      <div id="editLatLongFields">
+        <!-- Campi latitudine e longitudine -->
+        <div id="latitudineField" style="display: none;">
+          <label for="editLatitudine">Latitudine:</label>
+          <input type="text" id="editLatitudine" name="latitudine" required/>
+        </div>
+        <div id="longitudineField" style="display: none;">
+          <label for="editLongitudine">Longitudine:</label>
+          <input type="text" id="editLongitudine" name="longitudine" required/>
+        </div>
       </div>
+      <div id="mapEdit" style="display: none; height: 400px; width: 100%;"></div>
       <input type="hidden" id="editIdImpianto" name="idImpianto"/>
       <button type="submit">Modifica</button>
     </form>
   </div>
 </div>
-
 
 <script th:src="@{/Gestione_Impianti/gestione_impianti.js}"></script>
 

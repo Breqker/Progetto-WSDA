@@ -86,4 +86,5 @@ public class GestioneImpiantoController {
         impiantoRepository.deleteById(idImpianto);
         return "redirect:/dbaccess/gestione_impianti";
     }
+
 }

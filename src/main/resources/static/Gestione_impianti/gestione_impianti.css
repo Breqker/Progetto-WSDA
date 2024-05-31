@@ -7,7 +7,7 @@
 
 /* Body styling */
 body {
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -20,10 +20,11 @@ body {
 /* Container styling */
 .container {
     width: 100%;
-    max-width: 1200px;
-    background: #ffffff;
+    max-width: 80%;
+    background: rgba(0, 69, 255, 0.09);
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
 }
 
 /* Sidebar styling */
@@ -37,7 +38,7 @@ body {
 }
 
 .sidebar a {
-    color: #d21f1f;
+    color: #ffffff;
     text-decoration: none;
     font-size: 1rem;
     padding: 10px 20px;
@@ -56,7 +57,7 @@ body {
 }
 
 h2, h3 {
-    margin-top: 10px;
+    margin-top: 20px;
     font-size: 2rem;
     color: #343a40;
     margin-bottom: 20px;
@@ -136,6 +137,7 @@ tr.selected {
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
+    margin-top: 10px;
     width: 80%;
     max-width: 600px;
     border-radius: 10px;
@@ -172,7 +174,7 @@ tr.selected {
 
 #mapid {
     width: 100%; /* Occupa tutta la larghezza disponibile */
-    height: 400px;
+    height: 600px;
     margin: 20px auto;
     border: 2px solid #ccc;
     border-radius: 10px;
@@ -249,7 +251,13 @@ button:hover {
     }
 }
 
+
 /* Add button styling */
+.add-button-container {
+    width: 100%;
+    text-align: center;
+}
+
 .add-button {
     display: inline-block;
     padding: 10px 20px;
@@ -260,9 +268,10 @@ button:hover {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin: 10px 0;
 }
 
 .add-button:hover {
     background-color: #0056b3;
 }
+
+
