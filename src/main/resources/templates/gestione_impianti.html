@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <title>Main Page</title>
   <link rel="stylesheet" href="/Gestione_impianti/gestione_impianti.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
   <script src="/Gestione_impianti/gestione_impianti.js" defer></script>
 </head>
 <body>
 <div class="container">
-  <div class="sidebar">
-    <a href="#" id="aggiungi">Aggiungi</a>
-    <a href="#" id="modifica">Modifica</a>
-    <a href="#" id="elimina">Elimina</a>
-    <a href="/dbaccess/main">Back to Main</a>
-  </div>
-
+  <h2>Gestione Impianti</h2>
   <div class="content">
     <!-- Display all Impianti -->
     <div id="impiantiList">
@@ -26,23 +25,37 @@
           <th>Latitudine</th>
           <th>Longitudine</th>
           <th>Stato</th>
+          <th>Azioni</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="impianto : ${impianti}" onclick="selectRow(this)">
+        <tr th:each="impianto : ${impianti}">
           <td th:text="${impianto.idImpianto}"></td>
           <td th:text="${impianto.palinsesto.idPalinsesto}"></td>
           <td th:text="${impianto.latitudine}"></td>
           <td th:text="${impianto.longitudine}"></td>
           <td th:text="${impianto.stato} ? 'Attivo' : 'Non attivo'"></td>
+          <td>
+            <img src="/Gestione_impianti/Immagini/edit.png" class="action-icon" action="edit" onclick="openEditModal(event, this)">
+            <img src="/Gestione_impianti/Immagini/trash.png" class="action-icon" onclick="deleteRow(event, this)">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <a href="#" class="add-button" onclick="openAddModal()">Aggiungi Impianto</a>
+          </td>
         </tr>
         </tbody>
       </table>
     </div>
   </div>
+  <div id="map-container">
+    <h2>Mappa degli Impianti</h2>
+    <div id="mapid"></div>
+  </div>
 </div>
 
-<!-- Pop-up Modal for Adding New Impianto -->
+
 <div id="addModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -73,13 +86,15 @@
     </form>
   </div>
 </div>
-
-<!-- Pop-up Modal for Editing Impianto -->
 <div id="editModal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span class="close" onclick="closeEditModal()">&times;</span> <!-- Aggiunto il bottone di chiusura -->
     <h3>Modifica Impianto</h3>
     <form action="#" id="editForm" method="post">
+      <div>
+        <label for="editStato">Stato:</label>
+        <input type="checkbox" id="editStato" name="stato"/>
+      </div>
       <div>
         <label for="editPalinsesto">Palinsesto:</label>
         <select id="editPalinsesto" name="palinsesto.idPalinsesto">
@@ -95,15 +110,12 @@
         <label for="editLongitudine">Longitudine:</label>
         <input type="text" id="editLongitudine" name="longitudine" required/>
       </div>
-      <div>
-        <label for="editStato">Stato:</label>
-        <input type="checkbox" id="editStato" name="stato"/>
-      </div>
       <input type="hidden" id="editIdImpianto" name="idImpianto"/>
       <button type="submit">Modifica</button>
     </form>
   </div>
 </div>
+
 
 <script th:src="@{/Gestione_Impianti/gestione_impianti.js}"></script>
 

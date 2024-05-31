@@ -1,8 +1,7 @@
 let selectedRow = null;
 let addModal = document.getElementById("addModal");
 let editModal = document.getElementById("editModal");
-let btnAggiungi = document.getElementById("aggiungi");
-let btnModifica = document.getElementById("modifica");
+let btnBackToMain = document.getElementById("backToMain");
 let span = document.getElementsByClassName("close");
 
 function selectRow(row) {
@@ -13,20 +12,32 @@ function selectRow(row) {
     row.classList.add('selected');
 }
 
-btnAggiungi.onclick = function() {
+function openAddModal() {
     addModal.style.display = "block";
 }
 
-btnModifica.onclick = function() {
-    if (selectedRow) {
-        const id = selectedRow.cells[0].textContent;
-        document.getElementById('editIdImpianto').value = id;
-        document.getElementById('editLatitudine').value = selectedRow.cells[2].textContent;
-        document.getElementById('editLongitudine').value = selectedRow.cells[3].textContent;
-        document.getElementById('editStato').checked = selectedRow.cells[4].textContent === 'Attivo';
-        editModal.style.display = "block";
-    } else {
-        alert('Seleziona una riga prima.');
+function openEditModal(event, element) {
+    event.stopPropagation();
+    let row = element.closest('tr');
+    selectRow(row);
+    const id = selectedRow.cells[0].textContent;
+    document.getElementById('editIdImpianto').value = id;
+    document.getElementById('editLatitudine').value = selectedRow.cells[2].textContent;
+    document.getElementById('editLongitudine').value = selectedRow.cells[3].textContent;
+    document.getElementById('editStato').checked = selectedRow.cells[4].textContent === 'Attivo';
+    editModal.style.display = "block";
+}
+
+function closeEditModal() {
+    editModal.style.display = "none";
+}
+function deleteRow(event, element) {
+    event.stopPropagation();
+    let row = element.closest('tr');
+    selectRow(row);
+    const id = selectedRow.cells[0].textContent;
+    if (confirm('Sei sicuro di volere eliminare l\'impianto?')) {
+        window.location.href = `/dbaccess/delete/${id}`;
     }
 }
 
@@ -44,17 +55,6 @@ window.onclick = function(event) {
         editModal.style.display = "none";
     }
 }
-
-document.getElementById('elimina').addEventListener('click', function() {
-    if (selectedRow) {
-        const id = selectedRow.cells[0].textContent;
-        if (confirm('Sei sicuro di volere eliminare l\'impianto?')) {
-            window.location.href = `/dbaccess/delete/${id}`;
-        }
-    } else {
-        alert('Seleziona una riga prima.');
-    }
-});
 
 document.getElementById('addForm').onsubmit = function(event) {
     if (!validateForm('add')) {
@@ -90,3 +90,47 @@ function validateForm(type) {
 function isDouble(value) {
     return !isNaN(value) && parseFloat(value) == value;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const path = window.location.pathname;
+    if (path.includes('add') || path.includes('edit') || path.includes('delete')) {
+        btnBackToMain.style.display = 'block';
+    } else {
+        btnBackToMain.style.display = 'none';
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Inizializzazione mappa
+    var mymap = L.map('mapid').setView([45.4642, 9.1900], 13); // Coordinate di Milano
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+    }).addTo(mymap);
+
+    // Aggiungi i marker per ogni impianto
+    var impianti = document.querySelectorAll('#impiantiTable tbody tr');
+
+    impianti.forEach(function(impianto) {
+        var lat = parseFloat(impianto.cells[2].textContent);
+        var lon = parseFloat(impianto.cells[3].textContent);
+        var nomePalinsesto = impianto.cells[1].textContent;
+
+        var stato = impianto.cells[4].textContent.trim() === 'Attivo' ? 'Attivo' : 'Non attivo';
+
+        var marker = L.marker([lat, lon]).addTo(mymap)
+            .bindPopup(`<b>ID Impianto:</b> ${impianto.cells[0].textContent}<br>
+                        <b>Palinsesto:</b> ${nomePalinsesto}<br>
+                        <b>Stato:</b> ${stato}`);
+
+        // Aggiungi un click listener per aprire il modale di modifica
+        marker.on('click', function(event) {
+            openEditModal(event, impianto.querySelector('img[action="edit"]'));
+        });
+    });
+});
+
+
+
+

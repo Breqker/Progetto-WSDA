@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -21,7 +22,7 @@ public class GestioneImpiantoController {
     @Autowired
     private PalinsestoRepository palinsestoRepository;
 
-    @GetMapping(path = "/main")
+    @GetMapping(path = "/gestione_impianti")
     public String showMainPage(Model model) {
         Iterable<Impianto> impianti = impiantoRepository.findAll();
         model.addAttribute("impianti", impianti);
@@ -30,6 +31,7 @@ public class GestioneImpiantoController {
         model.addAttribute("palinsesti", palinsesti);
         return "gestione_impianti"; // Thymeleaf template name for the main page
     }
+
 
     @PostMapping(path = "/add")
     public String addNewImpianto(@ModelAttribute Impianto impianto, Model model) {
@@ -41,7 +43,7 @@ public class GestioneImpiantoController {
         impianto.setStato(true); // Default to true
         impiantoRepository.save(impianto);
 
-        return "redirect:/dbaccess/main";
+        return "redirect:/dbaccess/gestione_impianti";
     }
 
     @GetMapping(path = "/mod/{idImpianto}")
@@ -55,6 +57,7 @@ public class GestioneImpiantoController {
         model.addAttribute("impianto", imp);
         return "gestione_impianti"; // Thymeleaf template name for the main page
     }
+
 
     @PostMapping(path = "/mod/{idImpianto}")
     public String modImpianto(@PathVariable("idImpianto") String idImpianto, @ModelAttribute Impianto modifiedImpianto, Model model) {
@@ -75,12 +78,12 @@ public class GestioneImpiantoController {
 
         impiantoRepository.save(imp);
 
-        return "redirect:/dbaccess/main";
+        return "redirect:/dbaccess/gestione_impianti";
     }
 
     @GetMapping(path = "/delete/{idImpianto}")
     public String deleteImpianto(@PathVariable("idImpianto") String idImpianto) {
         impiantoRepository.deleteById(idImpianto);
-        return "redirect:/dbaccess/main";
+        return "redirect:/dbaccess/gestione_impianti";
     }
 }
