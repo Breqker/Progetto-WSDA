@@ -37,7 +37,17 @@ public class SegnalazioniController {
                                   @RequestParam("startDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDateTime,
                                   @RequestParam("endDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDateTime,
                                   Model model) {
+        if (startDateTime == null || endDateTime == null) {
+            model.addAttribute("errorMessage", "Seleziona la data");
+            return showSegnalazioniForm(model);
+        }
 
+        if (startDateTime.isAfter(endDateTime)) {
+            model.addAttribute("errorMessage", "La data di inizio non può essere successiva alla data di fine");
+            return showSegnalazioniForm(model);
+        }
+
+        Iterable<Impianto> impianti = impiantoRepository.findAll();
         List<Segnalazione> segnalazioni = segnalazioneRepository.findByImpianto_IdImpiantoAndDataInserimentoBetween(idImpianto, startDateTime, endDateTime);
 
         // Calcoliamo la somma delle durate di visualizzazione dei cartelloni
@@ -52,6 +62,7 @@ public class SegnalazioniController {
         Map<String, Long> cartelloniVisualizzati = segnalazioni.stream()
                 .collect(Collectors.groupingBy(Segnalazione::getCodCartellone, Collectors.counting()));
 
+        model.addAttribute("impianti", impianti);
         model.addAttribute("segnalazioni", segnalazioni);
         model.addAttribute("sommaDurate", sommaDurate);
         model.addAttribute("numeroSegnalazioni", count);

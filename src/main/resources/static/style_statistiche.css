@@ -24,6 +24,13 @@ button {
     cursor: pointer;
 }
 
-#chartContainer {
-    margin-top: 20px;
+.chart-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    display: none;
+}
+
+.chart {
+    height: 370px;
 }

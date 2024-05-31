@@ -3,11 +3,29 @@
 <head>
     <title>Segnalazioni e statistiche</title>
     <link rel="stylesheet" type="text/css" href="/style_statistiche.css">
+    <script>
+        function validateForm() {
+            var startDateTime = document.getElementById("startDateTime").value;
+            var endDateTime = document.getElementById("endDateTime").value;
+
+            if (!startDateTime || !endDateTime) {
+                alert("Seleziona la data");
+                return false;
+            }
+
+            if (startDateTime > endDateTime) {
+                alert("La data di inizio non può essere successiva alla data di fine");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
 <h1>Segnalazioni e statistiche</h1>
 
-<form action="/dbaccess/segnalazioni" method="post">
+<form action="/dbaccess/segnalazioni" method="post" onsubmit="return validateForm()">
     <label for="idImpianto">Seleziona impianto:</label>
     <select id="idImpianto" name="idImpianto">
         <option th:each="impianto : ${impianti}" th:value="${impianto.idImpianto}" th:text="${impianto.idImpianto}"></option>
@@ -47,31 +65,152 @@
 <p>Somma delle durate di visualizzazione: <span th:text="${sommaDurate}"></span></p>
 <p>Numero totale di segnalazioni: <span th:text="${numeroSegnalazioni}"></span></p>
 
-<h2>Grafico</h2>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<h2>Grafici</h2>
+<div class="chart-container">
+    <div class="chart-item">
+        <canvas id="barCtx" class="chart"></canvas>
+    </div>
+    <div class="chart-item">
+        <canvas id="pieCtx" class="chart"></canvas>
+    </div>
+    <div class="chart-item">
+        <canvas id="lineCtx" class="chart"></canvas>
+    </div>
+    <div class="chart-item">
+        <canvas id="radarCtx" class="chart"></canvas>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript">
-    // Recupera i dati da Thymeleaf e li utilizza per creare il grafico
-    var chartData = [
-        // Itera sull'insieme di cartelloni visualizzati
-        th:each="entry : ${cartelloniVisualizzati.entrySet()}"
-    ];
-    var chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        title: {
-            text: "Cartelloni Visualizzati"
-        },
-        data: [{
-            type: "pie",
-            startAngle: 240,
-            yValueFormatString: "##0",
-            indexLabel: "{label} {y}",
-            dataPoints: chartData.map(function(entry) {
-                return { y: entry.value, label: entry.key };
-            })
-        }]
+    document.addEventListener("DOMContentLoaded", function () {
+        let barChartInstance = null;
+        let pieChartInstance = null;
+        let lineChartInstance = null;
+        let radarChartInstance = null;
+
+        function fetchReport() {
+            const cartelloniVisualizzati = /*[[${cartelloniVisualizzati}]]*/ {};
+            const segnalazioni = /*[[${segnalazioni}]]*/ [];
+
+            // Process the data
+            const labels = Object.keys(cartelloniVisualizzati);
+            const durations = labels.map(label => {
+                const segnalazione = segnalazioni.find(seg => seg.codCartellone === label);
+                return segnalazione ? segnalazione.durataVisual : 0;
+            });
+
+            // Destroy previous chart instances if they exist
+            if (barChartInstance) {
+                barChartInstance.destroy();
+            }
+            if (pieChartInstance) {
+                pieChartInstance.destroy();
+            }
+            if (lineChartInstance) {
+                lineChartInstance.destroy();
+            }
+            if (radarChartInstance) {
+                radarChartInstance.destroy();
+            }
+
+            const barCtx = document.getElementById('barCtx').getContext('2d');
+            barChartInstance = new Chart(barCtx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Durata Visualizzazioni',
+                        data: durations,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            const pieCtx = document.getElementById('pieCtx').getContext('2d');
+            pieChartInstance = new Chart(pieCtx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Durata Visualizzazioni',
+                        data: durations,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                }
+            });
+
+            const lineCtx = document.getElementById('lineCtx').getContext('2d');
+            lineChartInstance = new Chart(lineCtx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Durata Visualizzazioni',
+                        data: durations,
+                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            const radarCtx = document.getElementById('radarCtx').getContext('2d');
+            radarChartInstance = new Chart(radarCtx, {
+                type: 'radar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Durata Visualizzazioni',
+                        data: durations,
+                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1,
+                        fill: true
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            document.querySelector('.chart-container').style.display = 'grid';
+        }
+
+        fetchReport();
     });
-    chart.render();
 </script>
 
 </body>
