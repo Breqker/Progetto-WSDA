@@ -80,7 +80,6 @@ function openEditModal(event, element) {
     document.getElementById('editLongitudine').value = oldLon;
 
     // Mostra i campi di latitudine e longitudine
-    toggleLatLongFields(document.getElementById('editStato'));
 
     // Sposta il marker nella posizione iniziale
     markerEdit.setLatLng([oldLat, oldLon]);
@@ -102,7 +101,6 @@ function toggleStatoField(checkbox) {
 // Event listener per il cambiamento di stato
 document.getElementById('editStato').onchange = function() {
     toggleStatoField(this);
-    toggleLatLongFields(this);
 };
 
 // Funzione per chiudere il modal di modifica
