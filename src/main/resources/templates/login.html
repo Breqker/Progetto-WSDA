@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" th:href="@{/Login/login.css}">
 </head>
 <body>
 <div class="login-container">
     <h1>Accedi</h1>
-    <form id="loginForm">
+    <form th:action="@{/login}" method="post" id="loginForm">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" required>
 
@@ -19,6 +19,6 @@
         <button type="submit">Login</button>
     </form>
 </div>
-<script src="login.js"></script>
+<script th:src="@{/Login/login.js}"></script>
 </body>
 </html>
