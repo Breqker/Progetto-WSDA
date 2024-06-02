@@ -1,4 +1,4 @@
-package com.example.progettowsda.controller;
+package com.example.progettowsda.security;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

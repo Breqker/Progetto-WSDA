@@ -1,5 +1,5 @@
 document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Previeni il comportamento di submit del form
+    // event.preventDefault(); // Commenta o rimuovi questa riga
 
     // Ottieni i valori degli input
     const username = document.getElementById('username').value;

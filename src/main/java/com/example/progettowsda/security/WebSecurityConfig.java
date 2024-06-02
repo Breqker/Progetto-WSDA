@@ -9,25 +9,29 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Configuration
 public class WebSecurityConfig {
+
+    @Autowired
+    private CustomAuthenticationSuccessHandler successHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorize -> authorize
-                        .requestMatchers("/static/**", "/login").permitAll()  // permette l'accesso a risorse statiche e alla pagina di login
+                        .requestMatchers("/static/**", "/login", "/Login/**", "/templates/**").permitAll()  // permette l'accesso a risorse statiche e template
                         .anyRequest().authenticated()  // tutte le altre richieste richiedono autenticazione
                 )
                 .formLogin(form -> form
                         .loginPage("/login")  // pagina di login personalizzata
+                        .successHandler(successHandler) // Usa il gestore di successo personalizzato
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .permitAll()
                 );
-
 
         return http.build();
     }
