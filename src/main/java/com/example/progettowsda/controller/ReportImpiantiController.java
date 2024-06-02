@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(path = "/dbaccess")
-public class SegnalazioniController {
+public class ReportImpiantiController {
 
     @Autowired
     private ImpiantoRepository impiantoRepository;
@@ -29,7 +29,7 @@ public class SegnalazioniController {
     public String showSegnalazioniForm(Model model) {
         Iterable<Impianto> impianti = impiantoRepository.findAll();
         model.addAttribute("impianti", impianti);
-        return "segnalazioni";
+        return "report_impianti";
     }
 
     @PostMapping("/segnalazioni")
@@ -47,8 +47,14 @@ public class SegnalazioniController {
             return showSegnalazioniForm(model);
         }
 
+        System.out.println("startDateTime: " + startDateTime);
+        System.out.println("endDateTime: " + endDateTime);
+
         Iterable<Impianto> impianti = impiantoRepository.findAll();
         List<Segnalazione> segnalazioni = segnalazioneRepository.findByImpianto_IdImpiantoAndDataInserimentoBetween(idImpianto, startDateTime, endDateTime);
+
+        // Log delle segnalazioni trovate
+        segnalazioni.forEach(seg -> System.out.println("Segnalazione trovata: " + seg));
 
         // Calcoliamo la somma delle durate di visualizzazione dei cartelloni
         int sommaDurate = segnalazioni.stream()
@@ -68,6 +74,6 @@ public class SegnalazioniController {
         model.addAttribute("numeroSegnalazioni", count);
         model.addAttribute("cartelloniVisualizzati", cartelloniVisualizzati);
 
-        return "segnalazioni";
+        return "report_impianti";
     }
 }
