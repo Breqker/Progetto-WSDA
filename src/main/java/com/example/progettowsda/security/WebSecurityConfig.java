@@ -17,20 +17,26 @@ public class WebSecurityConfig {
     @Autowired
     private CustomAuthenticationSuccessHandler successHandler;
 
+    @Autowired
+    private CustomRequestCache customRequestCache;
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorize -> authorize
-                        .requestMatchers("/static/**", "/login", "/Login/**", "/templates/**").permitAll()  // permette l'accesso a risorse statiche e template
-                        .anyRequest().authenticated()  // tutte le altre richieste richiedono autenticazione
+                        .requestMatchers("/static/**", "/login", "/Login/**", "/templates/**").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")  // pagina di login personalizzata
-                        .successHandler(successHandler) // Usa il gestore di successo personalizzato
+                        .loginPage("/login")
+                        .successHandler(successHandler)
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .permitAll()
+                )
+                .requestCache(requestCache -> requestCache
+                        .requestCache(customRequestCache)
                 );
 
         return http.build();

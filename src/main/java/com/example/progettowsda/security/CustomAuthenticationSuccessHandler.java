@@ -14,15 +14,16 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-        String targetUrl = getDefaultSuccessUrl(request);
-        response.sendRedirect(targetUrl);
+        String targetUrl = (String) request.getSession().getAttribute("url_prior_login");
+        if (targetUrl != null) {
+            request.getSession().removeAttribute("url_prior_login");
+            response.sendRedirect(targetUrl);
+        } else {
+            response.sendRedirect(getDefaultSuccessUrl(request));
+        }
     }
 
     private String getDefaultSuccessUrl(HttpServletRequest request) {
-        String requestURI = request.getRequestURI();
-        if (requestURI.startsWith("/static/") || requestURI.startsWith("/templates/") || requestURI.startsWith("/dbaccess/")) {
-            return requestURI.substring(request.getContextPath().length());
-        }
-        return "/"; // Fallback to root path if it doesn't fall into /static/, /templates/, or /dbaccess/
+        return "/dbaccess/gestione_impianti"; // Fallback to main page if the URL is not saved
     }
 }
