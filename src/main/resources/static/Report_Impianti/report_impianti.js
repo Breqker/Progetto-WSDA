@@ -17,125 +17,63 @@ function validateForm(event) {
     return true;
 }
 
+function createCharts(segnalazioni) {
+    const labels = segnalazioni.map(seg => seg.codCartellone);
+    const durations = segnalazioni.map(seg => seg.durataVisual);
+
+    // Bar Chart
+    const barData = [{
+        x: labels,
+        y: durations,
+        type: 'bar'
+    }];
+    Plotly.newPlot('barChart', barData);
+
+    // Pie Chart
+    const pieData = [{
+        labels: labels,
+        values: durations,
+        type: 'pie'
+    }];
+    Plotly.newPlot('pieChart', pieData);
+
+    // Line Chart
+    const lineData = [{
+        x: labels,
+        y: durations,
+        type: 'scatter'
+    }];
+    Plotly.newPlot('lineChart', lineData);
+
+    // Radar Chart
+    const radarData = [{
+        type: 'scatterpolar',
+        r: durations,
+        theta: labels,
+        fill: 'toself'
+    }];
+    const radarLayout = {
+        polar: {
+            radialaxis: {
+                visible: true,
+                range: [0, Math.max(...durations)]
+            }
+        }
+    };
+    Plotly.newPlot('radarChart', radarData, radarLayout);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
-    let barChartInstance = null;
-    let pieChartInstance = null;
-    let lineChartInstance = null;
-    let radarChartInstance = null;
-
-    function fetchReport() {
-        const segnalazioni = /*[[${segnalazioni}]]*/ [];
-        const labels = segnalazioni.map(seg => seg.codCartellone);
-        const durations = segnalazioni.map(seg => seg.durataVisual);
-
-        if (barChartInstance) {
-            barChartInstance.destroy();
-        }
-        if (pieChartInstance) {
-            pieChartInstance.destroy();
-        }
-        if (lineChartInstance) {
-            lineChartInstance.destroy();
-        }
-        if (radarChartInstance) {
-            radarChartInstance.destroy();
-        }
-
-        const barCtx = document.getElementById('barCtx').getContext('2d');
-        barChartInstance = new Chart(barCtx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Durata Visualizzazioni',
-                    data: durations,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
+    let segnalazioni = [];
+    document.querySelectorAll('#segnalazioniTable tbody tr').forEach(row => {
+        const cells = row.querySelectorAll('td');
+        segnalazioni.push({
+            idSegnalazione: cells[0].innerText,
+            codCartellone: cells[1].innerText,
+            durataVisual: parseInt(cells[2].innerText),
+            dataInserimento: cells[3].innerText
         });
+    });
 
-        const pieCtx = document.getElementById('pieCtx').getContext('2d');
-        pieChartInstance = new Chart(pieCtx, {
-            type: 'pie',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Durata Visualizzazioni',
-                    data: durations,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            }
-        });
-
-        const lineCtx = document.getElementById('lineCtx').getContext('2d');
-        lineChartInstance = new Chart(lineCtx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Durata Visualizzazioni',
-                    data: durations,
-                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                    borderColor: 'rgba(153, 102, 255, 1)',
-                    borderWidth: 1,
-                    fill: true
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        const radarCtx = document.getElementById('radarCtx').getContext('2d');
-        radarChartInstance = new Chart(radarCtx, {
-            type: 'radar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Durata Visualizzazioni',
-                    data: durations,
-                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                    borderColor: 'rgba(255, 159, 64, 1)',
-                    borderWidth: 1,
-                    fill: true
-                }]
-            },
-            options: {
-                scales: {
-                    r: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-
-        document.querySelector('.chart-container').style.display = 'grid';
-    }
-
-    fetchReport();
+    createCharts(segnalazioni);
 });

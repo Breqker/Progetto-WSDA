@@ -4,9 +4,9 @@
     <title>Segnalazioni e statistiche</title>
     <link rel="stylesheet" type="text/css" href="/Report_Impianti/report_impianti.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="Report_Impianti/report_impianti.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="/Report_Impianti/report_impianti.js"></script>
 </head>
-
 <body>
 <h1>Segnalazioni e statistiche</h1>
 
@@ -27,7 +27,7 @@
 
 <div id="resultsSection" th:if="${not #lists.isEmpty(segnalazioni)}">
     <h2>Segnalazioni trovate</h2>
-    <table>
+    <table id="segnalazioniTable">
         <thead>
         <tr>
             <th>ID Segnalazione</th>
@@ -53,20 +53,19 @@
     <h2>Grafici</h2>
     <div class="chart-container">
         <div class="chart-item">
-            <canvas id="barCtx" class="chart"></canvas>
+            <div id="barChart"></div>
         </div>
         <div class="chart-item">
-            <canvas id="pieCtx" class="chart"></canvas>
+            <div id="pieChart"></div>
         </div>
         <div class="chart-item">
-            <canvas id="lineCtx" class="chart"></canvas>
+            <div id="lineChart"></div>
         </div>
         <div class="chart-item">
-            <canvas id="radarCtx" class="chart"></canvas>
+            <div id="radarChart"></div>
         </div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
