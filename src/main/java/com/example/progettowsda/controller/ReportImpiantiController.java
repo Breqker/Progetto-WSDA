@@ -1,6 +1,9 @@
 package com.example.progettowsda.controller;
 
+import com.example.progettowsda.entity.Impianto;
 import com.example.progettowsda.entity.Segnalazione;
+import com.example.progettowsda.repository.ImpiantoRepository;
+import com.example.progettowsda.repository.PalinsestoRepository;
 import com.example.progettowsda.repository.SegnalazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -10,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -19,6 +24,17 @@ public class ReportImpiantiController {
 
     @Autowired
     private SegnalazioneRepository segnalazioneRepository;
+
+    @Autowired
+    private ImpiantoRepository impiantoRepository;
+
+
+    // Costruttore per l'iniezione delle dipendenze
+    public ReportImpiantiController(SegnalazioneRepository segnalazioneRepository) {
+        this.segnalazioneRepository = segnalazioneRepository;
+
+    }
+
 
     @GetMapping("/report")
     public String getReport(Model model) {
@@ -86,28 +102,59 @@ public class ReportImpiantiController {
 
 
 
+    @GetMapping("/durataVisualByCartellone")
+    public String getDurataVisualByCartellone(@RequestParam String codCartellone, Model model) {
+        List<Segnalazione> segnalazioni = segnalazioneRepository.findByCodCartellone(codCartellone);
 
-    @GetMapping("/sumDurataVisualizzazione")
-    public String getSumDurataVisualizzazioneByCartelloneAndDateRange(@RequestParam String codCartellone,
-                                                                      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-                                                                      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
-                                                                      Model model) {
+        int durataVisualComplessiva = segnalazioni.stream()
+                .mapToInt(Segnalazione::getDurataVisual)
+                .sum();
+
+        List<Segnalazione> allSegnalazioni = segnalazioneRepository.findAll();
+        List<String> codCartelloneList = allSegnalazioni.stream()
+                .map(Segnalazione::getCodCartellone)
+                .distinct()
+                .collect(Collectors.toList());
+
+        model.addAttribute("durataVisualComplessiva", durataVisualComplessiva);
+        model.addAttribute("codCartelloneList", codCartelloneList);
+        return "report_impianti";
+    }
+
+
+
+    @GetMapping("/durataVisualByCartelloneAndDate")
+    public String getDurataVisualByCartelloneAndDate(@RequestParam String codCartellone,
+                                                     @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+                                                     @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
+                                                     Model model) {
         LocalDateTime startOfDay = startDate.atStartOfDay();
         LocalDateTime endOfDay = endDate.atTime(23, 59, 59);
 
         List<Segnalazione> segnalazioni = segnalazioneRepository.findByCodCartelloneAndDataInserimentoBetween(codCartellone, startOfDay, endOfDay);
 
-        // Calcola la somma delle durate di visualizzazione
-        long durataVisualizzazione = segnalazioni.stream()
-                .mapToLong(Segnalazione::getDurataVisual)
+        int durataVisualComplessiva = segnalazioni.stream()
+                .mapToInt(Segnalazione::getDurataVisual)
                 .sum();
 
-        model.addAttribute("codCartellone", codCartellone);
-        model.addAttribute("startDate", startDate);
-        model.addAttribute("endDate", endDate);
-        model.addAttribute("durataVisualizzazione", durataVisualizzazione);
+        List<Segnalazione> allSegnalazioni = segnalazioneRepository.findAll();
+        List<String> codCartelloneList = allSegnalazioni.stream()
+                .map(Segnalazione::getCodCartellone)
+                .distinct()
+                .collect(Collectors.toList());
+
+        model.addAttribute("durataVisualComplessiva", durataVisualComplessiva);
+        model.addAttribute("codCartelloneList", codCartelloneList);
         return "report_impianti";
     }
+
+
+
+
+
+
+
+
 
 
 }
