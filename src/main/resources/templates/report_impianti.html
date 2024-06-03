@@ -3,58 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Report Impianti</title>
+    <link rel="stylesheet" href="/Report_Impianti/report_impianti.css">
 </head>
 <body>
 <h1>Report Impianti</h1>
 
-<!-- Form per filtro per codice cartellone -->
-<form action="#" th:action="@{/dbaccess/reportByCartellone}" method="get">
-    <label for="codCartellone">Seleziona Codice Cartellone:</label>
-    <select name="codCartellone" id="codCartellone">
-        <option th:each="codCartellone : ${codCartelloneList}"
-                th:value="${codCartellone}"
-                th:text="${codCartellone}">Cartellone</option>
+<div id="filter-container">
+    <label for="filterSelect">Seleziona Filtro:</label>
+    <select id="filterSelect">
+        <option value="codiceCartellone">Seleziona per Codice Cartellone</option>
+        <option value="dateRange">Seleziona per Data Inizio e Data Fine</option>
+        <option value="codiceCartelloneDateRange">Seleziona per Codice Cartellone, Data Inizio e Data Fine</option>
     </select>
-    <button type="submit">Filtra per Codice Cartellone</button>
-</form>
+    <button id="applyFilter">Applica Filtro</button>
+</div>
 
-<hr/>
+<div id="filters">
+    <div id="codiceCartellone" class="filter-section">
+        <form action="#" th:action="@{/dbaccess/reportByCartellone}" method="get">
+            <label for="codCartellone">Seleziona Codice Cartellone:</label>
+            <select name="codCartellone" id="codCartellone">
+                <option th:each="codCartellone : ${codCartelloneList}"
+                        th:value="${codCartellone}"
+                        th:text="${codCartellone}">Cartellone</option>
+            </select>
+            <button type="submit">Filtra per Codice Cartellone</button>
+        </form>
+    </div>
 
-<!-- Form per filtro per intervallo di date -->
-<form action="#" th:action="@{/dbaccess/reportByDateRange}" method="get">
-    <label for="startDate">Data Inizio:</label>
-    <input type="date" id="startDate" name="startDate" required>
+    <div id="dateRange" class="filter-section">
+        <form action="#" th:action="@{/dbaccess/reportByDateRange}" method="get">
+            <label for="startDate">Data Inizio:</label>
+            <input type="date" id="startDate" name="startDate" required>
 
-    <label for="endDate">Data Fine:</label>
-    <input type="date" id="endDate" name="endDate" required>
+            <label for="endDate">Data Fine:</label>
+            <input type="date" id="endDate" name="endDate" required>
 
-    <button type="submit">Filtra per Intervallo di Date</button>
-</form>
+            <button type="submit">Filtra per Intervallo di Date</button>
+        </form>
+    </div>
 
-<hr/>
+    <div id="codiceCartelloneDateRange" class="filter-section">
+        <form action="#" th:action="@{/dbaccess/reportByCartelloneAndDateRange}" method="get">
+            <label for="codCartelloneCombo">Seleziona Codice Cartellone:</label>
+            <select name="codCartellone" id="codCartelloneCombo">
+                <option th:each="codCartellone : ${codCartelloneList}"
+                        th:value="${codCartellone}"
+                        th:text="${codCartellone}">Cartellone</option>
+            </select>
 
-<!-- Form per filtro combinato -->
-<form action="#" th:action="@{/dbaccess/reportByCartelloneAndDateRange}" method="get">
-    <label for="codCartelloneCombo">Seleziona Codice Cartellone:</label>
-    <select name="codCartellone" id="codCartelloneCombo">
-        <option th:each="codCartellone : ${codCartelloneList}"
-                th:value="${codCartellone}"
-                th:text="${codCartellone}">Cartellone</option>
-    </select>
+            <label for="startDateCombo">Data Inizio:</label>
+            <input type="date" id="startDateCombo" name="startDate" required>
 
-    <label for="startDateCombo">Data Inizio:</label>
-    <input type="date" id="startDateCombo" name="startDate" required>
+            <label for="endDateCombo">Data Fine:</label>
+            <input type="date" id="endDateCombo" name="endDate" required>
 
-    <label for="endDateCombo">Data Fine:</label>
-    <input type="date" id="endDateCombo" name="endDate" required>
-
-    <button type="submit">Filtra per Codice Cartellone e Intervallo di Date</button>
-</form>
+            <button type="submit">Filtra per Codice Cartellone e Intervallo di Date</button>
+        </form>
+    </div>
+</div>
 
 <hr/>
 
 <!-- Form per somma della durata di visualizzazione per codice cartellone e intervallo di date -->
-
 <form action="#" th:action="@{/dbaccess/sumDurataVisualizzazione}" method="get">
     <label for="codCartelloneSum">Seleziona Codice Cartellone:</label>
     <select name="codCartellone" id="codCartelloneSum" th:value="${codCartellone}">
@@ -71,7 +82,6 @@
 
     <button type="submit">Calcola Somma Durata Visualizzazione</button>
 </form>
-
 
 <!-- Aggiunta sezione per visualizzare la somma della durata di visualizzazione -->
 <div th:if="${durataVisualizzazione != null}">
@@ -100,5 +110,7 @@
     </tr>
     </tbody>
 </table>
+
+<script src="/Report_Impianti/report_impianti.js"></script>
 </body>
 </html>

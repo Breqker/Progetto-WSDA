@@ -1,122 +1,39 @@
-/* Generale */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    font-family: Arial, sans-serif;
     margin: 20px;
-    padding: 0;
 }
 
-h1, h2 {
-    color: #0056b3;
+h1 {
     text-align: center;
 }
 
-a {
-    text-decoration: none;
-    color: #0056b3;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Form */
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+#filter-container {
     margin-bottom: 20px;
-    max-width: 500px;
-    margin: 0 auto;
 }
 
-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+.filter-section {
+    display: none;
+    margin-top: 20px;
 }
 
-form select,
-form input[type="datetime-local"],
-form button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+form {
+    margin-bottom: 20px;
 }
 
-form button {
-    background-color: #0056b3;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
+hr {
+    margin: 20px 0;
 }
 
-form button:hover {
-    background-color: #004494;
-}
-
-/* Tabella */
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
 }
 
-table th, table td {
-    padding: 15px;
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
     text-align: left;
 }
-
-table th {
-    background-color: #0056b3;
-    color: #fff;
-}
-
-table td {
-    border-bottom: 1px solid #ddd;
-}
-
-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-table tr:last-child td {
-    border-bottom: none;
-}
-
-/* Grafici */
-.chart-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.chart-item {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.chart {
-    height: 370px;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .chart-container {
-        grid-template-columns: 1fr;
-    }
-}
-
