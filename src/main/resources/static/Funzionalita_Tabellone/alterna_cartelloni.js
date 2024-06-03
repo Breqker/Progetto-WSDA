@@ -114,11 +114,6 @@ function inviaSegnalazione(codImpianto, codPalinsesto) {
 }
 
 
-
-
-caricaPalinsesto(palinsestoURL);
-
-
 setInterval(() => {
     inviaSegnalazione(codImpianto, codPalinsesto);
 }, 5000);
