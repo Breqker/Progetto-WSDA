@@ -1,9 +1,25 @@
 let currentCartellone = '';
 let currentDurataVisual = 1;
 
+const scriptElement = document.querySelector('script[src="/Funzionalita_Tabellone/alterna_cartelloni.js"]');
+const codImpianto = scriptElement.getAttribute('data-cod-impianto');
+const codPalinsesto = scriptElement.getAttribute('data-cod-palinsesto');
+const palinsestoPath = scriptElement.getAttribute('data-palinsesto-path');
+
+if (palinsestoPath) {
+    caricaPalinsesto(palinsestoPath);
+} else {
+    console.error('Errore: palinsestoPath non definito');
+}
+
 function caricaPalinsesto(palinsestoURL) {
     fetch(palinsestoURL)
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();
+        })
         .then(data => {
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(data, 'text/xml');
@@ -11,6 +27,10 @@ function caricaPalinsesto(palinsestoURL) {
             let index = 0;
 
             function mostraEvento() {
+                if (eventi.length === 0) {
+                    console.error('Errore: nessun evento trovato nel palinsesto');
+                    return;
+                }
                 const evento = eventi[index];
                 const fileHTML = evento.textContent.trim();
                 currentCartellone = fileHTML.split('/').pop().split('.')[0];
@@ -40,6 +60,9 @@ function caricaPalinsesto(palinsestoURL) {
         })
         .catch(error => console.error('Errore nel caricamento del palinsesto:', error));
 }
+
+
+
 
 let segnalazioneCounter = 0;
 
@@ -91,10 +114,7 @@ function inviaSegnalazione(codImpianto, codPalinsesto) {
 }
 
 
-const scriptElement = document.querySelector('script[src="/Funzionalita_Tabellone/alterna_cartelloni.js"]');
-const codImpianto = scriptElement.getAttribute('data-cod-impianto');
-const codPalinsesto = scriptElement.getAttribute('data-cod-palinsesto');
-const palinsestoURL = `/Palinsesti/${codPalinsesto}.xml`;
+
 
 caricaPalinsesto(palinsestoURL);
 
