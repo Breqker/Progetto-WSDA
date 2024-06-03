@@ -35,6 +35,8 @@ public class WebSecurityConfig {
     SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/dbaccess/gestione_impianti").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/dbaccess/mod/*").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/dbaccess/delete/*").hasAnyAuthority("ADMIN")
                         .anyRequest().permitAll()
                 )
                 .formLogin(login -> login.permitAll())

@@ -90,7 +90,7 @@
   <div class="modal-content">
     <span class="close" onclick="closeEditModal()">&times;</span>
     <h3>Modifica Impianto</h3>
-    <form action="#" id="editForm" method="post">
+    <form action="#" id="editForm" method="post" th:action="@{'/dbaccess/mod/' + ${impianto.idImpianto}}" th:object="${impianto}">
       <div>
         <label for="editStato">Stato:</label>
         <input type="checkbox" id="editStato" name="stato" onchange="toggleLatLongFields(this)"/>

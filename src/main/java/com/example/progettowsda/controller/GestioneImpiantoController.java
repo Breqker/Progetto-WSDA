@@ -75,6 +75,7 @@ public class GestioneImpiantoController {
         imp.setStato(modifiedImpianto.isStato());
         imp.setLatitudine(modifiedImpianto.getLatitudine());
         imp.setLongitudine(modifiedImpianto.getLongitudine());
+        System.out.println(imp.getIdImpianto());
 
         impiantoRepository.save(imp);
 
