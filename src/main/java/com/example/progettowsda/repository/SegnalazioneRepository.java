@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface SegnalazioneRepository extends JpaRepository<Segnalazione, String> {
     List<Segnalazione> findByCodCartellone(String codCartellone);
+
     List<Segnalazione> findByDataInserimentoBetween(LocalDateTime startDate, LocalDateTime endDate);
     List<Segnalazione> findByCodCartelloneAndDataInserimentoBetween(String codCartellone, LocalDateTime startDate, LocalDateTime endDate);
 

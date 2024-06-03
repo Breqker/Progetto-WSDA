@@ -47,6 +47,7 @@ public class Segnalazione {
         this.impianto = impianto;
     }
 
+
     public Palinsesto getPalinsesto() {
         return palinsesto;
     }

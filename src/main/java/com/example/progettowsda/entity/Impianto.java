@@ -16,6 +16,7 @@ public class Impianto {
     private Palinsesto palinsesto;
 
     @Column(name = "stato")
+
     private boolean stato;
 
     @Column(name = "latitudine")

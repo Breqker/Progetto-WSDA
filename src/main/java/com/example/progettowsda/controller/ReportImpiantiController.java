@@ -131,6 +131,7 @@ public class ReportImpiantiController {
         LocalDateTime startOfDay = startDate.atStartOfDay();
         LocalDateTime endOfDay = endDate.atTime(23, 59, 59);
 
+
         List<Segnalazione> segnalazioni = segnalazioneRepository.findByCodCartelloneAndDataInserimentoBetween(codCartellone, startOfDay, endOfDay);
 
         int durataVisualComplessiva = segnalazioni.stream()
