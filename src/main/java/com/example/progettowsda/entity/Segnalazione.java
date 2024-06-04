@@ -29,8 +29,6 @@ public class Segnalazione {
     @Column(name = "data_inserimento")
     private LocalDateTime dataInserimento;
 
-    // Getters and setters
-
     public String getIdSegnalazione() {
         return idSegnalazione;
     }

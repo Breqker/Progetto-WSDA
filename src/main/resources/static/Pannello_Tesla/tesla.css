@@ -1,4 +1,3 @@
-/*Colori background car info*/
 :root {
     --blue-transparent: rgba(0, 120, 255, 0.1);
     --black-transparent: rgba(0, 0, 0, 0.1);
@@ -40,10 +39,6 @@
     margin-top: 2vh;
 }
 
-
-/*Animazione auto*/
-
-/*Container per logo tesla*/
 .logo-container {
     width: 100%;
     bottom: 4vh;
@@ -52,14 +47,12 @@
     height: 10vh;
 }
 
-/*Logo tesla*/
 .tesla-logo {
     position: absolute;
     width: 5vw;
     animation: slideLogo 10s linear infinite;
 }
 
-/*Scritta Testa*/
 .logo_word {
     position: absolute;
     top: -5vh;
@@ -71,7 +64,6 @@
     width: 15vw;
 }
 
-/*Zoom In e Out scritta tesla*/
 @keyframes zoomInOutCustom {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
@@ -160,7 +152,6 @@
     }
 }
 
-/* Button */
 @keyframes wiggle {
     0%, 7% {
         transform: rotateZ(0);

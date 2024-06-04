@@ -12,8 +12,6 @@ if (palinsestoPath) {
     console.error('Errore: palinsestoPath non definito');
 }
 
-
-
 function caricaPalinsesto(palinsestoURL) {
     fetch(palinsestoURL)
         .then(response => {
@@ -63,9 +61,6 @@ function caricaPalinsesto(palinsestoURL) {
         .catch(error => console.error('Errore nel caricamento del palinsesto:', error));
 }
 
-
-
-
 let segnalazioneCounter = 0;
 
 function generaIdUnivoco() {
@@ -98,7 +93,7 @@ function inviaSegnalazione(codImpianto, codPalinsesto) {
                 throw new Error('Errore durante l\'invio della segnalazione');
             }
             console.log('Segnalazione inviata con successo');
-            return response.text(); // Ritorna il testo della risposta
+            return response.text();
         })
         .then(data => {
             const rispostaServerElem = document.getElementById("rispostaServer");
@@ -114,7 +109,6 @@ function inviaSegnalazione(codImpianto, codPalinsesto) {
             console.error('Errore durante l\'invio della segnalazione:', error);
         });
 }
-
 
 setInterval(() => {
     inviaSegnalazione(codImpianto, codPalinsesto);

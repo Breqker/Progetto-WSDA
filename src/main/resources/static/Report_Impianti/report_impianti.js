@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
             selectedSection.style.display = "block";
         }
 
-        // Rende sempre visibile la tabella "Eugenio"
+        // Rende sempre visibile la tabella
         if (eugenioSection) {
             eugenioSection.style.display = "block";
         }

@@ -5,7 +5,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* Body styling */
 body {
     background-color: #ffffff;
     display: flex;
@@ -17,7 +16,6 @@ body {
     padding: 0;
 }
 
-/* Container styling */
 .container {
     width: 100%;
     max-width: 80%;
@@ -27,7 +25,6 @@ body {
     border-radius: 10px;
 }
 
-/* Sidebar styling */
 .sidebar {
     width: 100%;
     background-color: #343a40;
@@ -50,7 +47,6 @@ body {
     background-color: #495057;
 }
 
-/* Content styling */
 .content {
     width: 100%;
     padding: 20px;
@@ -69,12 +65,11 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* Table styling */
 #impiantiList {
     width: 100%;
     margin-bottom: 20px;
     font-size: 1.2rem;
-    overflow-x: auto; /* Abilita lo scrolling orizzontale solo se necessario */
+    overflow-x: auto;
 }
 
 table {
@@ -106,7 +101,6 @@ tr.selected {
     color: #0c5460;
 }
 
-/* Action icons styling */
 .action-icon {
     width: 20px;
     height: 20px;
@@ -114,11 +108,10 @@ tr.selected {
     margin: 0 5px;
 }
 
-/* Modal styling */
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000; /* Assicura che il modal sia sopra la mappa */
+    z-index: 1000;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -131,7 +124,6 @@ tr.selected {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Quando è aperto il modal */
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto;
@@ -144,7 +136,6 @@ tr.selected {
     position: relative;
 }
 
-/* Chiusura del modal */
 .close {
     color: #aaa;
     float: right;
@@ -159,28 +150,25 @@ tr.selected {
     text-decoration: none;
 }
 
-/* Map and list wrapper */
 .map-wrapper {
     position: relative;
     width: 100%;
 }
 
-/* Map styling */
 #map-container {
     width: 100%;
-    text-align: center; /* Per centrare il titolo */
+    text-align: center;
     margin-bottom: 20px;
 }
 
 #mapid {
-    width: 100%; /* Occupa tutta la larghezza disponibile */
+    width: 100%;
     height: 600px;
     margin: 20px auto;
     border: 2px solid #ccc;
     border-radius: 10px;
 }
 
-/* Form styling */
 form {
     width: 100%;
     max-width: 100%;
@@ -225,7 +213,6 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     body {
         padding: 20px;
@@ -251,8 +238,6 @@ button:hover {
     }
 }
 
-
-/* Add button styling */
 .add-button-container {
     width: 100%;
     text-align: center;

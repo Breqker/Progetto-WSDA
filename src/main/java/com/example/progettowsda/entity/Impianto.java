@@ -25,8 +25,6 @@ public class Impianto {
     @Column(name = "longitudine")
     private double longitudine;
 
-    // Getters and setters
-
     public String getIdImpianto() {
         return idImpianto;
     }

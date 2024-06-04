@@ -15,8 +15,6 @@ public class Palinsesto {
     @Column(name = "path")
     private String path;
 
-    // Getters and setters
-
     public String getIdPalinsesto() {
         return idPalinsesto;
     }

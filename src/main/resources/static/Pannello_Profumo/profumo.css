@@ -9,14 +9,14 @@ body {
 .background_profumo {
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Previene eventuali overflow oltre i limiti dell'elemento */
+    overflow: hidden;
 }
 
 .background_profumo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: blur(5px) brightness(30%); /* Aggiungi questa linea per applicare la sfocatura */
+    filter: blur(5px) brightness(30%);
 }
 
 .text-container {

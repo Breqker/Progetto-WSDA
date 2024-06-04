@@ -21,11 +21,10 @@ html, body {
     filter: blur(5px);
 }
 
-/* Ridimensionamento e posizionamento basati su unità relative per le immagini */
 .proteine-png img, .shaker-png img, .vitaminac-png img, .mars_protein-png img, .top_girl-png img, .felpa_boy-png img {
     position: absolute;
     z-index: 10;
-    width: 15vw; /* Dimensioni relative per adattarsi al ridimensionamento dello schermo */
+    width: 15vw;
     height: auto;
 }
 
@@ -91,8 +90,6 @@ html, body {
     z-index: 5;
 }
 
-
-/* Stile per il testo "Nuovi Arrivi" */
 .nuovi-arrivi {
     position: absolute;
     bottom: 5vh;
@@ -151,8 +148,6 @@ html, body {
     text-shadow: 1px 1px 0 #999, 2px 2px 0 #888, 3px 3px 0 #777, 4px 4px 0 #666, 5px 5px 0 #555, 6px 6px 0 #444, 7px 7px 0 #333, 8px 8px 0 #222, 9px 9px 0 #111;
 }
 
-
-/* Animazioni */
 @keyframes circular-motion {
     0% {
         transform: rotate(0deg) translateX(0vw) translateY(0vh);

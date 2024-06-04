@@ -15,7 +15,6 @@ body {
     align-items: center;
 }
 
-/*Animazione Logo Apple*/
 .apple_logo {
     position: relative;
     width: 15vh;
@@ -25,7 +24,6 @@ body {
     animation: slide-in-blurred-left-logo 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
 }
 
-/*Animazione Think different.*/
 .aforisma {
     position: relative;
     width: 100vh;
@@ -204,7 +202,6 @@ body {
     animation: slide-in-blurred-right-scadenza 20s cubic-bezier(0.230, 1.000, 0.320, 1.000) infinite;
 }
 
-/*Animazione Logo Apple*/
 @keyframes slide-in-blurred-left-logo {
     0%, 5% {
         transform: translateX(-1000px) scaleY(2.5) scaleX(0.2);
@@ -221,14 +218,13 @@ body {
     }
 }
 
-/*Animazione Aforisma*/
 @keyframes slide-in-blurred-left-aforisma {
-    0%, 10% { /* Ritarda l'inizio dell'animazione della scritta */
+    0%, 10% {
         transform: translateX(-1000px) scaleY(2.5) scaleX(0.2);
         filter: blur(40px);
         opacity: 0;
     }
-    12%, 95% { /* Agiustiamo per mantenere il ritardo desiderato e la visibilità */
+    12%, 95% {
         transform: translateX(0) scaleY(1) scaleX(1);
         filter: blur(0);
         opacity: 1;
@@ -238,14 +234,13 @@ body {
     }
 }
 
-/*Animazione Dispositivi*/
 @keyframes slide-in-blurred-left-dispositivi {
-    0%, 12% { /* Ritarda l'inizio dell'animazione della scritta */
+    0%, 12% {
         transform: translateX(-1000px) scaleY(2.5) scaleX(0.2);
         filter: blur(40px);
         opacity: 0;
     }
-    25%, 95% { /* Agiustiamo per mantenere il ritardo desiderato e la visibilità */
+    25%, 95% {
         transform: translateX(0) scaleY(1) scaleX(1);
         filter: blur(0);
         opacity: 1;
@@ -255,24 +250,22 @@ body {
     }
 }
 
-/*Dispositivi*/
 @keyframes slide-in-blurred-right-dispositivi {
-    0%, 12% { /* Ritarda l'inizio dell'animazione */
-        transform: translateX(1000px) scaleY(2.5) scaleX(0.2); /* Parte da destra */
+    0%, 12% {
+        transform: translateX(1000px) scaleY(2.5) scaleX(0.2);
         filter: blur(40px);
         opacity: 0;
     }
-    25%, 95% { /* Mantiene il ritardo desiderato e la visibilità */
-        transform: translateX(0) scaleY(1) scaleX(1); /* Finisce al centro */
+    25%, 95% {
+        transform: translateX(0) scaleY(1) scaleX(1);
         filter: blur(0);
         opacity: 1;
     }
     100% {
-        opacity: 0; /* Scomparsa alla fine */
+        opacity: 0;
     }
 }
 
-/*Specifiche*/
 @keyframes focus-in {
     0%, 23% {
         transform: scale(0.95);
