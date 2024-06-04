@@ -77,11 +77,11 @@
         </form>
     </div>
 
-
     <div id="durataVisualResult">
-        <h2 th:if="${durataVisualComplessiva}">Durata Visuale Complessiva per il Cartellone: <span th:text="${durataVisualComplessiva}"></span> secondi</h2>
+        <h2 id="durataVisualMessage" th:if="${durataVisualComplessiva}">
+            Durata Visuale Complessiva per il Cartellone: <span th:text="${durataVisualComplessiva}"></span> secondi
+        </h2>
     </div>
-
 
     <div id="durataVisualFormDate" class="filter-section">
         <form action="#" th:action="@{/dbaccess/durataVisualByCartelloneAndDate}" method="get">
@@ -100,8 +100,6 @@
         </form>
     </div>
 </div>
-
-
 
 <table>
     <thead>
