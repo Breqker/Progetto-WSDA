@@ -94,12 +94,6 @@
     </div>
 </div>
 
-<div id="durataVisualResult">
-    <h3 id="durataVisualMessage" th:if="${durataVisualComplessiva}">
-        Durata Visuale Complessiva per il Cartellone: <span th:text="${durataVisualComplessiva}"></span> secondi
-    </h3>
-</div>
-
 <div id="Eugenio">
     <table>
         <thead>
@@ -123,6 +117,11 @@
     </table>
 </div>
 
+<div id="durataVisualResult">
+    <h3 id="durataVisualMessage" th:if="${durataVisualComplessiva}">
+        Durata Visuale Complessiva per il Cartellone: <span th:text="${durataVisualComplessiva}"></span> secondi
+    </h3>
+</div>
 
 <script src="/Report_Impianti/report_impianti.js"></script>
 </body>
