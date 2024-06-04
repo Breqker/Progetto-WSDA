@@ -94,6 +94,7 @@ public class ReportImpiantiController {
 
     @GetMapping("/durataVisualByCartellone")
     public String getDurataVisualByCartellone(@RequestParam String codCartellone, Model model) {
+
         List<Segnalazione> segnalazioni = segnalazioneRepository.findByCodCartellone(codCartellone);
 
         int durataVisualComplessiva = segnalazioni.stream()
@@ -106,6 +107,7 @@ public class ReportImpiantiController {
                 .distinct()
                 .collect(Collectors.toList());
 
+        model.addAttribute("segnalazioni", segnalazioni);
         model.addAttribute("durataVisualComplessiva", durataVisualComplessiva);
         model.addAttribute("codCartelloneList", codCartelloneList);
         return "report_impianti";
@@ -134,6 +136,7 @@ public class ReportImpiantiController {
                 .distinct()
                 .collect(Collectors.toList());
 
+        model.addAttribute("segnalazioni", segnalazioni);
         model.addAttribute("durataVisualComplessiva", durataVisualComplessiva);
         model.addAttribute("codCartelloneList", codCartelloneList);
         return "report_impianti";
