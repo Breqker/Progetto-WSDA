@@ -9,11 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path = "/dbaccess")
 public class GestioneImpiantoController {
 
     @Autowired
@@ -43,7 +42,7 @@ public class GestioneImpiantoController {
         impianto.setStato(true); // Default to true
         impiantoRepository.save(impianto);
 
-        return "redirect:/dbaccess/gestione_impianti";
+        return "redirect:/gestione_impianti";
     }
 
     @GetMapping(path = "/mod/{idImpianto}")
@@ -79,13 +78,15 @@ public class GestioneImpiantoController {
 
         impiantoRepository.save(imp);
 
-        return "redirect:/dbaccess/gestione_impianti";
+        return "redirect:/gestione_impianti";
     }
 
     @GetMapping(path = "/delete/{idImpianto}")
     public String deleteImpianto(@PathVariable("idImpianto") String idImpianto) {
         impiantoRepository.deleteById(idImpianto);
-        return "redirect:/dbaccess/gestione_impianti";
+        return "redirect:/gestione_impianti";
     }
+
+
 
 }

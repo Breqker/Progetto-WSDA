@@ -34,9 +34,9 @@ public class WebSecurityConfig {
     @Bean
     SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/dbaccess/gestione_impianti").hasAnyAuthority("ADMIN")
-                        .requestMatchers("/dbaccess/mod/*").hasAnyAuthority("ADMIN")
-                        .requestMatchers("/dbaccess/delete/*").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/gestione_impianti").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/mod/*").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/delete/*").hasAnyAuthority("ADMIN")
                         .anyRequest().permitAll()
                 )
                 .formLogin(login -> login.permitAll())

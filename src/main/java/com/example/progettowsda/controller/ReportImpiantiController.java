@@ -1,9 +1,7 @@
 package com.example.progettowsda.controller;
 
-import com.example.progettowsda.entity.Impianto;
 import com.example.progettowsda.entity.Segnalazione;
 import com.example.progettowsda.repository.ImpiantoRepository;
-import com.example.progettowsda.repository.PalinsestoRepository;
 import com.example.progettowsda.repository.SegnalazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,9 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
