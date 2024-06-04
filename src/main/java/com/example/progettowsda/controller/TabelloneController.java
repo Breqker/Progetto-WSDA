@@ -19,13 +19,17 @@ public class TabelloneController {
                                Model model) {
         Impianto impianto = impiantoRepository.findByIdImpianto(codImpianto);
         if (impianto != null) {
+            if (!impianto.isStato()) {
+                model.addAttribute("error", "Impossibile visualizzare il tabellone. Impianto non attivo.");
+                return "error_attivazione"; // Pagina di errore personalizzata
+            }
             model.addAttribute("codImpianto", codImpianto);
             model.addAttribute("codPalinsesto", impianto.getPalinsesto().getIdPalinsesto());
             model.addAttribute("palinsestoPath", impianto.getPalinsesto().getPath());
+            return "tabellone";
         } else {
-            // Handle the case where the impianto is not found
-            model.addAttribute("error", "Impianto not found");
+            model.addAttribute("error", "Impianto non trovato");
+            return "error";
         }
-        return "tabellone";
     }
 }

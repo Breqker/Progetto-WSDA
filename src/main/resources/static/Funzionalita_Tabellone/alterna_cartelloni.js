@@ -12,6 +12,8 @@ if (palinsestoPath) {
     console.error('Errore: palinsestoPath non definito');
 }
 
+
+
 function caricaPalinsesto(palinsestoURL) {
     fetch(palinsestoURL)
         .then(response => {
@@ -35,11 +37,11 @@ function caricaPalinsesto(palinsestoURL) {
                 const fileHTML = evento.textContent.trim();
                 currentCartellone = fileHTML.split('/').pop().split('.')[0];
 
-                // Estrazione dell'attributo tempo dell'evento corrente
+
                 const tempoCorrente = parseInt(evento.getAttribute('tempo'), 10);
-                // Estrazione dell'attributo tempo dell'evento successivo
+
                 const tempoSuccessivo = parseInt(eventi[(index + 1) % eventi.length].getAttribute('tempo'), 10);
-                // Calcolo della durata visuale come differenza tra il tempo successivo e il tempo corrente
+
                 currentDurataVisual = tempoSuccessivo - tempoCorrente;
 
                 fetch(fileHTML)

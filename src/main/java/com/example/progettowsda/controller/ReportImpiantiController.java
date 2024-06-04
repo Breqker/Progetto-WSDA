@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping(path = "/dbaccess")
 public class ReportImpiantiController {
 
     @Autowired
