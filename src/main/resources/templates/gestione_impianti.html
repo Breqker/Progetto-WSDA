@@ -62,7 +62,7 @@
   <div class="modal-content">
     <span class="close" onclick="closeAddModal()">&times;</span>
     <h3>Aggiungi Nuovo Impianto</h3>
-    <form action="#" id="addForm" method="post" th:action="@{/dbaccess/add}" th:object="${impianto}">
+    <form action="#" id="addForm" method="post" th:action="@{/add}" th:object="${impianto}">
       <div>
         <label for="IdImpianto">ID Impianto:</label>
         <input type="text" id="IdImpianto" name="idImpianto" th:field="*{idImpianto}" required><br>
@@ -90,7 +90,7 @@
   <div class="modal-content">
     <span class="close" onclick="closeEditModal()">&times;</span>
     <h3>Modifica Impianto</h3>
-    <form action="#" id="editForm" method="post" th:action="@{'/dbaccess/mod/' + ${impianto.idImpianto}}" th:object="${impianto}">
+    <form action="#" id="editForm" method="post" th:action="@{'/mod/' + ${impianto.idImpianto}}" th:object="${impianto}">
       <div>
         <label for="editStato">Stato:</label>
         <input type="checkbox" id="editStato" name="stato" onchange="toggleLatLongFields(this)"/>

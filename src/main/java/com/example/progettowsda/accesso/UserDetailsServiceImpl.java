@@ -1,6 +1,5 @@
 package com.example.progettowsda.accesso;
 
-import com.example.progettowsda.accesso.MyUserDetails;
 import com.example.progettowsda.entity.User;
 import com.example.progettowsda.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
