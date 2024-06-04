@@ -13,3 +13,17 @@ document.getElementById('applyFilter').addEventListener('click', function() {
         durationMessage.style.display = 'none';
     }
 });
+
+
+document.getElementById('applyFilter').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('Eugenio').style.display = 'none';
+});
+
+
+document.getElementById('Pizza').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('Eugenio').style.display = 'none';
+    document.getElementById('durataVisualResult').style.display = 'block';
+});
+

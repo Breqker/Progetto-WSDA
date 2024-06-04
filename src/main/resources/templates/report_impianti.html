@@ -22,7 +22,7 @@
 
 <div id="filters">
     <div id="codiceCartellone" class="filter-section">
-        <form action="#" th:action="@{/dbaccess/reportByCartellone}" method="get">
+        <form action="#" th:action="@{/reportByCartellone}" method="get">
             <label for="codCartellone">Seleziona Codice Cartellone:</label>
             <select name="codCartellone" id="codCartellone">
                 <option th:each="codCartellone : ${codCartelloneList}"
@@ -34,7 +34,7 @@
     </div>
 
     <div id="dateRange" class="filter-section">
-        <form action="#" th:action="@{/dbaccess/reportByDateRange}" method="get">
+        <form action="#" th:action="@{/reportByDateRange}" method="get">
             <label for="startDate">Data Inizio:</label>
             <input type="date" id="startDate" name="startDate" required>
 
@@ -46,7 +46,7 @@
     </div>
 
     <div id="codiceCartelloneDateRange" class="filter-section">
-        <form action="#" th:action="@{/dbaccess/reportByCartelloneAndDateRange}" method="get">
+        <form action="#" th:action="@{/reportByCartelloneAndDateRange}" method="get">
             <label for="codCartelloneCombo">Seleziona Codice Cartellone:</label>
             <select name="codCartellone" id="codCartelloneCombo">
                 <option th:each="codCartellone : ${codCartelloneList}"
@@ -65,7 +65,7 @@
     </div>
 
     <div id="durataVisualForm" class="filter-section">
-        <form action="#" th:action="@{/dbaccess/durataVisualByCartellone}" method="get">
+        <form action="#" th:action="@{/durataVisualByCartellone}" method="get">
             <label for="codCartelloneSelect">Seleziona Codice Cartellone:</label>
             <select id="codCartelloneSelect" name="codCartellone">
                 <option value="">Seleziona Codice Cartellone</option>
@@ -77,14 +77,10 @@
         </form>
     </div>
 
-    <div id="durataVisualResult">
-        <h2 id="durataVisualMessage" th:if="${durataVisualComplessiva}">
-            Durata Visuale Complessiva per il Cartellone: <span th:text="${durataVisualComplessiva}"></span> secondi
-        </h2>
-    </div>
+
 
     <div id="durataVisualFormDate" class="filter-section">
-        <form action="#" th:action="@{/dbaccess/durataVisualByCartelloneAndDate}" method="get">
+        <form action="#" th:action="@{/durataVisualByCartelloneAndDate}" method="get">
             <label for="codCartelloneSelectDate">Seleziona Codice Cartellone:</label>
             <select id="codCartelloneSelectDate" name="codCartellone">
                 <option value="">Seleziona Codice Cartellone</option>
@@ -96,31 +92,44 @@
             <input type="date" id="startDate_" name="startDate" required>
             <label for="endDate">Data Fine:</label>
             <input type="date" id="endDate_" name="endDate" required>
-            <button type="submit">Calcola Durata Visuale Complessiva per il Codice Cartellone e Data</button>
+            <button id='Pizza' type="submit">Calcola Durata Visuale Complessiva per il Codice Cartellone e Data</button>
         </form>
+
     </div>
 </div>
 
-<table>
-    <thead>
-    <tr>
-        <th>Codice Impianto</th>
-        <th>Codice Palinsesto</th>
-        <th>Data Inserimento</th>
-        <th>Durata Visualizzazione</th>
-        <th>Codice Cartellone</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="segnalazione : ${segnalazioni}">
-        <td th:text="${segnalazione.impianto.idImpianto}">Impianto</td>
-        <td th:text="${segnalazione.palinsesto.idPalinsesto}">Palinsesto</td>
-        <td th:text="${segnalazione.dataInserimento}">Data Inserimento</td>
-        <td th:text="${segnalazione.durataVisual}">Durata Visualizzazione</td>
-        <td th:text="${segnalazione.codCartellone}">Cartellone</td>
-    </tr>
-    </tbody>
-</table>
+
+
+<div id="durataVisualResult">
+    <h3 id="durataVisualMessage" th:if="${durataVisualComplessiva}">
+        Durata Visuale Complessiva per il Cartellone: <span th:text="${durataVisualComplessiva}"></span> secondi
+    </h3>
+</div>
+
+
+<div id="Eugenio">
+    <table>
+        <thead>
+        <tr >
+            <th>Codice Impianto</th>
+            <th>Codice Palinsesto</th>
+            <th>Data Inserimento</th>
+            <th>Durata Visualizzazione</th>
+            <th>Codice Cartellone</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="segnalazione : ${segnalazioni}">
+            <td th:text="${segnalazione.impianto.idImpianto}">Impianto</td>
+            <td th:text="${segnalazione.palinsesto.idPalinsesto}">Palinsesto</td>
+            <td th:text="${segnalazione.dataInserimento}">Data Inserimento</td>
+            <td th:text="${segnalazione.durataVisual}">Durata Visualizzazione</td>
+            <td th:text="${segnalazione.codCartellone}">Cartellone</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 
 <script src="/Report_Impianti/report_impianti.js"></script>
 </body>

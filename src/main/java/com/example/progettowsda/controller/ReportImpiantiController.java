@@ -20,16 +20,11 @@ public class ReportImpiantiController {
     @Autowired
     private SegnalazioneRepository segnalazioneRepository;
 
-    @Autowired
-    private ImpiantoRepository impiantoRepository;
 
-
-    // Costruttore per l'iniezione delle dipendenze
     public ReportImpiantiController(SegnalazioneRepository segnalazioneRepository) {
         this.segnalazioneRepository = segnalazioneRepository;
 
     }
-
 
     @GetMapping("/report")
     public String getReport(Model model) {
@@ -143,14 +138,6 @@ public class ReportImpiantiController {
         model.addAttribute("codCartelloneList", codCartelloneList);
         return "report_impianti";
     }
-
-
-
-
-
-
-
-
 
 
 }

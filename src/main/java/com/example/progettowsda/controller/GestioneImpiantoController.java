@@ -28,7 +28,7 @@ public class GestioneImpiantoController {
         model.addAttribute("impianto", new Impianto());
         Iterable<Palinsesto> palinsesti = palinsestoRepository.findAll();
         model.addAttribute("palinsesti", palinsesti);
-        return "gestione_impianti"; // Thymeleaf template name for the main page
+        return "gestione_impianti";
     }
 
 
@@ -39,7 +39,7 @@ public class GestioneImpiantoController {
             return "error";
         }
 
-        impianto.setStato(true); // Default to true
+        impianto.setStato(true);
         impiantoRepository.save(impianto);
 
         return "redirect:/gestione_impianti";
@@ -49,12 +49,12 @@ public class GestioneImpiantoController {
     public String showModForm(@PathVariable("idImpianto") String idImpianto, Model model) {
         Impianto imp = impiantoRepository.findById(idImpianto).orElse(null);
         if (imp == null) {
-            return "error"; // Handle error if impianto not found
+            return "error";
         }
         Iterable<Palinsesto> palinsesti = palinsestoRepository.findAll();
         model.addAttribute("palinsesti", palinsesti);
         model.addAttribute("impianto", imp);
-        return "gestione_impianti"; // Thymeleaf template name for the main page
+        return "gestione_impianti";
     }
 
 
@@ -62,7 +62,7 @@ public class GestioneImpiantoController {
     public String modImpianto(@PathVariable("idImpianto") String idImpianto, @ModelAttribute Impianto modifiedImpianto, Model model) {
         Impianto imp = impiantoRepository.findById(idImpianto).orElse(null);
         if (imp == null) {
-            return "error"; // Handle error if impianto not found
+            return "error";
         }
 
         Optional<Palinsesto> palinsesto = palinsestoRepository.findById(modifiedImpianto.getPalinsesto().getIdPalinsesto());
