@@ -15,7 +15,7 @@ public class TabelloneController {
     private ImpiantoRepository impiantoRepository;
 
     @GetMapping("/tabellone")
-    public String getTabellone(@RequestParam(name = "id", required = true) String codImpianto,
+    public String getTabellone(@RequestParam(name = "id_impianto", required = true) String codImpianto,
                                Model model) {
         Impianto impianto = impiantoRepository.findByIdImpianto(codImpianto);
         if (impianto != null) {
