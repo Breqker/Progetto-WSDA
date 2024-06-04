@@ -17,7 +17,6 @@
         <option value="durataVisualForm">Durata Complessiva per cartellone</option>
         <option value="durataVisualFormDate">Durata Complessiva per cartellone con data</option>
     </select>
-    <button id="applyFilter">Applica Filtro</button>
 </div>
 
 <div id="filters">
@@ -77,8 +76,6 @@
         </form>
     </div>
 
-
-
     <div id="durataVisualFormDate" class="filter-section">
         <form action="#" th:action="@{/durataVisualByCartelloneAndDate}" method="get">
             <label for="codCartelloneSelectDate">Seleziona Codice Cartellone:</label>
@@ -92,13 +89,10 @@
             <input type="date" id="startDate_" name="startDate" required>
             <label for="endDate">Data Fine:</label>
             <input type="date" id="endDate_" name="endDate" required>
-            <button id='Pizza' type="submit">Calcola Durata Visuale Complessiva per il Codice Cartellone e Data</button>
+            <button type="submit">Calcola Durata Visuale Complessiva per il Codice Cartellone e Data</button>
         </form>
-
     </div>
 </div>
-
-
 
 <div id="durataVisualResult">
     <h3 id="durataVisualMessage" th:if="${durataVisualComplessiva}">
@@ -106,16 +100,15 @@
     </h3>
 </div>
 
-
 <div id="Eugenio">
     <table>
         <thead>
-        <tr >
+        <tr>
             <th>Codice Impianto</th>
             <th>Codice Palinsesto</th>
             <th>Data Inserimento</th>
             <th>Durata Visualizzazione</th>
-            <th>Codice Cartellone</th>
+            <th>Codice Cartellone ciao</th>
         </tr>
         </thead>
         <tbody>
