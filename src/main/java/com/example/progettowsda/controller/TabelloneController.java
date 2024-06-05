@@ -15,13 +15,13 @@ public class TabelloneController {
     private ImpiantoRepository impiantoRepository;
 
     @GetMapping("/tabellone")
-    public String getTabellone(@RequestParam(name = "id_impianto", required = true) String codImpianto,
+    public String getTabellone(@RequestParam(name = "id", required = true) String codImpianto,
                                Model model) {
         Impianto impianto = impiantoRepository.findByIdImpianto(codImpianto);
         if (impianto != null) {
             if (!impianto.isStato()) {
                 model.addAttribute("error", "Impossibile visualizzare il tabellone. Impianto non attivo.");
-                return "error_attivazione"; // Pagina di errore personalizzata
+                return "error_attivazione";
             }
             model.addAttribute("codImpianto", codImpianto);
             model.addAttribute("codPalinsesto", impianto.getPalinsesto().getIdPalinsesto());

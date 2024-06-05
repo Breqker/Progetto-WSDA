@@ -37,6 +37,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/gestione_impianti").hasAnyAuthority("ADMIN")
                         .requestMatchers("/mod/*").hasAnyAuthority("ADMIN")
                         .requestMatchers("/delete/*").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/add").hasAnyAuthority("ADMIN")
                         .anyRequest().permitAll()
                 )
                 .formLogin(login -> login.permitAll())
