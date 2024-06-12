@@ -26,6 +26,15 @@ function caricaPalinsesto(palinsestoURL) {
             const eventi = xmlDoc.getElementsByTagName('evento');
             let index = 0;
 
+
+            let totalCycleDuration = 0;
+            for (let i = 0; i < eventi.length; i++) {
+                const tempo = parseInt(eventi[i].getAttribute('tempo'), 10);
+                if (tempo > totalCycleDuration) {
+                    totalCycleDuration = tempo;
+                }
+            }
+
             function mostraEvento() {
                 if (eventi.length === 0) {
                     console.error('Errore: nessun evento trovato nel palinsesto');
@@ -35,10 +44,14 @@ function caricaPalinsesto(palinsestoURL) {
                 const fileHTML = evento.textContent.trim();
                 currentCartellone = fileHTML.split('/').pop().split('.')[0];
 
-
                 const tempoCorrente = parseInt(evento.getAttribute('tempo'), 10);
+                let tempoSuccessivo;
 
-                const tempoSuccessivo = parseInt(eventi[(index + 1) % eventi.length].getAttribute('tempo'), 10);
+                if (index + 1 < eventi.length) {
+                    tempoSuccessivo = parseInt(eventi[index + 1].getAttribute('tempo'), 10);
+                } else {
+                    tempoSuccessivo = totalCycleDuration + parseInt(eventi[0].getAttribute('tempo'), 10);
+                }
 
                 currentDurataVisual = tempoSuccessivo - tempoCorrente;
 
@@ -60,6 +73,7 @@ function caricaPalinsesto(palinsestoURL) {
         })
         .catch(error => console.error('Errore nel caricamento del palinsesto:', error));
 }
+
 
 let segnalazioneCounter = 0;
 
