@@ -74,7 +74,6 @@ function caricaPalinsesto(palinsestoURL) {
         .catch(error => console.error('Errore nel caricamento del palinsesto:', error));
 }
 
-
 let segnalazioneCounter = 0;
 
 function generaIdUnivoco() {
